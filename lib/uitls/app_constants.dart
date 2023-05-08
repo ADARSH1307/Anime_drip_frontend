@@ -15,8 +15,8 @@ class AppConstants {
   //your base url
   //https://youtu.be/DjXS9W1HD9U here how to set up the admin panel
 
-  //static const String BASE_URL = 'http://192.168.159.19:5050';
-  static const String BASE_URL = 'http://192.168.17.9:5050';
+ static const String BASE_URL = 'http://192.168.19.12:5050';
+  //static const String BASE_URL = 'http://127.0.0.1:8000';
   static const String REGISTER_URI = '/api/v1/auth/register';
   static const String LOGIN_URI = '/api/v1/auth/login';
   static const String TOPIC = 'all_zone_customer';
