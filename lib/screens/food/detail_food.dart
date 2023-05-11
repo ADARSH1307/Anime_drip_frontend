@@ -248,7 +248,7 @@ class _DetailFoodState extends State<DetailFood> {
                       ),
                       BigText(
                           size: 22,
-                          text: "food_introduce".tr,
+                          text: "Description",
                           color: AppColors.titleColor),
                       SizedBox(
                         height: Dimensions.padding20,

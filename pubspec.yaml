@@ -47,6 +47,7 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   smooth_star_rating: ^1.1.1
   percent_indicator: ^2.1.9
+  flutter_tawk: ^0.1.0
 
 dev_dependencies:
   flutter_test:

@@ -9,6 +9,7 @@ import 'package:shopping_app/controllers/cart_controller.dart';
 import 'package:shopping_app/controllers/location_controller.dart';
 import 'package:shopping_app/controllers/user_controller.dart';
 import 'package:shopping_app/routes/route_helper.dart';
+import 'package:shopping_app/screens/support/support_page.dart';
 import 'package:shopping_app/uitls/app_dimensions.dart';
 import 'package:shopping_app/widgets/account_widgets.dart';
 import 'package:get/get.dart';
@@ -159,6 +160,20 @@ class AccountPage extends StatelessWidget {
                                       child: AccountWidgets("edit_profile".tr,
                                           icon: Icons.edit,
                                           backgroundColor: Colors.redAccent)),
+
+                                  SizedBox(
+                                    height: Dimensions.height10,
+                                  ),
+                                   GestureDetector(
+                                    onTap: () => Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => SupportPage(),
+                                      ),
+                                    ),
+                                     child: AccountWidgets("Help and Support",
+                                        icon: Icons.message,
+                                        backgroundColor: Colors.redAccent),
+                                   ),
                                   SizedBox(
                                     height: Dimensions.height10,
                                   ),
