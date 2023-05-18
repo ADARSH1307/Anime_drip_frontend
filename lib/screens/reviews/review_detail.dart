@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
+
 import 'package:shopping_app/screens/reviews/constant.dart';
 import 'package:shopping_app/screens/reviews/defaultAppBar.dart';
 import 'package:shopping_app/screens/reviews/defaultBackButton.dart';
 import 'package:shopping_app/screens/reviews/review_ui.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
+
 
 class Reviews extends StatefulWidget {
   Reviews({Key? key}) : super(key: key);
@@ -56,13 +56,13 @@ class _ReviewsState extends State<Reviews> {
                         ],
                       ),
                     ),
-                    SmoothStarRating(
-                      starCount: 5,
-                      rating: 4.5,
-                      size: 28.0,
-                      color: Colors.orange,
-                      borderColor: Colors.orange,
-                    ),
+                    // SmoothStarRating(
+                    //   starCount: 5,
+                    //   rating: 4.5,
+                    //   size: 28.0,
+                    //   color: Colors.orange,
+                    //   borderColor: Colors.orange,
+                    // ),
                     SizedBox(height: 16.0),
                     Text(
                       "${reviewList.length} Reviews",
@@ -89,15 +89,15 @@ class _ReviewsState extends State<Reviews> {
                           SizedBox(width: 4.0),
                           Icon(Icons.star, color: Colors.orange),
                           SizedBox(width: 8.0),
-                          LinearPercentIndicator(
-                            lineHeight: 6.0,
-                            // linearStrokeCap: LinearStrokeCap.roundAll,
-                            width: MediaQuery.of(context).size.width / 2.8,
-                            animation: true,
-                            animationDuration: 2500,
-                            percent: ratings[index],
-                            progressColor: Colors.orange,
-                          ),
+                          // LinearPercentIndicator(
+                          //   lineHeight: 6.0,
+                          //   // linearStrokeCap: LinearStrokeCap.roundAll,
+                          //   width: MediaQuery.of(context).size.width / 2.8,
+                          //   animation: true,
+                          //   animationDuration: 2500,
+                          //   percent: ratings[index],
+                          //   progressColor: Colors.orange,
+                          // ),
                         ],
                       );
                     },

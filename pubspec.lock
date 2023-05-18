@@ -808,14 +808,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.1"
-  percent_indicator:
-    dependency: "direct main"
-    description:
-      name: percent_indicator
-      sha256: "647a14d6964fb07cf3668625730001f05f668e9564750e3e08c5160f86936b46"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.9+1"
   persistent_bottom_nav_bar:
     dependency: "direct main"
     description:
@@ -981,14 +973,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
-  smooth_star_rating:
-    dependency: "direct main"
-    description:
-      name: smooth_star_rating
-      sha256: "32e1b4bf14b702018e6ee32fabc6768be46a686136bfb248d980c4bd6fca72af"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.1"
   source_span:
     dependency: transitive
     description:

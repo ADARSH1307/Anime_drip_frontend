@@ -44,7 +44,7 @@ class CartController extends GetxController {
   void clearCartList() {
     _cartList = [];
     cartRepo.addToCartList(_cartList);
-    update();
+    // update();
   }
 
   void addToCarts(CartItem cart){
@@ -122,12 +122,12 @@ class CartController extends GetxController {
       would automatially get updated
        */
             if(total<=0){
-              _items.remove(product.id);
+             // _items.remove(product.id);
              // print("removed");
             }else{
              // print("not remove");
             }
-      update();
+      //update();
 
     } else {
       _items.putIfAbsent(
@@ -158,7 +158,6 @@ class CartController extends GetxController {
     /*
     _items should be set to empty after adding. So we created clear method. It sets it to empty
      */
-    clear();
   }
 
   List<CartItem> getCartHistory(){
@@ -196,17 +195,17 @@ class CartController extends GetxController {
     }
   }
 
-  void removeItem(int productId){
-    _items.remove(productId);
-    update();
-  }
+  // void removeItem(int productId){
+  //   _items.remove(productId);
+  //   update();
+  // }
 
-  void clear(){
-    _items = {};
-    update();
-  }
+  // void clear(){
+  //   _items = {};
+  //   update();
+  // }
 
-  void removeCartSharedPreference(){
-    cartRepo.removeCartSharedPreference();
-  }
+  // void removeCartSharedPreference(){
+  //   cartRepo.removeCartSharedPreference();
+  // }
 }

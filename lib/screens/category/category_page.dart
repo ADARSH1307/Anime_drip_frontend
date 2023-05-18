@@ -83,9 +83,9 @@ class _CategoryPageState extends State<CategoryPage> {
                         ]),
                   ),
                 ),
-                Expanded(
+                
                   //your login class name
-                  child: Column(
+                  Column(
                     children: [
                       Column(
                         children: [
@@ -668,7 +668,7 @@ class _CategoryPageState extends State<CategoryPage> {
                         ),*/
                     ],
                   ),
-                ),
+                
               ],
             ),
           ),

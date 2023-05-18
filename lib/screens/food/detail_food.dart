@@ -35,6 +35,14 @@ class DetailFood extends StatefulWidget {
 class _DetailFoodState extends State<DetailFood> {
   int activeIndex = 0;
   bool isMore = false;
+  double sideLength = 40;
+  var size_color = Colors.transparent;
+  double medium_Length = 40;
+  var medium_color = Colors.transparent;
+  double large_Length = 40;
+  var large_color = Colors.transparent;
+  double xl_Length = 40;
+  var xl_color = Colors.transparent;
   final controller = CarouselController();
 
   @override
@@ -58,13 +66,14 @@ class _DetailFoodState extends State<DetailFood> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Stack(
-              children: [
-                Column(
-                  children: [
-                    SizedBox(
+            SizedBox(
                       height: 50,
                     ),
+            Stack(
+              children: [
+                // Column(
+                //   children: [
+                    
                     CarouselSlider.builder(
                         carouselController: controller,
                         itemCount: urlImages.length,
@@ -83,10 +92,10 @@ class _DetailFoodState extends State<DetailFood> {
                         )),
                     //
                     // buildIndicator()
-                  ],
-                ),
+                //   ],
+                // ),
                 Positioned(
-                    top: 50,
+                    //top: 50,
                     left: 20,
                     right: 20,
                     child: Row(
@@ -144,15 +153,15 @@ class _DetailFoodState extends State<DetailFood> {
                                           child: Center(
                                               child: Icon(
                                             Icons.circle,
-                                            size: 16,
+                                            size: 18,
                                             color: AppColors.mainColor,
                                           )),
                                         )
                                       : Container(),
                                   Get.find<CartController>().totalItems > 1
                                       ? Positioned(
-                                          right: 8,
-                                          top: 6,
+                                          right: 10,
+                                          top: 8,
                                           child: Center(
                                               child: Text(
                                             Get.find<CartController>()
@@ -160,7 +169,7 @@ class _DetailFoodState extends State<DetailFood> {
                                                 .toString(),
                                             style: TextStyle(
                                                 fontSize: 10,
-                                                color: Colors.white),
+                                                color: Color.fromARGB(255, 8, 2, 2)),
                                           )),
                                         )
                                       : Container()
@@ -173,12 +182,13 @@ class _DetailFoodState extends State<DetailFood> {
                     )),
               ],
             ),
-            Positioned(
-                left: 0,
-                right: 0,
-                top: Dimensions.sliverHeight - 10,
-                // bottom: 0,
-                child: Container(
+            // Positioned(
+            //     left: 0,
+            //     right: 0,
+            //     top: Dimensions.sliverHeight - 10,
+            //     // bottom: 0,
+            //     child:
+                 Container(
                   height: 500,
                   //width: MediaQuery.of(context).size.width,
                   padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
@@ -246,6 +256,171 @@ class _DetailFoodState extends State<DetailFood> {
                       SizedBox(
                         height: Dimensions.padding20,
                       ),
+                      Text(
+                        "Size",
+                        style: TextStyle(
+                          fontSize: 20.0,
+                        ),
+                      ),
+                      SizedBox(height: 5,),
+                      Row(
+                        children: [
+                          AnimatedContainer(
+                            decoration: BoxDecoration(
+                              border: Border.all(),
+                              color: size_color,
+                              shape: BoxShape.circle,
+                            ),
+                            height: sideLength,
+                            width: sideLength,
+                            duration: const Duration(seconds: 0),
+                            curve: Curves.easeIn,
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  sideLength == 40
+                                      ? sideLength = 45
+                                      : sideLength = 40;
+                                  size_color == Colors.transparent
+                                      ? size_color = AppColors.mainColor
+                                      : size_color = Colors.transparent;
+
+                                  medium_Length = 40;
+                                  medium_color = Colors.transparent ;
+
+                                  large_Length = 40;
+                                  large_color = Colors.transparent ;
+
+                                  xl_Length = 40;
+                                  xl_color = Colors.transparent ;
+                                });
+                              },
+                              child: Center(
+                                  child: BigText(
+                                      text: productItem.small,
+                                      color: AppColors.mainBlackColor)),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          AnimatedContainer(
+                            decoration: BoxDecoration(
+                              border: Border.all(),
+                              color: medium_color,
+                              shape: BoxShape.circle,
+                            ),
+                            height: medium_Length,
+                            width: medium_Length,
+                            duration: const Duration(seconds: 0),
+                            curve: Curves.easeIn,
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  medium_Length == 40
+                                      ? medium_Length = 45
+                                      : medium_Length = 40;
+                                  medium_color == Colors.transparent
+                                      ? medium_color = AppColors.mainColor
+                                      : medium_color = Colors.transparent;
+
+                                  sideLength = 40;
+                                  size_color = Colors.transparent ;
+
+                                  large_Length = 40;
+                                  large_color = Colors.transparent ;
+
+                                  xl_Length = 40;
+                                  xl_color = Colors.transparent ;
+                                });
+                              },
+                              child: Center(
+                                  child: BigText(
+                                      text: productItem.medium,
+                                      color: AppColors.mainBlackColor)),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          AnimatedContainer(
+                            decoration: BoxDecoration(
+                              border: Border.all(),
+                              color: large_color,
+                              shape: BoxShape.circle,
+                            ),
+                            height: large_Length,
+                            width: large_Length,
+                            duration: const Duration(seconds: 0),
+                            curve: Curves.easeIn,
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  large_Length == 40
+                                      ? large_Length = 45
+                                      : large_Length = 40;
+                                  large_color == Colors.transparent
+                                      ? large_color = AppColors.mainColor
+                                      : large_color = Colors.transparent;
+
+                                  sideLength = 40;
+                                  size_color = Colors.transparent ;
+
+                                  medium_Length = 40;
+                                  medium_color = Colors.transparent ;
+
+                                  xl_Length = 40;
+                                  xl_color = Colors.transparent ;
+                                });
+                              },
+                              child: Center(
+                                  child: BigText(
+                                      text: productItem.large,
+                                      color: AppColors.mainBlackColor)),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          AnimatedContainer(
+                            decoration: BoxDecoration(
+                              border: Border.all(),
+                              color: xl_color,
+                              shape: BoxShape.circle,
+                            ),
+                            height: xl_Length,
+                            width: xl_Length,
+                            duration: const Duration(seconds: 0),
+                            curve: Curves.easeIn,
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                 xl_Length == 40
+                                      ? xl_Length = 45
+                                      : xl_Length = 40;
+                                  xl_color == Colors.transparent
+                                      ? xl_color = AppColors.mainColor
+                                      : xl_color = Colors.transparent;
+
+                                  sideLength = 40;
+                                  size_color = Colors.transparent ;
+
+                                  medium_Length = 40;
+                                  medium_color = Colors.transparent ;
+
+                                  large_Length = 40;
+                                  large_color = Colors.transparent ;
+                                });
+                              },
+                              child: Center(
+                                  child: BigText(
+                                      text: productItem.xlarge,
+                                      color: AppColors.mainBlackColor)),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10,),
                       BigText(
                           size: 22,
                           text: "Description",
@@ -280,44 +455,44 @@ class _DetailFoodState extends State<DetailFood> {
                                           size: 15,
                                           text: "View All",
                                           color: AppColors.mainColor),
-
                                     ),
                                   ),
                                 ],
                               ),
-                               ListView.separated(
+                              ListView.separated(
                                 physics: NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
-              padding: EdgeInsets.only(bottom: 8.0, top: 8.0),
-              itemCount: 3,
-              itemBuilder: (context, index) {
-                return ReviewUI(
-                  image: reviewList[index].image,
-                  name: reviewList[index].name,
-                  date: reviewList[index].date,
-                  comment: reviewList[index].comment,
-                  rating: reviewList[index].rating,
-                  onPressed: () => print("More Action $index"),
-                  onTap: () => setState(() {
-                    isMore = !isMore;
-                  }),
-                  isLess: isMore,
-                );
-              },
-              separatorBuilder: (context, index) {
-                return Divider(
-                  thickness: 2.0,
-                  color: kAccentColor,
-                );
-              },
-            ),
+                                padding: EdgeInsets.only(bottom: 8.0, top: 8.0),
+                                itemCount: 3,
+                                itemBuilder: (context, index) {
+                                  return ReviewUI(
+                                    image: reviewList[index].image,
+                                    name: reviewList[index].name,
+                                    date: reviewList[index].date,
+                                    comment: reviewList[index].comment,
+                                    rating: reviewList[index].rating,
+                                    onPressed: () =>
+                                        print("More Action $index"),
+                                    onTap: () => setState(() {
+                                      isMore = !isMore;
+                                    }),
+                                    isLess: isMore,
+                                  );
+                                },
+                                separatorBuilder: (context, index) {
+                                  return Divider(
+                                    thickness: 2.0,
+                                    color: kAccentColor,
+                                  );
+                                },
+                              ),
                             ],
                           ),
                         ),
                       ),
                     ],
                   ),
-                ))
+                )
           ],
         ),
       ),

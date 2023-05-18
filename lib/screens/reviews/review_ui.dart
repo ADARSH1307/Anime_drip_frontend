@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:shopping_app/screens/reviews/constant.dart';
 
 class ReviewUI extends StatelessWidget {
@@ -60,13 +59,13 @@ class ReviewUI extends StatelessWidget {
           SizedBox(height: 8.0),
           Row(
             children: [
-              SmoothStarRating(
-                starCount: 5,
-                rating: rating,
-                size: 28.0,
-                color: Colors.orange,
-                borderColor: Colors.orange,
-              ),
+              // SmoothStarRating(
+              //   starCount: 5,
+              //   rating: rating,
+              //   size: 28.0,
+              //   color: Colors.orange,
+              //   borderColor: Colors.orange,
+              // ),
               SizedBox(width: 10),
               Text(
                 date,

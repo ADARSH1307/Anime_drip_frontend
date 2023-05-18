@@ -502,7 +502,7 @@ class _CartPageState extends State<CartPage> {
                      'timeout': 300, // in seconds
                      'prefill': {
                        'contact': '',
-                       'email': '@gmail.com',
+                       'email': '',
                      }
                    };
                    _razorpay.open(options);
@@ -539,8 +539,8 @@ class _CartPageState extends State<CartPage> {
 
                                 ), _callback);
 
-                                Get.find<CartController>().clear();
-                                Get.find<CartController>().removeCartSharedPreference();
+                                // Get.find<CartController>().clear();
+                                // Get.find<CartController>().removeCartSharedPreference();
                                 Get.find<CartController>().addToHistory();
                               }
                             }

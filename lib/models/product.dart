@@ -44,6 +44,10 @@ class Product {
   String description;
   double price;
   bool isFavourite;
+  String small;
+  String medium;
+  String large;
+  String xlarge;
 
   Product(
       {required this.id,
@@ -55,6 +59,10 @@ class Product {
       required this.img3,
       required this.description,
       required this.price,
+      required this.small,
+      required this.medium,
+      required this.large,
+      required this.xlarge,
       this.isFavourite = false});
 
   factory Product.fromJson(Map<String, dynamic> json) {
@@ -66,6 +74,10 @@ class Product {
       img1: json['Image1'] ?? "img/food0.png",
       img2: json['Image2'] ?? "img/food0.png",
       img3: json['Image3'] ?? "img/food0.png",
+      small: json['small'].toString(),
+      medium: json['medium'].toString(),
+      large: json['large'].toString(),
+      xlarge: json['xlarge'].toString(),
       description: json['description'] ?? '',
       price: double.parse(json['price'].toString()),
       isFavourite: json['isFavourtie'] ?? false,
@@ -83,6 +95,10 @@ class Product {
       'Image1': this.img1,
       'Image2': this.img2,
       'Image3': this.img3,
+      'small': this.small,
+      'medium': this.medium,
+      'large': this.large,
+      'xlarge': this.xlarge,
       //this part we need for accessing the product model
       //so we will this part later
       'isFavourite': this.isFavourite

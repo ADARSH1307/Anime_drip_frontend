@@ -49,10 +49,10 @@ class _SplashScreenState extends State<SplashScreen>
     }
   }
 
-  void _removeResource() {
-    Get.find<CartController>().clear();
-    Get.find<CartController>().removeCartSharedPreference();
-  }
+  // void _removeResource() {
+  //   Get.find<CartController>().clear();
+  //   Get.find<CartController>().removeCartSharedPreference();
+  // }
 
   @override
   void initState() {

@@ -11,12 +11,12 @@ class CartRepo{
   List<String> cart=[];
   List<String> cartHistory = [];
   List<CartItem> getCartList() {
-    sharedPreferences.remove("Cart-list");
-    sharedPreferences.remove("Cart-list-list");
+    // sharedPreferences.remove("Cart-list");
+    // sharedPreferences.remove("Cart-list-list");
     List<String> carts = [];
-    if(sharedPreferences.containsKey("Cart-list")) {
-      carts = sharedPreferences.getStringList("Cart-list")!;
-    }
+    // if(sharedPreferences.containsKey("Cart-list")) {
+    //   carts = sharedPreferences.getStringList("Cart-list")!;
+    // }
     List<CartItem> cartList = [];
 
     carts.forEach((cart) => cartList.add(CartItem.fromJson(jsonDecode(cart))) );
