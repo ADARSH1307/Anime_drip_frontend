@@ -1,5 +1,7 @@
 import 'dart:core';
+
 import 'package:get/get.dart';
+
 import 'package:shopping_app/data/repos/cart_repo.dart';
 import 'package:shopping_app/models/cart_item.dart';
 import 'package:shopping_app/models/product.dart';
@@ -113,6 +115,7 @@ class CartController extends GetxController {
               price: existingCartItem.price,
               img:product.img,
               product: product,
+          
               time:DateTime.now().toString());
             },
               );
@@ -122,12 +125,12 @@ class CartController extends GetxController {
       would automatially get updated
        */
             if(total<=0){
-             // _items.remove(product.id);
+              _items.remove(product.id);
              // print("removed");
             }else{
              // print("not remove");
             }
-      //update();
+      update();
 
     } else {
       _items.putIfAbsent(
@@ -158,6 +161,7 @@ class CartController extends GetxController {
     /*
     _items should be set to empty after adding. So we created clear method. It sets it to empty
      */
+    //clear();
   }
 
   List<CartItem> getCartHistory(){

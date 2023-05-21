@@ -92,16 +92,13 @@ order details
   static String getKeychainRoute(int pageId, String page) =>
       '$keychains?id=$pageId&page=$page';
 
-  static String getAccountPage() => '$accountPage';
-  static String getCartPage(int pageId, String page) =>
-      '$cartPage?id=$pageId&page=$page';
-  static String getPaymentRoute(String id, int user) =>
-      '$payment?id=$id&user=$user';
-  static String getOrderSuccessRoute(String orderID, String status) =>
-      '$orderSuccess?id=$orderID&status=$status';
+   static String getAccountPage()=>'$accountPage';
+  static String getCartPage(int pageId, String page)=>'$cartPage?id=$pageId&page=$page';
+  static String getPaymentRoute(String id, int user) => '$payment?id=$id&user=$user';
+  static String getOrderSuccessRoute(String orderID, String status) => '$orderSuccess?id=$orderID&status=$status';
 
-  static String getUpdateProfile() => '$updateProfile';
-  static String getSearchRoute() => '$search';
+  static String getUpdateProfile()=>'$updateProfile';
+  static String getSearchRoute()=>'$search';
   static String getLanguagePage(String page) => '$language?page=$page';
   static String getOrderDetailsRoute(int orderID) {
     return '$orderDetails?id=$orderID';

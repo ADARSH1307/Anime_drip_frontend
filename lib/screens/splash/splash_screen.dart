@@ -139,13 +139,12 @@ class _SplashScreenState extends State<SplashScreen>
           child:
           Center(
               child: Image.asset("img/anime_drip logo.png",
-                  width: Dimensions.SPLASH_IMG_WIDTH)),
-          // Center(
-          //   child: Image.asset(
-          // "img/logo part 2.png",
-          //   width: Dimensions.SPLASH_IMG_WIDTH,
-          //  )),
-          ),
+                  width: Dimensions.SPLASH_IMG_WIDTH))),
+          Center(
+        //    child: Image.asset(
+          //"img/logo part 2.png",
+            //width: Dimensions.SPLASH_IMG_WIDTH,
+           )//),
         ],
 
       ),
