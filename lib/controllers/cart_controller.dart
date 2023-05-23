@@ -101,7 +101,7 @@ class CartController extends GetxController {
     return total;
   }
 
-  void addItem(Product product, int quantity) {
+  void addItem(Product product, int quantity,String selected_size) {
     int total=0;
     if (_items.containsKey(product.id)) {
       _items.update(
@@ -112,6 +112,8 @@ class CartController extends GetxController {
               id: existingCartItem.id.toString(),
               title: existingCartItem.title,
               quantity: existingCartItem.quantity + quantity,
+              selected_size: selected_size,
+
               price: existingCartItem.price,
               img:product.img,
               product: product,
@@ -140,6 +142,7 @@ class CartController extends GetxController {
           title: product.title,
           price: product.price,
           quantity: quantity,
+          selected_size: selected_size,
           img:product.img,
           product: product,
             time:DateTime.now().toString()
@@ -150,6 +153,62 @@ class CartController extends GetxController {
     cartRepo.addToCartList(getCarts);
     update();
   }
+
+
+  void updateSize(Product product, int quantity,String selected_size) {
+    int total=0;
+    if (_items.containsKey(product.id)) {
+      _items.update(
+          product.id,
+          (existingCartItem){
+         total=   existingCartItem.quantity+quantity;
+            return CartItem(
+              id: existingCartItem.id.toString(),
+              title: existingCartItem.title,
+              quantity: existingCartItem.quantity + quantity,
+                        selected_size: selected_size,
+
+              price: existingCartItem.price,
+              img:product.img,
+              product: product,
+          
+              time:DateTime.now().toString());
+            },
+              );
+      /*
+      with this we are making sure, we are removing all
+      items that has zero quantity in the cart. This way cart
+      would automatially get updated
+       */
+            if(total<=0){
+              _items.remove(product.id);
+             // print("removed");
+            }else{
+             // print("not remove");
+            }
+      update();
+
+    } else {
+      _items.putIfAbsent(
+        product.id,
+        () => CartItem(
+          id: product.id.toString(),
+          title: product.title,
+          price: product.price,
+          quantity: quantity,
+          selected_size: selected_size,
+        
+          img:product.img,
+          product: product,
+            time:DateTime.now().toString()
+        ),
+      );
+    }
+    // this makes sure that we are saving in the sharedpreference every time user clicks to add to cart button
+    cartRepo.addToCartList(getCarts);
+    update();
+  }
+
 
   void addToCartList(){
     cartRepo.addToCartList(getCarts);

@@ -5,6 +5,7 @@ import 'package:http/http.dart';
 import 'package:shopping_app/components/colors.dart';
 import 'package:shopping_app/components/expanded_widget.dart';
 import 'package:shopping_app/controllers/cart_controller.dart';
+import 'package:shopping_app/controllers/order_controller.dart';
 import 'package:shopping_app/controllers/pant_controller.dart';
 import 'package:shopping_app/controllers/product_controller.dart';
 import 'package:shopping_app/routes/route_helper.dart';
@@ -44,7 +45,7 @@ class _DetailFoodState extends State<DetailFood> {
   double xl_Length = 40;
   var xl_color = Colors.transparent;
   final controller = CarouselController();
-  late var selected_size;
+  var selected_size;
 
   @override
   Widget build(BuildContext context) {
@@ -282,7 +283,7 @@ class _DetailFoodState extends State<DetailFood> {
                         child: InkWell(
                           onTap: () {
                             setState(() {
-                              selected_size = "S";
+                              selected_size = productItem.small;
                               sideLength == 40
                                   ? sideLength = 45
                                   : sideLength = 40;
@@ -322,7 +323,7 @@ class _DetailFoodState extends State<DetailFood> {
                         child: InkWell(
                           onTap: () {
                             setState(() {
-                                                            selected_size = "M";
+                              selected_size = productItem.medium;
 
                               medium_Length == 40
                                   ? medium_Length = 45
@@ -363,7 +364,7 @@ class _DetailFoodState extends State<DetailFood> {
                         child: InkWell(
                           onTap: () {
                             setState(() {
-                                                            selected_size = "L";
+                              selected_size = productItem.large;
 
                               large_Length == 40
                                   ? large_Length = 45
@@ -404,7 +405,7 @@ class _DetailFoodState extends State<DetailFood> {
                         child: InkWell(
                           onTap: () {
                             setState(() {
-                              selected_size = "XL";
+                              selected_size = productItem.xlarge;
 
                               xl_Length == 40 ? xl_Length = 45 : xl_Length = 40;
                               xl_color == Colors.transparent
@@ -522,6 +523,7 @@ class _DetailFoodState extends State<DetailFood> {
                 children: [
                   GestureDetector(
                     onTap: () {
+                      
                       Get.find<ProductController>()
                           .setQuantity(false, productItem);
                     },
@@ -561,7 +563,13 @@ class _DetailFoodState extends State<DetailFood> {
             Expanded(child: Container()),
             GestureDetector(
               onTap: () {
-                Get.find<ProductController>().addItem(productItem);
+                
+                Get.find<ProductController>()
+                    .setSize(selected_size, productItem);
+                    Get.find<ProductController>().addItem(productItem);
+                print(selected_size);
+
+                // Get.find<OrderController>().size_select(selected_size);
               },
               child: Container(
                 child: BigText(

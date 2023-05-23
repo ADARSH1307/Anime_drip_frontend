@@ -338,10 +338,14 @@ class _CartPageState extends State<CartPage> {
                                                       ),
                                                       /* BigText(text: cartController.getCarts[index].title,
                                                   color: AppColors.titleColor),*/
-                                                      TextWidget(
-                                                        text: "Spicy",
-                                                        color:
-                                                            AppColors.textColor,
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            "Size :",
+                                                          ),
+                                                          BigText(text: _cartList[index]
+                                                                              .selected_size, color: AppColors.mainBlackColor)
+                                                        ],
                                                       ),
                                                       Row(
                                                         children: [
@@ -374,10 +378,14 @@ class _CartPageState extends State<CartPage> {
                                                                     onTap: () {
                                                                       var quantity =
                                                                           -1;
+                                                                      var selected_size =
+                                                                          _cartList[index]
+                                                                              .selected_size;
                                                                       Get.find<CartController>().addItem(
                                                                           _cartList[index]
                                                                               .product,
-                                                                          quantity);
+                                                                          quantity,
+                                                                          selected_size);
                                                                     },
                                                                     child: Icon(
                                                                         Icons
@@ -407,10 +415,13 @@ class _CartPageState extends State<CartPage> {
                                                                     onTap: () {
                                                                       var quantity =
                                                                           1;
+                                                                          var selected_size =
+                                                                          _cartList[index]
+                                                                              .selected_size;
                                                                       Get.find<CartController>().addItem(
                                                                           _cartList[index]
                                                                               .product,
-                                                                          quantity);
+                                                                          quantity,selected_size);
                                                                     },
                                                                     child: Icon(
                                                                         Icons

@@ -4,6 +4,8 @@ class CartItem {
   String id;
   String title;
   int quantity;
+    String selected_size;
+
   double price;
   bool isExist;
   String img;
@@ -13,6 +15,7 @@ class CartItem {
   CartItem({ required this.id,
     required this.title,
     required this.quantity,
+     required this.selected_size,
     required this.price,
     this.isExist = false,
     required this.img,
@@ -25,6 +28,8 @@ class CartItem {
       id: json['id'],
       title: json['title'],
       quantity: json['quantity'],
+            selected_size: json['selected_size'],
+
       price: json['price'],
       isExist: json['isExist'],
       img:json['img']??"img/food0.png",
@@ -39,6 +44,8 @@ class CartItem {
       "id": this.id,
       "title": this.title,
       "quantity": this.quantity,
+            "selected_size": this.selected_size,
+
       "price": this.price,
       "isExist": this.isExist,
       'img':this.img,
