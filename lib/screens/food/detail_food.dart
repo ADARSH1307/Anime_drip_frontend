@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:shopping_app/base/custom_snackbar.dart';
 import 'package:shopping_app/components/colors.dart';
 import 'package:shopping_app/components/expanded_widget.dart';
 import 'package:shopping_app/controllers/cart_controller.dart';
@@ -45,7 +46,7 @@ class _DetailFoodState extends State<DetailFood> {
   double xl_Length = 40;
   var xl_color = Colors.transparent;
   final controller = CarouselController();
-  var selected_size;
+  var selected_size = 'null';
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +93,7 @@ class _DetailFoodState extends State<DetailFood> {
                       enlargeCenterPage: true,
                       // onPageChanged: (index, reason) =>setState(() => activeIndex = index)
                     )),
+
                 //
                 // buildIndicator()
                 //   ],
@@ -283,22 +285,35 @@ class _DetailFoodState extends State<DetailFood> {
                         child: InkWell(
                           onTap: () {
                             setState(() {
-                              selected_size = productItem.small;
-                              sideLength == 40
-                                  ? sideLength = 45
-                                  : sideLength = 40;
-                              size_color == Colors.transparent
-                                  ? size_color = AppColors.mainColor
-                                  : size_color = Colors.transparent;
+                              if (productItem.small != "NA") {
+                                if (selected_size == 'null') {
+                                  selected_size = productItem.small;
+                                } else if (selected_size == "NA") {
+                                  showCustomSnackBar("Size is not available",
+                                      isError: false, title: "Unavailable!!!");
+                                } else if (selected_size == productItem.small) {
+                                  selected_size = "null";
+                                }
 
-                              medium_Length = 40;
-                              medium_color = Colors.transparent;
+                                sideLength == 40
+                                    ? sideLength = 45
+                                    : sideLength = 40;
+                                size_color == Colors.transparent
+                                    ? size_color = AppColors.mainColor
+                                    : size_color = Colors.transparent;
 
-                              large_Length = 40;
-                              large_color = Colors.transparent;
+                                medium_Length = 40;
+                                medium_color = Colors.transparent;
 
-                              xl_Length = 40;
-                              xl_color = Colors.transparent;
+                                large_Length = 40;
+                                large_color = Colors.transparent;
+
+                                xl_Length = 40;
+                                xl_color = Colors.transparent;
+                              } else {
+                                showCustomSnackBar("Size is not available",
+                                    isError: false, title: "Unavailable!!!");
+                              }
                             });
                           },
                           child: Center(
@@ -323,23 +338,36 @@ class _DetailFoodState extends State<DetailFood> {
                         child: InkWell(
                           onTap: () {
                             setState(() {
-                              selected_size = productItem.medium;
+                              if (productItem.medium != "NA") {
+                                if (selected_size == 'null') {
+                                  selected_size = productItem.medium;
+                                } else if (selected_size == "NA") {
+                                  showCustomSnackBar("Size is not available",
+                                      isError: false, title: "Unavailable!!!");
+                                } else if (selected_size ==
+                                    productItem.medium) {
+                                  selected_size = "null";
+                                }
 
-                              medium_Length == 40
-                                  ? medium_Length = 45
-                                  : medium_Length = 40;
-                              medium_color == Colors.transparent
-                                  ? medium_color = AppColors.mainColor
-                                  : medium_color = Colors.transparent;
+                                medium_Length == 40
+                                    ? medium_Length = 45
+                                    : medium_Length = 40;
+                                medium_color == Colors.transparent
+                                    ? medium_color = AppColors.mainColor
+                                    : medium_color = Colors.transparent;
 
-                              sideLength = 40;
-                              size_color = Colors.transparent;
+                                sideLength = 40;
+                                size_color = Colors.transparent;
 
-                              large_Length = 40;
-                              large_color = Colors.transparent;
+                                large_Length = 40;
+                                large_color = Colors.transparent;
 
-                              xl_Length = 40;
-                              xl_color = Colors.transparent;
+                                xl_Length = 40;
+                                xl_color = Colors.transparent;
+                              } else {
+                                showCustomSnackBar("Size is not available",
+                                    isError: false, title: "Unavailable!!!");
+                              }
                             });
                           },
                           child: Center(
@@ -364,23 +392,32 @@ class _DetailFoodState extends State<DetailFood> {
                         child: InkWell(
                           onTap: () {
                             setState(() {
-                              selected_size = productItem.large;
+                              if (productItem.large != "NA") {
+                                if (selected_size == 'null') {
+                                  selected_size = productItem.large;
+                                } else if (selected_size == productItem.large) {
+                                  selected_size = "null";
+                                }
 
-                              large_Length == 40
-                                  ? large_Length = 45
-                                  : large_Length = 40;
-                              large_color == Colors.transparent
-                                  ? large_color = AppColors.mainColor
-                                  : large_color = Colors.transparent;
+                                large_Length == 40
+                                    ? large_Length = 45
+                                    : large_Length = 40;
+                                large_color == Colors.transparent
+                                    ? large_color = AppColors.mainColor
+                                    : large_color = Colors.transparent;
 
-                              sideLength = 40;
-                              size_color = Colors.transparent;
+                                sideLength = 40;
+                                size_color = Colors.transparent;
 
-                              medium_Length = 40;
-                              medium_color = Colors.transparent;
+                                medium_Length = 40;
+                                medium_color = Colors.transparent;
 
-                              xl_Length = 40;
-                              xl_color = Colors.transparent;
+                                xl_Length = 40;
+                                xl_color = Colors.transparent;
+                              } else {
+                                showCustomSnackBar("Size is not available",
+                                    isError: false, title: "Unavailable!!!");
+                              }
                             });
                           },
                           child: Center(
@@ -405,21 +442,33 @@ class _DetailFoodState extends State<DetailFood> {
                         child: InkWell(
                           onTap: () {
                             setState(() {
-                              selected_size = productItem.xlarge;
+                              if (productItem.xlarge != "NA") {
+                                if (selected_size == 'null') {
+                                  selected_size = productItem.xlarge;
+                                } else if (selected_size ==
+                                    productItem.xlarge) {
+                                  selected_size = "null";
+                                }
 
-                              xl_Length == 40 ? xl_Length = 45 : xl_Length = 40;
-                              xl_color == Colors.transparent
-                                  ? xl_color = AppColors.mainColor
-                                  : xl_color = Colors.transparent;
+                                xl_Length == 40
+                                    ? xl_Length = 45
+                                    : xl_Length = 40;
+                                xl_color == Colors.transparent
+                                    ? xl_color = AppColors.mainColor
+                                    : xl_color = Colors.transparent;
 
-                              sideLength = 40;
-                              size_color = Colors.transparent;
+                                sideLength = 40;
+                                size_color = Colors.transparent;
 
-                              medium_Length = 40;
-                              medium_color = Colors.transparent;
+                                medium_Length = 40;
+                                medium_color = Colors.transparent;
 
-                              large_Length = 40;
-                              large_color = Colors.transparent;
+                                large_Length = 40;
+                                large_color = Colors.transparent;
+                              } else {
+                                showCustomSnackBar("Size is not available",
+                                    isError: false, title: "Unavailable!!!");
+                              }
                             });
                           },
                           child: Center(
@@ -523,7 +572,6 @@ class _DetailFoodState extends State<DetailFood> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      
                       Get.find<ProductController>()
                           .setQuantity(false, productItem);
                     },
@@ -563,12 +611,24 @@ class _DetailFoodState extends State<DetailFood> {
             Expanded(child: Container()),
             GestureDetector(
               onTap: () {
-                
-                Get.find<ProductController>()
-                    .setSize(selected_size, productItem);
-                    Get.find<ProductController>().addItem(productItem);
-                print(selected_size);
-
+                if (selected_size == "null" || selected_size=="NA") {
+                  showCustomSnackBar("Select the size",
+                      isError: false, title: "Please!");
+                } else {
+                  Get.find<ProductController>()
+                      .setSize(selected_size, productItem);
+                  Get.find<ProductController>().addItem(productItem);
+                  print(selected_size);
+                  int a = Get.find<ProductController>().certainItems;
+                  if (selected_size != "null" && a == 0) {
+                    showCustomSnackBar("Atleast Select a Item",
+                        isError: false, title: "Set quantity");
+                  }
+                  if (selected_size != "null" && a >= 1) {
+                    showCustomSnackBar("Items added to Cart",
+                        isError: false, title: "Cart Updated");
+                  }
+                }
                 // Get.find<OrderController>().size_select(selected_size);
               },
               child: Container(
