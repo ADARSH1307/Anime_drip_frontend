@@ -35,9 +35,10 @@ class LanguagePage extends StatelessWidget {
                     child: Column(mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.center, children: [
 
-                      Center(child: Image.asset(Images.logo, width: 120)),
+                      Center(child: Image.asset("img/anime_drip logo.png",
+                  width: Dimensions.SPLASH_IMG_WIDTH),),
                       SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                      Center(child: Image.asset(Images.logo_name, width: 140)),
+                     // Center(child: Image.asset(Images.logo_name, width: 140)),
 
                       SizedBox(height: 30),
 

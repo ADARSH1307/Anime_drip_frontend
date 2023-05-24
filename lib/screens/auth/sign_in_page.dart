@@ -36,17 +36,23 @@ class _SignInPageState extends State<SignInPage> {
             child: Column(
               children: [
                 Container(
+
                   width: w,
                   height: h*0.2,
                   margin:  EdgeInsets.only(top:40, left: 40, right: 40, bottom: 20),
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(
-                              "img/logo part 1.png"
-                          ),
-                          fit: BoxFit.fitHeight
-                      )
-                  ),
+                  // decoration: BoxDecoration(
+                  //     image: DecorationImage(
+                  //         image: AssetImage(
+                  //            "img/anime_drip logo.png"
+                  //         ),
+                  //         fit: BoxFit.fitHeight
+
+
+
+
+                         
+                  //     )
+                  // ),
                 ),
                 Container(
                   margin: const EdgeInsets.only(left: 20, right: 20),

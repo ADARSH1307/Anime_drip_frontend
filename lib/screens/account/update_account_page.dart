@@ -167,23 +167,23 @@ class _UpdateAccountPageState extends State<UpdateAccountPage> {
                        margin: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
                        buttonText: 'update'.tr,
                      ) : Center(child: CircularProgressIndicator()),
-                         GridView.builder(
-                           physics: NeverScrollableScrollPhysics(),
-                           shrinkWrap: true,
-                           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                             crossAxisCount:  2,
-                             childAspectRatio: (1/1),
-                             crossAxisSpacing: Dimensions.PADDING_SIZE_EXTRA_SMALL,
-                             mainAxisSpacing: Dimensions.PADDING_SIZE_EXTRA_SMALL,
-                           ),
-                           itemCount: _menuList.length,
-                           itemBuilder: (context, index) {
-                             return GestureDetector(
-                               onTap: ()=>Get.toNamed(RouteHelper.getLanguagePage("update")),
-                               child: _menuList[index],
-                             );
-                           },
-                         )
+                        //  GridView.builder(
+                        //    physics: NeverScrollableScrollPhysics(),
+                        //    shrinkWrap: true,
+                        //    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        //      crossAxisCount:  2,
+                        //      childAspectRatio: (1/1),
+                        //      crossAxisSpacing: Dimensions.PADDING_SIZE_EXTRA_SMALL,
+                        //      mainAxisSpacing: Dimensions.PADDING_SIZE_EXTRA_SMALL,
+                        //    ),
+                        //    itemCount: _menuList.length,
+                        //    itemBuilder: (context, index) {
+                        //      return GestureDetector(
+                        //        onTap: ()=>Get.toNamed(RouteHelper.getLanguagePage("update")),
+                        //        child: _menuList[index],
+                        //      );
+                        //    },
+                        //  )
                    ]),
                  ),
                ),
