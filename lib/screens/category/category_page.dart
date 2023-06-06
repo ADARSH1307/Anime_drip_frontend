@@ -42,7 +42,7 @@ class _CategoryPageState extends State<CategoryPage> {
         return Container(
           //padding: EdgeInsets.only(bottom: kBottomNavigationBarHeight),
           child: Scaffold(
-            // resizeToAvoidBottomInset: true,
+           //  resizeToAvoidBottomInset: true,
 
             backgroundColor: AppColors.buttonBackgroundColor,
             body: ListView(
@@ -114,8 +114,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                         bottom: Dimensions.height10,
                                         left: Dimensions.width10,
                                         right: Dimensions.width15),
-                                    height: 250,
-                                    width: 180,
+                                    height: Dimensions.height10*25,
+                                    width: Dimensions.width10*18,
                                     child: Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
@@ -128,9 +128,9 @@ class _CategoryPageState extends State<CategoryPage> {
                                                   /* element.value,*/
                                                   color: Colors.black87),
                                             ),
-                                            margin: EdgeInsets.only(top: 195),
-                                            width: 180,
-                                            height: 55,
+                                            margin: EdgeInsets.only(top: Dimensions.height15*13),
+                                            width: Dimensions.width10*18,
+                                            height: (Dimensions.height10/2) *11,
                                             decoration: BoxDecoration(
                                               color: AppColors.mainColor,
                                               borderRadius:
@@ -167,8 +167,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                               bottom: Dimensions.height10,
                                               left: Dimensions.width10,
                                               right: Dimensions.width15),
-                                          height: 250,
-                                          width: 180,
+                                          height:  Dimensions.height10*25,
+                                          width: Dimensions.width10*18,
                                           child: Row(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
@@ -183,9 +183,9 @@ class _CategoryPageState extends State<CategoryPage> {
                                                         color: Colors.black87),
                                                   ),
                                                   margin:
-                                                      EdgeInsets.only(top: 195),
-                                                  width: 180,
-                                                  height: 55,
+                                                      EdgeInsets.only(top: Dimensions.height15*13),
+                                                  width: Dimensions.width10*18,
+                                                  height: (Dimensions.height10/2) *11,
                                                   decoration: BoxDecoration(
                                                     color: AppColors.mainColor,
                                                     borderRadius:
@@ -232,8 +232,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                         bottom: Dimensions.height10,
                                         left: Dimensions.width10,
                                         right: Dimensions.width15),
-                                    height: 250,
-                                    width: 180,
+                                    height:  Dimensions.height10*25,
+                                    width: Dimensions.width10*18,
                                     child: Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
@@ -246,9 +246,9 @@ class _CategoryPageState extends State<CategoryPage> {
                                                   /* element.value,*/
                                                   color: Colors.black87),
                                             ),
-                                            margin: EdgeInsets.only(top: 195),
-                                            width: 180,
-                                            height: 55,
+                                            margin: EdgeInsets.only(top: Dimensions.height15*13),
+                                            width: Dimensions.width10*18,
+                                            height: (Dimensions.height10/2) *11,
                                             decoration: BoxDecoration(
                                               color: AppColors.mainColor,
                                               borderRadius:
@@ -285,8 +285,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                               bottom: Dimensions.height10,
                                               left: Dimensions.width10,
                                               right: Dimensions.width15),
-                                          height: 250,
-                                          width: 180,
+                                          height:  Dimensions.height10*25,
+                                          width: Dimensions.width10*18,
                                           child: Row(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
@@ -301,9 +301,9 @@ class _CategoryPageState extends State<CategoryPage> {
                                                         color: Colors.black87),
                                                   ),
                                                   margin:
-                                                      EdgeInsets.only(top: 195),
-                                                  width: 180,
-                                                  height: 55,
+                                                      EdgeInsets.only(top: Dimensions.height15*13),
+                                                  width: Dimensions.width10*18,
+                                                  height: (Dimensions.height10/2) *11,
                                                   decoration: BoxDecoration(
                                                     color: AppColors.mainColor,
                                                     borderRadius:
@@ -350,8 +350,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                         bottom: Dimensions.height10,
                                         left: Dimensions.width10,
                                         right: Dimensions.width15),
-                                    height: 250,
-                                    width: 180,
+                                    height:  Dimensions.height10*25,
+                                    width: Dimensions.width10*18,
                                     child: Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
@@ -364,9 +364,9 @@ class _CategoryPageState extends State<CategoryPage> {
                                                   /* element.value,*/
                                                   color: Colors.black87),
                                             ),
-                                            margin: EdgeInsets.only(top: 195),
-                                            width: 180,
-                                            height: 55,
+                                            margin: EdgeInsets.only(top: Dimensions.height15*13),
+                                            width: Dimensions.width10*18,
+                                            height: (Dimensions.height10/2) *11,
                                             decoration: BoxDecoration(
                                               color: AppColors.mainColor,
                                               borderRadius:
@@ -404,8 +404,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                               bottom: Dimensions.height10,
                                               left: Dimensions.width10,
                                               right: Dimensions.width15),
-                                          height: 250,
-                                          width: 180,
+                                          height:  Dimensions.height10*25,
+                                          width: Dimensions.width10*18,
                                           child: Row(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
@@ -420,9 +420,9 @@ class _CategoryPageState extends State<CategoryPage> {
                                                         color: Colors.black87),
                                                   ),
                                                   margin:
-                                                      EdgeInsets.only(top: 195),
-                                                  width: 180,
-                                                  height: 55,
+                                                      EdgeInsets.only(top: Dimensions.height15*13),
+                                                  width: Dimensions.width10*18,
+                                                  height: (Dimensions.height10/2) *11,
                                                   decoration: BoxDecoration(
                                                     color: AppColors.mainColor,
                                                     borderRadius:
@@ -469,8 +469,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                         bottom: Dimensions.height10,
                                         left: Dimensions.width10,
                                         right: Dimensions.width15),
-                                    height: 250,
-                                    width: 180,
+                                    height:  Dimensions.height10*25,
+                                    width: Dimensions.width10*18,
                                     child: Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
@@ -483,9 +483,9 @@ class _CategoryPageState extends State<CategoryPage> {
                                                   /* element.value,*/
                                                   color: Colors.black87),
                                             ),
-                                            margin: EdgeInsets.only(top: 195),
-                                            width: 180,
-                                            height: 55,
+                                            margin: EdgeInsets.only(top: Dimensions.height15*13),
+                                            width: Dimensions.width10*18,
+                                            height: (Dimensions.height10/2) *11,
                                             decoration: BoxDecoration(
                                               color: AppColors.mainColor,
                                               borderRadius:
@@ -522,8 +522,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                               bottom: Dimensions.height10,
                                               left: Dimensions.width10,
                                               right: Dimensions.width15),
-                                          height: 250,
-                                          width: 180,
+                                          height:  Dimensions.height10*25,
+                                          width: Dimensions.width10*18,
                                           child: Row(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
@@ -538,9 +538,9 @@ class _CategoryPageState extends State<CategoryPage> {
                                                         color: Colors.black87),
                                                   ),
                                                   margin:
-                                                      EdgeInsets.only(top: 195),
-                                                  width: 180,
-                                                  height: 55,
+                                                      EdgeInsets.only(top: Dimensions.height15*13),
+                                                  width: Dimensions.width10*18,
+                                                  height: (Dimensions.height10/2) *11,
                                                   decoration: BoxDecoration(
                                                     color: AppColors.mainColor,
                                                     borderRadius:
@@ -582,8 +582,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                         bottom: Dimensions.height10,
                                         left: Dimensions.width10,
                                         right: Dimensions.width15),
-                                    height: 250,
-                                    width: 180,
+                                    height:  Dimensions.height10*25,
+                                    width: Dimensions.width10*18,
                                     child: Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
@@ -596,9 +596,9 @@ class _CategoryPageState extends State<CategoryPage> {
                                                   /* element.value,*/
                                                   color: Colors.black87),
                                             ),
-                                            margin: EdgeInsets.only(top: 195),
-                                            width: 180,
-                                            height: 55,
+                                            margin: EdgeInsets.only(top: Dimensions.height15*13),
+                                            width: Dimensions.width10*18,
+                                            height: (Dimensions.height10/2) *11,
                                             decoration: BoxDecoration(
                                               color: AppColors.mainColor,
                                               borderRadius:
@@ -629,8 +629,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                               bottom: Dimensions.height10,
                                               left: Dimensions.width10,
                                               right: Dimensions.width15),
-                                          height: 250,
-                                          width: 180,
+                                          height:  Dimensions.height10*25,
+                                          width: Dimensions.width10*18,
                                           child: Row(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
@@ -645,9 +645,9 @@ class _CategoryPageState extends State<CategoryPage> {
                                                         color: Colors.black87),
                                                   ),
                                                   margin:
-                                                      EdgeInsets.only(top: 195),
-                                                  width: 180,
-                                                  height: 55,
+                                                      EdgeInsets.only(top: Dimensions.height15*13),
+                                                  width: Dimensions.width10*18,
+                                                  height: (Dimensions.height10/2) *11,
                                                   decoration: BoxDecoration(
                                                     color: AppColors.mainColor,
                                                     borderRadius:

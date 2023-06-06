@@ -20,7 +20,7 @@ class ProductModel {
   int get offset => _offset;
   List<Product> get products => _products;
 
-  ProductModel.fromJson(Map<String, dynamic> json) {
+   ProductModel.fromJson(Map<String, dynamic> json) {
     _totalSize = json['total_size'];
     _typeId = json['type_id'] ?? 0;
     _offset = json['offset'];

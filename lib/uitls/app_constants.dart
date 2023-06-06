@@ -1,10 +1,7 @@
 import 'package:get/get_utils/src/platform/platform.dart';
-import 'package:get/get_utils/src/platform/platform.dart';
-
 import '../models/language_model.dart';
 import 'images.dart';
 import 'package:get/get.dart';
-
 class AppConstants {
   static const String APP_NAME = 'DBFood';
   static const int APP_VERSION = 1;
@@ -15,8 +12,10 @@ class AppConstants {
   //your base url
   //https://youtu.be/DjXS9W1HD9U here how to set up the admin panel
 
-  static const String BASE_URL = 'http://192.168.32.93:5050';
-  // static const String BASE_URL = 'http://127.0.0.1:8000';
+ // static const String BASE_URL = 'https://animedrip.saw-erp.in';
+   static const String BASE_URL = 'http://192.168.137.1:5050';
+
+  // static const String BASE_URL = 'http://10.0.2.2:8000';
   static const String REGISTER_URI = '/api/v1/auth/register';
   static const String LOGIN_URI = '/api/v1/auth/login';
   static const String TOPIC = 'all_zone_customer';
@@ -52,6 +51,7 @@ class AppConstants {
   static const String KEYCHAIN_PRODUCT_URI = '/api/v1/products/keychain';
   static const String SHOES_PRODUCT_URI = '/api/v1/products/shoes';
   static const String OTHERS_PRODUCT_URI = '/api/v1/products/others';
+  static const String REVIEWS_PRODUCT_URI = '/api/v1/products/reviews';
 
   static const String RECOMMENDED_PRODUCT_URI_TEST = '/api/v1/products/test';
   static const String ORDER_LIST_URI = '/api/v1/customer/order/list';
@@ -87,10 +87,10 @@ class AppConstants {
         languageName: 'English',
         countryCode: 'US',
         languageCode: 'en'),
-  //   LanguageModel(
-  //       imageUrl: Images.bengali,
-  //       languageName: 'বাংলা',
-  //       countryCode: 'BD',
-  //       languageCode: 'bn'),
-   ];
+    //   LanguageModel(
+    //       imageUrl: Images.bengali,
+    //       languageName: 'বাংলা',
+    //       countryCode: 'BD',
+    //       languageCode: 'bn'),
+  ];
 }

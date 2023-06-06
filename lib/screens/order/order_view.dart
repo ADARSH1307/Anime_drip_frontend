@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/base/custom_loader.dart';
 import 'package:shopping_app/base/no_data_found.dart';
 import 'package:shopping_app/controllers/order_controller.dart';
+import 'package:shopping_app/helper/app_date_converter.dart';
 import 'package:shopping_app/models/order_model.dart';
 import 'package:shopping_app/routes/route_helper.dart';
+import 'package:shopping_app/screens/order/order_detail_screen.dart';
 import 'package:shopping_app/uitls/app_dimensions.dart';
 import 'package:shopping_app/uitls/styles.dart';
 import 'package:get/get.dart';
@@ -46,10 +48,10 @@ class OrderView extends StatelessWidget {
 
                   return InkWell(
                     onTap: () {
-                      //Get.toNamed(
-                      // RouteHelper.getOrderDetailsRoute(orderList[index].id),
-                      // arguments: OrderDetailsScreen(orderId: orderList[index].id, orderModel: orderList[index]),
-                      // );
+                      Get.toNamed(
+                      RouteHelper.getOrderDetailsRoute(orderList[index].id),
+                      arguments: OrderDetailsScreen( orderId: orderList[index].id, orderModel: orderList[index], ),
+                      );
                     },
                     child: Container(
 
@@ -67,10 +69,10 @@ class OrderView extends StatelessWidget {
                                 Text('#${orderList[index].id}', style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall)),
                               ]),
                               SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                              /* Text(
-                                DateConverter.dateTimeStringToDateTime(orderList[index].createdAt),
-                                style: robotoRegular.copyWith(color: Theme.of(context).disabledColor, fontSize: Dimensions.fontSizeSmall),
-                              ),*/
+                              //  Text(
+                              //   DateConverter.dateTimeStringToDateTime(orderList[index].createdAt),
+                              //   style: robotoRegular.copyWith(color: Theme.of(context).disabledColor, fontSize: Dimensions.fontSizeSmall),
+                              // ),
                             ]),
                           ),
                           SizedBox(width: Dimensions.PADDING_SIZE_SMALL),

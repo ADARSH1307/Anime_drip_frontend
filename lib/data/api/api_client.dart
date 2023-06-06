@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:developer';
 
@@ -10,7 +9,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:shopping_app/uitls/app_constants.dart';
 
-class ApiClient extends GetConnect  implements GetxService{
+class ApiClient extends GetConnect implements GetxService {
   late String token;
   final String appBaseUrl;
   final SharedPreferences sharedPreferences;
@@ -18,8 +17,8 @@ class ApiClient extends GetConnect  implements GetxService{
 
   ApiClient({required this.sharedPreferences, required this.appBaseUrl}) {
     baseUrl = appBaseUrl;
-   // timeout = Duration(seconds: 5);
-    token = sharedPreferences.getString(AppConstants.TOKEN)??"";
+    // timeout = Duration(seconds: 5);
+    token = sharedPreferences.getString(AppConstants.TOKEN) ?? "";
     _mainHeaders = {
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': 'Bearer $token',
@@ -31,12 +30,15 @@ class ApiClient extends GetConnect  implements GetxService{
       'Authorization': 'Bearer $token',
     };
   }
-  Future<Response> getData(String uri,
-      {Map<String, dynamic>? query, String? contentType,
-    Map<String, String>? headers, Function(dynamic)? decoder,
+
+  Future<Response> getData(
+    String uri, {
+    Map<String, dynamic>? query,
+    String? contentType,
+    Map<String, String>? headers,
+    Function(dynamic)? decoder,
   }) async {
     try {
-
       Response response = await get(
         uri,
         contentType: contentType,
@@ -46,7 +48,6 @@ class ApiClient extends GetConnect  implements GetxService{
           'Authorization': 'Bearer $token', //carrier
         },
         decoder: decoder,
-
       );
       response = handleResponse(response);
 
@@ -56,44 +57,64 @@ class ApiClient extends GetConnect  implements GetxService{
     }
   }
 
+  getReviewsData(apiUrl) async {
+    http.Response response = await http.get(Uri.parse(baseUrl! + apiUrl));
+    try {
+      if (response.statusCode == 200) {
+        return response;
+      } else {
+        return 'failed';
+      }
+    } catch (e) {
+      print(e);
+      return 'failed';
+    }
+  }
 
-  Future<Response> postData(String uri, dynamic body,) async {
+  Future<Response> postData(
+    String uri,
+    dynamic body,
+  ) async {
     try {
       Response response = await post(
         uri, body,
-       // query: query,
-       // contentType: contentType,
-        headers:  _mainHeaders,
-
+        // query: query,
+        // contentType: contentType,
+        headers: _mainHeaders,
       );
       response = handleResponse(response);
-      if(Foundation.kDebugMode) {
+      if (Foundation.kDebugMode) {
         log('====> GetX Response: [${response.statusCode}] $uri\n${response.body}');
       }
       return response;
-    }catch (e) {
+    } catch (e) {
       return Response(statusCode: 1, statusText: e.toString());
     }
   }
 
   Response handleResponse(Response response) {
     Response _response = response;
-    if(_response.hasError && _response.body != null && _response.body is !String) {
-      if(_response.body.toString().startsWith('{errors: [{code:')) {
-        _response = Response(statusCode: _response.statusCode,
-            body: _response.body, statusText: "Error");
-
-      }else if(_response.body.toString().startsWith('{message')) {
-        _response = Response(statusCode: _response.statusCode,
+    if (_response.hasError &&
+        _response.body != null &&
+        _response.body is! String) {
+      if (_response.body.toString().startsWith('{errors: [{code:')) {
+        _response = Response(
+            statusCode: _response.statusCode,
+            body: _response.body,
+            statusText: "Error");
+      } else if (_response.body.toString().startsWith('{message')) {
+        _response = Response(
+            statusCode: _response.statusCode,
             body: _response.body,
             statusText: _response.body['message']);
-
       }
-    }else if(_response.hasError && _response.body == null) {
-      print("The status code is "+_response.statusCode.toString());
-      _response = Response(statusCode: 0, statusText: 'Connection to API server failed due to internet connection');
+    } else if (_response.hasError && _response.body == null) {
+      print("The status code is " + _response.statusCode.toString());
+      _response = Response(
+          statusCode: 0,
+          statusText:
+              'Connection to API server failed due to internet connection');
     }
     return _response;
   }
-
 }

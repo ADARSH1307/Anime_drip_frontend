@@ -16,6 +16,7 @@ import 'package:shopping_app/controllers/pant_controller.dart';
 import 'package:shopping_app/controllers/popular_product.dart';
 import 'package:shopping_app/controllers/product_controller.dart';
 import 'package:get/get.dart';
+import 'package:shopping_app/controllers/review_controller.dart';
 import 'package:shopping_app/controllers/search_product_controller.dart';
 import 'package:shopping_app/controllers/shirt_controller.dart';
 import 'package:shopping_app/controllers/shoes_controller.dart';
@@ -36,6 +37,7 @@ import 'package:shopping_app/data/repos/others_repo.dart';
 import 'package:shopping_app/data/repos/pant_repo.dart';
 import 'package:shopping_app/data/repos/popular_product_repo.dart';
 import 'package:shopping_app/data/repos/product_repo.dart';
+import 'package:shopping_app/data/repos/review_repo.dart';
 import 'package:shopping_app/data/repos/search_product_repo.dart';
 import 'package:shopping_app/data/repos/shirts_repo.dart';
 import 'package:shopping_app/data/repos/sweatshirt_repo.dart';
@@ -58,6 +60,8 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.lazyPut(() => SplashRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
   //first load the repos
   Get.lazyPut(() => AuthRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
+    Get.lazyPut(() => ReviewRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
+
   Get.lazyPut(() => LocationRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
 
   Get.lazyPut(() => UserRepo(apiClient: Get.find()));
@@ -84,6 +88,8 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.lazyPut(() => SplashController(splashRepo: Get.find()));
 
   Get.lazyPut(() => AuthController(authRepo: Get.find()));
+    Get.lazyPut(() => ReviewController(reviewRepo: Get.find()));
+
   Get.lazyPut(() => LocationController(locationRepo: Get.find()));
 
   Get.lazyPut(() => UserController(userRepo: Get.find()));

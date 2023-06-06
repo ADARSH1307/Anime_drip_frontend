@@ -13,12 +13,15 @@ import 'package:shopping_app/controllers/other_controller.dart';
 import 'package:shopping_app/controllers/pant_controller.dart';
 import 'package:shopping_app/controllers/popular_product.dart';
 import 'package:shopping_app/controllers/product_controller.dart';
+import 'package:shopping_app/controllers/review_controller.dart';
 import 'package:shopping_app/controllers/shirt_controller.dart';
 import 'package:shopping_app/controllers/shoes_controller.dart';
 import 'package:shopping_app/controllers/sweatshirt_controller.dart';
 import 'package:shopping_app/controllers/swords_controller.dart';
 import 'package:shopping_app/controllers/user_controller.dart';
 import 'package:shopping_app/helper/helper_notifications.dart';
+import 'package:shopping_app/models/review_get_model.dart';
+import 'package:shopping_app/models/review_model.dart';
 import 'package:shopping_app/routes/route_helper.dart';
 import 'package:shopping_app/screens/food/detail_food.dart';
 import 'package:shopping_app/screens/food/more_food.dart';
@@ -80,6 +83,8 @@ class MyApp extends StatelessWidget {
                Get.find<Shoes>().getShoesList();
                 Get.find<Other>().getOthersList();
                 Get.find<Hoodie>().getHoodieList();
+                               // Get.find<ReviewGetModel>();
+
 
 
     return GetBuilder<ProductController>(builder: (_) {
@@ -89,7 +94,8 @@ class MyApp extends StatelessWidget {
 //category getbuilder added by great adarsh ajila
 
           return GetBuilder<Category>(builder: (_) {
-            
+                     return GetBuilder<ReviewController>(builder: (_) {
+
             return GetMaterialApp(
               scrollBehavior: AppScrollBehavior(),
               debugShowCheckedModeBanner: false,
@@ -106,6 +112,7 @@ class MyApp extends StatelessWidget {
               getPages: RouteHelper.routes,
               defaultTransition: Transition.topLevel,
             );
+          });
           });
         });
       });

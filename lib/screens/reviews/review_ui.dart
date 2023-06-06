@@ -4,18 +4,20 @@ import 'package:shopping_app/screens/reviews/constant.dart';
 class ReviewUI extends StatelessWidget {
   final String image, name, date, comment;
   final double rating;
-  final Function onTap, onPressed;
-  final bool isLess;
+//  final Function onTap, onPressed;
+  //final bool isLess;
   const ReviewUI({
     Key? key,
     required this.image,
     required this.name,
     required this.date,
     required this.comment,
-    required this.rating, required this.onTap, required this.onPressed, required this.isLess,
-    //required this.onTap,
-    //required this.isLess,
-   // required this.onPressed,
+    required this.rating,
+    //required this.onTap, required this.onPressed,
+    // required this.isLess,
+  //   required this.onTap,
+  //   required this.isLess,
+  //  required this.onPressed,
   }) : super(key: key);
 
   @override
@@ -67,10 +69,10 @@ class ReviewUI extends StatelessWidget {
               //   borderColor: Colors.orange,
               // ),
               SizedBox(width: 10),
-              Text(
-                date,
-                style: TextStyle(fontSize: 18.0),
-              ),
+              // Text(
+              //   date,
+              //   style: TextStyle(fontSize: 18.0),
+              // ),
             ],
           ),
           SizedBox(height: 8.0),
@@ -78,8 +80,7 @@ class ReviewUI extends StatelessWidget {
             //onTap: onTap,
             
                  Text(
-                    "C@ChiragArora you can add it to the additional arguments in your run configuration (click on the dropdown where it says main.dart next to the device. ",
-                    
+comment,                    
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.black,

@@ -1,11 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shopping_app/data/api/api_client.dart';
+import 'package:shopping_app/models/review_get_model.dart';
 
 import 'package:shopping_app/screens/reviews/constant.dart';
 import 'package:shopping_app/screens/reviews/defaultAppBar.dart';
 import 'package:shopping_app/screens/reviews/defaultBackButton.dart';
 import 'package:shopping_app/screens/reviews/review_ui.dart';
-
-
+import 'package:shopping_app/uitls/app_constants.dart';
+import 'package:auto_reload/auto_reload.dart';
 class Reviews extends StatefulWidget {
   Reviews({Key? key}) : super(key: key);
 
@@ -16,8 +21,29 @@ class Reviews extends StatefulWidget {
 class _ReviewsState extends State<Reviews> {
   bool isMore = false;
   List<double> ratings = [0.1, 0.3, 0.5, 0.7, 0.9];
+var reviewsgetlist = <ReviewGetModel>[];
+  //@override
+  void initState() {
+    
+    _getReviews();
+    super.initState();
 
-  @override
+   
+  }
+  
+
+  _getReviews() {
+    ApiClient(appBaseUrl: AppConstants.BASE_URL, sharedPreferences: Get.find())
+        .getReviewsData(AppConstants.REVIEWS_PRODUCT_URI)
+        .then((response) {
+      Iterable list = json.decode(response.body);
+      reviewsgetlist =
+          list.map((model) => ReviewGetModel.fromJson(model)).toList();
+      print(reviewsgetlist);
+    });
+  }
+  
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kWhiteColor,
@@ -106,31 +132,36 @@ class _ReviewsState extends State<Reviews> {
               ],
             ),
           ),
-          Expanded(
-            child: ListView.separated(
-              padding: EdgeInsets.only(bottom: 8.0, top: 8.0),
-              itemCount: reviewList.length,
-              itemBuilder: (context, index) {
-                return ReviewUI(
-                  image: reviewList[index].image,
-                  name: reviewList[index].name,
-                  date: reviewList[index].date,
-                  comment: reviewList[index].comment,
-                  rating: reviewList[index].rating,
-                  onPressed: () => print("More Action $index"),
-                  onTap: () => setState(() {
-                    isMore = !isMore;
-                  }),
-                  isLess: isMore,
-                );
-              },
-              separatorBuilder: (context, index) {
-                return Divider(
-                  thickness: 2.0,
-                  color: kAccentColor,
-                );
-              },
-            ),
+          Column(
+            children: 
+            reviewsgetlist.map((rev) {
+            return  Expanded(
+                child: ListView.separated(
+                  padding: EdgeInsets.only(bottom: 8.0, top: 8.0),
+                  itemCount: reviewList.length,
+                  itemBuilder: (context, index) {
+                    return ReviewUI(
+                      image: reviewList[index].image,
+                      name: rev.name!,
+                      date: reviewList[index].date,
+                      comment: reviewList[index].comment,
+                      rating: reviewList[index].rating,
+                      // onPressed: () => print("More Action $index"),
+                      // onTap: () => setState(() {
+                      //   isMore = !isMore;
+                      // }),
+                      // isLess: isMore,
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return Divider(
+                      thickness: 2.0,
+                      color: kAccentColor,
+                    );
+                  },
+                ),
+              );
+            }).toList(),
           ),
         ],
       ),

@@ -275,7 +275,7 @@ order details
         page: () {
           return OrderDetailsScreen(
               orderId: int.parse(Get.parameters['id'] ?? '0'),
-              orderModel: null);
+              orderModel: null,);
         }),
   ];
 }
