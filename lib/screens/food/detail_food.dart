@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +74,6 @@ class _DetailFoodState extends State<DetailFood> {
     _getReviews();
   }
 
-  
   @override
   Widget build(BuildContext context) {
     //print(Get.find<CartController>().getCartsData());
@@ -91,11 +91,11 @@ class _DetailFoodState extends State<DetailFood> {
     ];
 
     return GestureDetector(
-      // onTap: () {
-      //   setState(() {
-      //     print("set");
-      //   });
-    //  },
+      onTap: () {
+        setState(() {
+          //print("set");
+        });
+      },
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
@@ -552,9 +552,7 @@ class _DetailFoodState extends State<DetailFood> {
                                     text: "Reviews".tr,
                                     color: AppColors.titleColor),
                                 GestureDetector(
-                                   onTap: () => setState(() {
-                                     
-                                   }),
+                                  onTap: () => setState(() {}),
                                   // Navigator.of(context).push(
                                   //   MaterialPageRoute(
                                   //     builder: (context) => Reviews(),
@@ -571,41 +569,43 @@ class _DetailFoodState extends State<DetailFood> {
                               ],
                             ),
                             // GetBuilder<Caps>(builder: (pantProduct) {
-
+SizedBox(height: 20,),
                             Column(
                               children: reviewsgetlist.map((rev) {
-                                return isLoading
-                                    ? ListView.separated(
-                                        physics: NeverScrollableScrollPhysics(),
-                                        shrinkWrap: true,
-                                        padding: EdgeInsets.only(
-                                            bottom: 8.0, top: 8.0),
-                                        itemCount: 1,
-                                        itemBuilder: (context, index) {
-                                          return ReviewUI(
-                                            image: reviewList[index].image,
-                                            name: rev.name!,
-                                            date: reviewList[index].date,
-                                            comment: rev.productReview!,
-                                            rating: reviewList[index].rating,
-                                            // onPressed: () =>
-                                            //     print("More Action $index"),
-                                            // onTap: () => setState(() {
-                                            //   isMore = !isMore;
-                                            // }),
-                                            // isLess: isMore,
-                                          );
-                                        },
-                                        separatorBuilder: (context, index) {
-                                          return Divider(
-                                            thickness: 2.0,
-                                            color: kAccentColor,
-                                          );
-                                        },
-                                      )
-                                    : Center(
-                                        child: CircularProgressIndicator(),
-                                      );
+                                return ListView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    padding:
+                                        EdgeInsets.only(bottom: 0.0, top: 0.0),
+                                    itemCount: 1,
+                                    itemBuilder: (context, index) {
+                                      if (productItem.id == rev.foodId) {
+                                        return ReviewUI(
+                                          image: reviewList[index].image,
+                                          name: rev.name!,
+                                          date: reviewList[index].date,
+                                          comment: rev.productReview!.trim(),
+                                          rating: reviewList[index].rating,
+                                          // onPressed: () =>
+                                          //     print("More Action $index"),
+                                          // onTap: () => setState(() {
+                                          //   isMore = !isMore;
+                                          // }),
+                                          // isLess: isMore,
+                                        );
+                                      }
+                                    },
+                                    // separatorBuilder: (context, index) {
+                                     
+                                    //     return Divider(
+                                          
+                                    //       height: 0,
+                                    //     );
+                                    //     //  SizedBox(height: 10,width: 0,);
+                                    //   }
+                                    
+                                    
+                                  );
                               }).toList(),
                             )
                           ],

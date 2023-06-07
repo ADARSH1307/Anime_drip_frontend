@@ -22,14 +22,14 @@ class ReviewGetModel {
 
   ReviewGetModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    foodId = json['food_id'];
+    foodId = int.parse(json['food_id']);
     name = json['name'];
     productReview = json['product_review'];
     stars = json['stars'];
     image = json['image'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    orderId = json['order_id'];
+    orderId = int.parse(json['order_id']);
   }
 
   Map<String, dynamic> toJson() {
