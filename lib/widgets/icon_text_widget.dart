@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:shopping_app/uitls/app_constants.dart';
+import 'package:shopping_app/uitls/app_dimensions.dart';
 import 'package:shopping_app/widgets/text_widget.dart';
 
 class IconAndTextWidget extends StatelessWidget {
@@ -17,8 +19,8 @@ class IconAndTextWidget extends StatelessWidget {
     return Row(
       children: [
         Icon(icon, color:iconColor),
-        SizedBox(width: 5,),
-        TextWidget(text: text, color: color,size: 13,),
+        SizedBox(width: Dimensions.width10/2,),
+        TextWidget(text: text, color: color,size: Dimensions.height10,),
            ],
     );
   }

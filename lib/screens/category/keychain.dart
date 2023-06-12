@@ -5,8 +5,6 @@ import 'package:shopping_app/controllers/category_controller.dart';
 import 'package:shopping_app/controllers/hoodie_controller.dart';
 import 'package:shopping_app/controllers/keychain_controller.dart';
 import 'package:shopping_app/controllers/pant_controller.dart';
-import 'package:shopping_app/controllers/shirt_controller.dart';
-import 'package:shopping_app/controllers/shoes_controller.dart';
 import 'package:shopping_app/routes/route_helper.dart';
 import 'package:shopping_app/screens/food/detail_food.dart';
 import 'package:shopping_app/uitls/app_constants.dart';
@@ -14,6 +12,8 @@ import 'package:shopping_app/widgets/big_text.dart';
 
 import '../../components/colors.dart';
 import '../../uitls/app_dimensions.dart';
+
+
 
 class KeychainItemsPage extends StatefulWidget {
   const KeychainItemsPage({Key? key}) : super(key: key);
@@ -29,13 +29,30 @@ class _KeychainItemsPageState extends State<KeychainItemsPage> {
   }
 
   Widget build(BuildContext context) {
-    
-    //print("Current height is " + MediaQuery.of(context).size.height.toString());
-    return Container(
-      //padding: EdgeInsets.only(bottom: kBottomNavigationBarHeight),
-      child: Scaffold(
-        //resizeToAvoidBottomInset: true,
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
 
+    // Calculate responsive dimensions based on the screen size
+    double height45 = screenHeight * 0.05;
+    double height15 = screenHeight * 0.015;
+        double height10 = screenHeight * 0.010;
+        double height400 = screenHeight * 0.4;
+
+        double height200 = screenHeight * 0.2;
+
+
+    double width40 = screenWidth * 0.04;
+        double width15 = screenWidth * 0.015;
+                double width225 = screenWidth * 0.55;
+
+
+    double width10 = screenWidth * 0.01;
+    double containerHeight = isPortrait ? screenHeight * 0.35 : screenHeight * 0.5;
+    double containerWidth = isPortrait ? screenWidth * 0.4 : screenWidth * 0.3;
+
+    return Container(
+      child: Scaffold(
         backgroundColor: AppColors.buttonBackgroundColor,
         body: ListView(
           padding: EdgeInsets.zero,
@@ -43,58 +60,65 @@ class _KeychainItemsPageState extends State<KeychainItemsPage> {
             Container(
               child: Container(
                 margin: EdgeInsets.only(
-                    top: Dimensions.height45, bottom: Dimensions.height15),
+                  top: height45,
+                  bottom: height15,
+                ),
                 padding: EdgeInsets.only(
-                    left: Dimensions.width20, right: Dimensions.width20),
+                  left: width40,
+                  right: width40,
+                ),
                 child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          BigText(text: "ANIME", color: AppColors.mainColor),
-                          Row(
-                            children: [
-                              BigText(
-                                text: "  DRIP",
-                                color: Colors.black54,
-                              ),
-                              Icon(Icons.arrow_drop_down_rounded)
-                            ],
-                          )
-                        ],
-                      ),
-                      Container(
-                        width: Dimensions.height45,
-                        height: Dimensions.height45,
-                        child: Icon(Icons.search, color: Colors.white),
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(Dimensions.radius15),
-                          color: AppColors.mainColor,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        BigText(text: "ANIME", color: AppColors.mainColor),
+                        Row(
+                          children: [
+                            BigText(
+                              text: "  DRIP",
+                              color: Colors.black54,
+                            ),
+                            Icon(Icons.arrow_drop_down_rounded),
+                          ],
                         ),
-                      )
-                    ]),
+                      ],
+                    ),
+                    Container(
+                      width: height45,
+                      height: height45,
+                      child: Icon(Icons.search, color: Colors.white),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(Dimensions.radius15),
+                        color: AppColors.mainColor,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             GetBuilder<Keychain>(builder: (pantProduct) {
               return Row(
+                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
                     child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 400,
-                              childAspectRatio: 1 / 1,
-                              crossAxisSpacing: 0,
-                              mainAxisSpacing: 0),
+                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: isPortrait ? height400 : height200,
+                        childAspectRatio: 1 / 1,
+                        crossAxisSpacing: 0,
+                        mainAxisSpacing: 0,
+                        mainAxisExtent: width225,
+                        
+                      ),
                       padding: EdgeInsets.zero,
                       physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: pantProduct.length,
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                          onTap: (){
-                            Get.toNamed(RouteHelper.getKeychainRoute(index, "category"));
+                          onTap: () {
+                            Get.toNamed(RouteHelper.getPantRoute(index, "category"));
                           },
                           child: Container(
                             child: Row(
@@ -102,84 +126,55 @@ class _KeychainItemsPageState extends State<KeychainItemsPage> {
                                 Container(
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
-                                        fit: BoxFit.fill,
-                                        image: NetworkImage(
-                                            AppConstants.UPLOADS_URL +
-                                                pantProduct.keychainList[index].img)),
+                                      fit: BoxFit.fill,
+                                      image: NetworkImage(
+                                          AppConstants.UPLOADS_URL + pantProduct.keychainList[index].img),
+                                    ),
                                     color: AppColors.buttonBackgroundColor,
-                                    borderRadius: BorderRadius.circular(
-                                        Dimensions.radius15),
+                                    borderRadius: BorderRadius.circular(Dimensions.radius15),
                                   ),
-                                 margin: EdgeInsets.only(
-                                        top: Dimensions.height10,
-                                        bottom: Dimensions.height10,
-                                        left: Dimensions.width10,
-                                        right: Dimensions.width15),
-                                  height: 250,
-                                  width: 180,
+                                  margin: EdgeInsets.only(
+                                    top: height10,
+                                    bottom: height10,
+                                    left: width40,
+                                    right: width15,
+                                  ),
+                                  height: containerHeight,
+                                  width: containerWidth,
                                   child: Column(
                                     verticalDirection: VerticalDirection.up,
-                                    //mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Container(
-                                        padding:
-                                            EdgeInsets.only(left: 10, right: 20),
-                                        width: 180,
-                                        height: 60,
+                                        padding: EdgeInsets.only(left: width10, right: width40),
+                                        width: containerWidth,
+                                        height: Dimensions.height30*2,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.only(
-                                            bottomLeft: Radius.circular(
-                                                Dimensions.radius15),
-                                            bottomRight: Radius.circular(
-                                                Dimensions.radius15),
+                                            bottomLeft: Radius.circular(Dimensions.radius15),
+                                            bottomRight: Radius.circular(Dimensions.radius15),
                                           ),
-                                          color: AppColors.mainColor
+                                          color: AppColors.mainColor,
                                         ),
                                         child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
                                             BigText(
-                                                text: pantProduct
-                                                    .keychainList[index].title,
-                                                /* element.value,*/
-                                                color: Colors.black87),
+                                              text: pantProduct.keychainList[index].title,
+                                              color: Colors.black87,
+                                            ),
                                             Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  "\u{20B9}1000000 (30% off)",
+                                                  "\u{20B9}1000 (30% off)",
                                                   overflow: TextOverflow.ellipsis,
                                                   style: TextStyle(
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.bold),
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
                                               ],
                                             ),
-                                            /*Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Wrap(
-                                                    children: List.generate(
-                                                        5,
-                                                        (index) => Icon(
-                                                              Icons.star,
-                                                              size: 17,
-                                                              color: Colors.yellow,
-                                                            )),
-                                                  ),
-                                                  Text(
-                                                    '4.5k',
-                                                    overflow: TextOverflow.ellipsis,
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight: FontWeight.bold),
-                                                  ),
-                                                ],
-                                              ),*/
                                           ],
                                         ),
                                       ),
@@ -202,3 +197,4 @@ class _KeychainItemsPageState extends State<KeychainItemsPage> {
     );
   }
 }
+

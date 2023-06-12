@@ -132,6 +132,9 @@ class Dimensions {
   static double height20 = screenSizeHeight/42.2;
   static double height30 = screenSizeHeight/28.13;
   static double height45 = screenSizeHeight/18.76;
+  static double height250 = screenSizeHeight/3.379;
+  static double height195 = screenSizeHeight/4.4;
+  static double height55 = screenSizeHeight/15.34;
 
 
 
@@ -141,6 +144,7 @@ class Dimensions {
   static double width15 = screenSizeHeight/56.27;
   static double width20 = screenSizeHeight/42.2;
   static double width30 = screenSizeHeight/28.13;
+  static double width180 = screenSizeHeight/4.7;
 
   //radius
   static double radius15 = screenSizeHeight/56.27;

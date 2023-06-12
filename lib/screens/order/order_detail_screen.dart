@@ -23,6 +23,7 @@ import '../../uitls/app_dimensions.dart';
 import '../../uitls/images.dart';
 import '../../uitls/styles.dart';
 import 'package:get/get.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
   final OrderModel? orderModel;
@@ -69,18 +70,25 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     var btnclicked = 0;
+    int updatedReview = 0;
     TextEditingController nameController = TextEditingController();
     TextEditingController productReviewController = TextEditingController();
+    // TextEditingController ratingController = TextEditingController();
+
     _register() {
       // var reviewController = Get.find<ReviewController>();
       var _name = nameController.text;
       var _productReview = productReviewController.text;
+      int _rating = updatedReview;
+      print(_rating);
       //print(widget.orderId.toString());
       var data = {
         'name': nameController.text.trim(),
         'product_review': productReviewController.text.trim(),
         'food_id': _foodid.toString(),
         'order_id': widget.orderId.toString(),
+        'stars': _rating.toString()
+        ,
       };
 
       if (_name.isEmpty) {
@@ -88,6 +96,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
         return;
       } else if (_productReview.isEmpty) {
         showCustomSnackBar('Enter product review'.tr);
+        return;
+      } else if (_rating == 0) {
+        showCustomSnackBar('Rate the product'.tr);
         return;
       } else {
         var btnclicked = 1;
@@ -353,11 +364,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                       textController: nameController,
                                       icon: Icons.person,
                                     ),
-                                    SizedBox(
-                                      height: 50,
-                                    ),
 
-                                    
+                                    SizedBox(
+                                      height: 30,
+                                    ),
                                     AppTextField(
                                       maxLines: true,
                                       hintText:
@@ -366,7 +376,54 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                       icon: Icons.description,
                                     ),
                                     SizedBox(
-                                      height: 70,
+                                      height: 20,
+                                    ),
+                                    Center(
+                                      child: Container(
+                                        margin: EdgeInsets.only(
+                                            right: 16, bottom: 10),
+                                        padding: EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          border:
+                                              Border.all(color: Colors.grey),
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            BigText(
+                                                text: "Rate the product",
+                                                color:
+                                                    AppColors.mainBlackColor),
+                                            SizedBox(
+                                              height: 15,
+                                            ),
+                                            RatingBar.builder(
+                                              itemSize: 40,
+                                              initialRating: 3,
+                                              minRating: 1,
+                                              direction: Axis.horizontal,
+                                              itemCount: 5,
+                                              itemPadding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 5),
+                                              itemBuilder: (context, _) =>
+                                                  const Icon(
+                                                Icons.star,
+                                                color: Colors.amber,
+                                              ),
+                                              onRatingUpdate: (rating) =>
+                                                  updatedReview =
+                                                      rating.toInt(),
+                                              //  debugPrint(rating.toString()),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+
+                                    SizedBox(
+                                      height: 30,
                                     ),
 
                                     GestureDetector(

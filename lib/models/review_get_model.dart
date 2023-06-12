@@ -3,7 +3,7 @@ class ReviewGetModel {
   int? foodId;
   String? name;
   String? productReview;
-  int? stars;
+  String? stars;
   String? image;
   String? createdAt;
   String? updatedAt;

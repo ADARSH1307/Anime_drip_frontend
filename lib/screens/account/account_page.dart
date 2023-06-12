@@ -69,8 +69,8 @@ class AccountPage extends StatelessWidget {
                           height: 10,
                         ),
                         Container(
-                          width: 150,
-                          height: 150,
+                          width: Dimensions.width10*15,
+                          height: Dimensions.width10*15,
                           child:ClipOval(
                               child: Get.find<UserController>().userInfoModel?.image==null?
                               Image.asset("assets/image/logo.png", fit: BoxFit.cover,):Image.network(path)

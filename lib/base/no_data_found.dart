@@ -13,7 +13,7 @@ class NoDataScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 200),
+      padding: EdgeInsets.symmetric(horizontal: Dimensions.width20, vertical: Dimensions.height20*10),
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,

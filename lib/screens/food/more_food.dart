@@ -60,7 +60,7 @@ class _MoreFoodState extends State<MoreFood> {
                 Column(
                   children: [
                     SizedBox(
-                      height: 50,
+                      height: Dimensions.height45,
                     ),
                     CarouselSlider.builder(
                         carouselController: controller,
@@ -70,7 +70,7 @@ class _MoreFoodState extends State<MoreFood> {
                           return buildImage(urlImage, index);
                         },
                         options: CarouselOptions(
-                            height: 400,
+                            height: Dimensions.height10*40,
                             autoPlay: true,
                             enableInfiniteScroll: true,
                             autoPlayAnimationDuration: Duration(seconds:1),
@@ -81,16 +81,16 @@ class _MoreFoodState extends State<MoreFood> {
                   ],
                 ),
                 Positioned(
-                    top: 50,
-                    left: 20,
-                    right: 20,
+                    top: Dimensions.height45,
+                    left: Dimensions.width20,
+                    right: Dimensions.width20,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
                           padding: const EdgeInsets.only(left: 6),
-                          width: 40,
-                          height: 40,
+                          width: Dimensions.width20*2,
+                          height: Dimensions.width20*2,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.white70,
@@ -115,10 +115,10 @@ class _MoreFoodState extends State<MoreFood> {
                           },
                           child: Container(
                             padding: const EdgeInsets.only(left: 0),
-                            width: 40,
-                            height: 40,
+                            width: Dimensions.width20*2,
+                            height: Dimensions.width20*2,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(Dimensions.radius20),
                               color: Colors.white70,
                             ),
                             child: GetBuilder<CartController>(builder: (_) {
@@ -128,7 +128,7 @@ class _MoreFoodState extends State<MoreFood> {
                                     child: Center(
                                         child: Icon(
                                       Icons.shopping_cart_outlined,
-                                      size: 16,
+                                      size: Dimensions.height15,
                                       color: Colors.black54,
                                     )),
                                   ),
@@ -139,7 +139,7 @@ class _MoreFoodState extends State<MoreFood> {
                                           child: Center(
                                               child: Icon(
                                             Icons.circle,
-                                            size: 16,
+                                            size: Dimensions.height15,
                                             color: AppColors.mainColor,
                                           )),
                                         )
@@ -154,7 +154,7 @@ class _MoreFoodState extends State<MoreFood> {
                                                 .totalItems
                                                 .toString(),
                                             style: TextStyle(
-                                                fontSize: 10,
+                                                fontSize: Dimensions.font20/2,
                                                 color: Colors.white),
                                           )),
                                         )
@@ -174,7 +174,7 @@ class _MoreFoodState extends State<MoreFood> {
                 top: Dimensions.sliverHeight - 10,
                 // bottom: 0,
                 child: Container(
-                  height: 500,
+                  height: Dimensions.height250*2,
                   //width: MediaQuery.of(context).size.width,
                   padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
                   decoration: BoxDecoration(

@@ -180,7 +180,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                               TextWidget(text: "1287 "+"comments".tr, color: Color(0xFFccc7c5))
                             ],
                           ),
-                          SizedBox(height: Dimensions.padding20,),
+                          SizedBox(height: Dimensions.height10,),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
