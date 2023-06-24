@@ -11,6 +11,7 @@ import 'package:shopping_app/controllers/auth_controller.dart';
 import 'package:shopping_app/models/countries_json.dart';
 import 'package:shopping_app/models/signup_body.dart';
 import 'package:shopping_app/routes/route_helper.dart';
+import 'package:shopping_app/screens/auth/sign_in_page.dart';
 import 'package:shopping_app/widgets/app_text_field.dart';
 import 'package:shopping_app/widgets/big_text.dart';
 
@@ -185,13 +186,13 @@ class _SignUpPageState extends State<SignUpPage> {
                      child: Column(
                        children: [
                          SizedBox(height: h * 0.05,),
-                         CircleAvatar(
-                           backgroundColor: Colors.white70,
-                           radius: 80,
-                           backgroundImage: AssetImage(
-                               "img/logo part 1.png"
-                           ),
-                         )
+                        //  CircleAvatar(
+                        //    backgroundColor: Colors.white70,
+                        //    radius: 80,
+                        //    backgroundImage: AssetImage(
+                        //        "img/logo part 1.png"
+                        //    ),
+                        //  )
                        ],
                      ),
                    ),
@@ -336,7 +337,11 @@ class _SignUpPageState extends State<SignUpPage> {
                  RichText(
                      text: TextSpan(
                          recognizer: TapGestureRecognizer()
-                           ..onTap = () => Get.back(),
+                           ..onTap = () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (BuildContext context) => SignInPage(),
+          ),
+        ),
                          text: "have_an_account".tr,
                          style: TextStyle(
                              fontSize: 20,

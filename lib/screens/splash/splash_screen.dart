@@ -113,11 +113,11 @@ class _SplashScreenState extends State<SplashScreen>
               if (AppConstants.languages.length > 1) {
                 Get.offNamed(RouteHelper.getLanguagePage('splash'));
               } else {
-                Get.offNamed(RouteHelper.getSignInRoute());
+                Get.offNamed(RouteHelper.getSignUpRoute());
               }
             } else {
               // _loadResources(true);
-              Get.offNamed(RouteHelper.getSignInRoute());
+              Get.offNamed(RouteHelper.getSignUpRoute());
             }
           }
         });

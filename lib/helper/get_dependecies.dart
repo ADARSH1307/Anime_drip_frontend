@@ -60,7 +60,7 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.lazyPut(() => SplashRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
   //first load the repos
   Get.lazyPut(() => AuthRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
-    Get.lazyPut(() => ReviewRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
+   Get.lazyPut(() => ReviewRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
 
   Get.lazyPut(() => LocationRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
 
@@ -88,7 +88,7 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.lazyPut(() => SplashController(splashRepo: Get.find()));
 
   Get.lazyPut(() => AuthController(authRepo: Get.find()));
-    Get.lazyPut(() => ReviewController(reviewRepo: Get.find()));
+   Get.lazyPut(() => ReviewController(reviewRepo: Get.find()));
 
   Get.lazyPut(() => LocationController(locationRepo: Get.find()));
 

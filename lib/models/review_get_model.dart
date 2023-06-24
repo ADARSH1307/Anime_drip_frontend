@@ -32,19 +32,19 @@ class ReviewGetModel {
     orderId = int.parse(json['order_id']);
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['food_id'] = this.foodId;
-    data['name'] = this.name;
-    data['product_review'] = this.productReview;
-    data['stars'] = this.stars;
-    data['image'] = this.image;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    data['order_id'] = this.orderId;
-    return data;
-  }
+  // Map<String, dynamic> toJson() {
+  //   final Map<String, dynamic> data = new Map<String, dynamic>();
+  //   data['id'] = this.id;
+  //   data['food_id'] = this.foodId;
+  //   data['name'] = this.name;
+  //   data['product_review'] = this.productReview;
+  //   data['stars'] = this.stars;
+  //   data['image'] = this.image;
+  //   data['created_at'] = this.createdAt;
+  //   data['updated_at'] = this.updatedAt;
+  //   data['order_id'] = this.orderId;
+  //   return data;
+  // }
 
    @override
   String toString() {

@@ -2,10 +2,20 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shopping_app/uitls/app_constants.dart';
 
-class CallApi{
+class CallApi {
   postReview(data, apiUrl) async {
     var fullurl = AppConstants.BASE_URL + apiUrl;
-   return await http.post(
+    return await http.post(
+      Uri.parse(fullurl),
+      body: jsonEncode(data),
+      headers: _setHeaders(),
+    );
+  }
+
+  postFailedlogin(data, apiUrl) async {
+    print("hiiiiii");
+    var fullurl = AppConstants.BASE_URL + apiUrl;
+    return await http.post(
       Uri.parse(fullurl),
       body: jsonEncode(data),
       headers: _setHeaders(),
