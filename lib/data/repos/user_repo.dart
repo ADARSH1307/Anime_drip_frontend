@@ -39,7 +39,7 @@ class UserRepo {
     }
     Map<String, String> _fields = Map();
     _fields.addAll(<String, String>{
-      'f_name': userInfoModel.fName,  'email': userInfoModel.email
+      'f_name': userInfoModel.fName, 'address': userInfoModel.address, 'email': userInfoModel.email
     });
     request.fields.addAll(_fields);
     http.StreamedResponse response = await request.send();

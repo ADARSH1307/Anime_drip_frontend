@@ -1,12 +1,13 @@
 class SignUpBody {
   String fName;
+  String address;
   String phone;
   String email;
   String password;
   String country_code;
   String sms_code;
 
-  SignUpBody({required this.fName,
+  SignUpBody({required this.fName,required this.address,
 
     required this.phone,
     this.email='', required this.password, required this.country_code, required this.sms_code});
@@ -14,6 +15,7 @@ class SignUpBody {
  factory SignUpBody.fromJson(Map<String, dynamic> json) {
    return SignUpBody(
        fName : json['f_name'],
+       address : json['address'],
 
        phone : json['phone'],
        email : json['email'],
@@ -25,6 +27,7 @@ class SignUpBody {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['f_name'] = this.fName;
+    data['address'] = this.address;
 
     data['phone'] = this.phone;
     data['email'] = this.email;

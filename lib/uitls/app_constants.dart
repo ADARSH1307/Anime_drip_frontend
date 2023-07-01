@@ -11,9 +11,8 @@ class AppConstants {
   static bool IS_IOS = GetPlatform.isIOS;
   //your base url
   //https://youtu.be/DjXS9W1HD9U here how to set up the admin panel
-
- //static const String BASE_URL = 'https://animedrip.saw-erp.in';
-   static const String BASE_URL = 'http://192.168.55.155:5050';
+ static const String BASE_URL = 'https://animedrip.saw-erp.in';
+   //static const String BASE_URL = 'http://192.168.48.66:5050';
 
   // static const String BASE_URL = 'http://10.0.2.2:8000';
   static const String REGISTER_URI = '/api/v1/auth/register';

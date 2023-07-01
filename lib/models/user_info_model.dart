@@ -1,6 +1,7 @@
 class UserInfoModel {
   int? id;
   String fName;
+  String address;
   String email;
    String? image;
   String phone;
@@ -12,6 +13,7 @@ class UserInfoModel {
       { this.id,
         required this.fName,
         required this.email,
+        required this.address,
         this.image="",
         required this.phone,
          this.password,
@@ -22,6 +24,7 @@ class UserInfoModel {
       return UserInfoModel(
           id : json['id'],
           fName : json['f_name'],
+          address : json['address'],
           email : json['email'],
           image : json['image']??null,
           phone : json['phone'],
@@ -35,6 +38,7 @@ class UserInfoModel {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     //data['id'] = this.id;
     data['f_name'] = this.fName;
+    data['address'] = this.address;
     data['email'] = this.email;
     data['image'] = this.image;
     data['phone'] = this.phone;

@@ -82,7 +82,7 @@ class MyApp extends StatelessWidget {
               Get.find<Keychain>().getKeyChainList();
                Get.find<Shoes>().getShoesList();
                 Get.find<Other>().getOthersList();
-                Get.find<Hoodie>().getHoodieList();
+                  Get.find<Hoodie>().getHoodieList();
                                // Get.find<ReviewGetModel>();
 
 

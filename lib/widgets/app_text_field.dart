@@ -9,10 +9,12 @@ class AppTextField extends StatelessWidget {
   final bool readOnly;
   final bool obscureText;
   final bool maxLines;
+  final bool keyboardType;
   const AppTextField({Key? key,
   required this.hintText,required this.textController, required this.icon, this.readOnly=false,
   this.obscureText=false,
     this.maxLines=false,
+    this.keyboardType=false
 
   }) : super(key: key);
 
@@ -32,7 +34,8 @@ class AppTextField extends StatelessWidget {
           ]
       ),
       child: TextField(
-        keyboardType: TextInputType.multiline,
+     
+        keyboardType: keyboardType==true?TextInputType.number:TextInputType.multiline,
         maxLines: maxLines==true?3:1,
 
         obscureText: obscureText,

@@ -125,7 +125,7 @@ class _PantItemsPageState extends State<PantItemsPage> {
                                 Container(
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
-                                      fit: BoxFit.fill,
+                                      fit: BoxFit.cover,
                                       image: NetworkImage(
                                           AppConstants.UPLOADS_URL + pantProduct.pantList[index].img),
                                     ),

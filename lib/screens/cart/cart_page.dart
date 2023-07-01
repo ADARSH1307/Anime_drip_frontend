@@ -76,6 +76,7 @@ class _CartPageState extends State<CartPage> {
     //  var location = Get.find<LocationController>().getUserAddress();
 
     return Scaffold(
+      
         backgroundColor: Colors.white,
         body: Stack(
           children: [

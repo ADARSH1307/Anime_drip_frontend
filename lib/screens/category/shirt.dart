@@ -126,7 +126,7 @@ class _ShirtItemsPageState extends State<ShirtItemsPage> {
                                 Container(
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
-                                      fit: BoxFit.fill,
+                                      fit: BoxFit.cover,
                                       image: NetworkImage(
                                           AppConstants.UPLOADS_URL + pantProduct.shirtList[index].img),
                                     ),

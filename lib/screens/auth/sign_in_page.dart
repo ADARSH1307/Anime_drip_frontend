@@ -9,6 +9,7 @@ import 'package:shopping_app/routes/route_helper.dart';
 import 'package:shopping_app/screens/auth/failed_login.dart';
 import 'package:shopping_app/screens/auth/sign_up_page.dart';
 import 'package:get/get.dart';
+import 'package:shopping_app/uitls/app_dimensions.dart';
 import 'package:shopping_app/uitls/styles.dart';
 import 'package:shopping_app/widgets/big_text.dart';
 
@@ -36,20 +37,23 @@ class _SignInPageState extends State<SignInPage> {
                 child: GestureDetector(
                   child: Column(
                     children: [
-                      Container(
-                        width: w,
-                        height: h * 0.2,
-                        margin: EdgeInsets.only(
-                            top: 40, left: 40, right: 40, bottom: 20),
-                        // decoration: BoxDecoration(
-                        //     image: DecorationImage(
-                        //         image: AssetImage(
-                        //            "img/anime_drip logo.png"
-                        //         ),
-                        //         fit: BoxFit.fitHeight
+                      // Container(
+                      //   width: w,
+                      //   height: h * 0.2,
+                      //   margin: EdgeInsets.only(
+                      //       top: 40, left: 40, right: 40, bottom: 20),
+                      // decoration: BoxDecoration(
+                      //     image: DecorationImage(
+                      //         image: AssetImage(
+                      //            "img/anime_drip logo.png"
+                      //         ),
+                      //         fit: BoxFit.fitHeight
 
-                        //     )
-                        // ),
+                      //     )
+                      // ),
+                      //),
+                      SizedBox(
+                        height: Dimensions.height30*4,
                       ),
                       Container(
                         margin: const EdgeInsets.only(left: 20, right: 20),
@@ -159,7 +163,8 @@ class _SignInPageState extends State<SignInPage> {
                                       ),
                                       Text(
                                         "Click here",
-                                        style: TextStyle(fontWeight: FontWeight.bold,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
                                             fontSize: 20,
                                             color: AppColors.mainBlackColor),
                                       ),
@@ -172,7 +177,7 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                       ),
                       SizedBox(
-                        height: 60,
+                        height: 50,
                       ),
                       GestureDetector(
                         onTap: () {
@@ -193,7 +198,7 @@ class _SignInPageState extends State<SignInPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: w * 0.15),
+                      SizedBox(height: 5),
                       RichText(
                           text: TextSpan(
                               text: "dont_have_an_account".tr,
@@ -208,7 +213,8 @@ class _SignInPageState extends State<SignInPage> {
                                     fontWeight: FontWeight.bold),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () => Get.to(() => SignUpPage()))
-                          ]))
+                          ])),
+                      SizedBox(height: Dimensions.height10),
                     ],
                   ),
                   onTap: () {
