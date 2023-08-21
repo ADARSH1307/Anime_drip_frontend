@@ -34,7 +34,7 @@ class _OrderScreenState extends State<OrderScreen> with TickerProviderStateMixin
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("my_orders".tr),
+        title: Text("Orders and Review".tr),
         backgroundColor: AppColors.mainColor,
       ),
       body: _isLoggedIn ? GetBuilder<OrderController>(

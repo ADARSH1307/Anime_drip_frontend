@@ -84,15 +84,15 @@ class _CapsItemsPageState extends State<CapsItemsPage> {
                         ),
                       ],
                     ),
-                    Container(
-                      width: height45,
-                      height: height45,
-                      child: Icon(Icons.search, color: Colors.white),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(Dimensions.radius15),
-                        color: AppColors.mainColor,
-                      ),
-                    ),
+                    // Container(
+                    //   width: height45,
+                    //   height: height45,
+                    //   child: Icon(Icons.search, color: Colors.white),
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(Dimensions.radius15),
+                    //     color: AppColors.mainColor,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -118,7 +118,7 @@ class _CapsItemsPageState extends State<CapsItemsPage> {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {
-                            Get.toNamed(RouteHelper.getPantRoute(index, "category"));
+                            Get.toNamed(RouteHelper.getCapsRoute(index, "category"));
                           },
                           child: Container(
                             child: Row(

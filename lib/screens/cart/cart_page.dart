@@ -76,7 +76,6 @@ class _CartPageState extends State<CartPage> {
     //  var location = Get.find<LocationController>().getUserAddress();
 
     return Scaffold(
-      
         backgroundColor: Colors.white,
         body: Stack(
           children: [
@@ -344,8 +343,12 @@ class _CartPageState extends State<CartPage> {
                                                           Text(
                                                             "Size :",
                                                           ),
-                                                          BigText(text: _cartList[index]
-                                                                              .selected_size, color: AppColors.mainBlackColor)
+                                                          BigText(
+                                                              text: _cartList[
+                                                                      index]
+                                                                  .selected_size,
+                                                              color: AppColors
+                                                                  .mainBlackColor)
                                                         ],
                                                       ),
                                                       Row(
@@ -416,13 +419,14 @@ class _CartPageState extends State<CartPage> {
                                                                     onTap: () {
                                                                       var quantity =
                                                                           1;
-                                                                          var selected_size =
+                                                                      var selected_size =
                                                                           _cartList[index]
                                                                               .selected_size;
                                                                       Get.find<CartController>().addItem(
                                                                           _cartList[index]
                                                                               .product,
-                                                                          quantity,selected_size);
+                                                                          quantity,
+                                                                          selected_size);
                                                                     },
                                                                     child: Icon(
                                                                         Icons
@@ -675,6 +679,9 @@ class _CartPageState extends State<CartPage> {
                                   Expanded(child: Container()),
                                   GestureDetector(
                                       onTap: () async {
+                                        showCustomSnackBar("App is in development phase payment method will be available soon",
+                                            title: "Thanks for supporting",
+                                            isError: false);
                                         //sendNotification("body", "test", false);
 
                                         if (!Get.find<AuthController>()
@@ -754,7 +761,7 @@ class _CartPageState extends State<CartPage> {
                                             'email': '',
                                           }
                                         };
-                                        _razorpay.open(options);
+                                       // _razorpay.open(options);
                                       },
                                       child: Container(
                                         margin: EdgeInsets.only(
@@ -782,13 +789,13 @@ class _CartPageState extends State<CartPage> {
 
   void _callback(bool isSuccess, String message, String orderID) async {
     if (isSuccess) {
-      // Get.find<CartController>().clearCartList();
+      Get.find<CartController>().clearCartList();
       Get.find<OrderController>().stopLoader();
       Get.find<CartController>().addToCartList();
       //pay online
       if (Get.find<OrderController>().paymentMethodIndex == 1) {
-        // Get.offNamed(RouteHelper.getPaymentRoute(
-        //     orderID, Get.find<UserController>().userInfoModel!.id!));
+        Get.offNamed(RouteHelper.getPaymentRoute(
+            orderID, Get.find<UserController>().userInfoModel!.id!));
 
         Get.offNamed(RouteHelper.getOrderSuccessRoute(orderID, "success"));
         //pay by cash, cash on delivery

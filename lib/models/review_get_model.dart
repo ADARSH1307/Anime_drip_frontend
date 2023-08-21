@@ -3,14 +3,14 @@ class ReviewGetModel {
   int? foodId;
   String? name;
   String? productReview;
-  String? stars;
+  int? stars;
   String? image;
   String? createdAt;
   String? updatedAt;
   int? orderId;
 
   ReviewGetModel(
-      { this.id,
+      {this.id,
       this.foodId,
       this.name,
       this.productReview,
@@ -22,14 +22,14 @@ class ReviewGetModel {
 
   ReviewGetModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    foodId = int.parse(json['food_id']);
+    foodId = json['food_id'];
     name = json['name'];
     productReview = json['product_review'];
-    stars = json['stars'];
+    stars = json['stars']; //from backend int data is been passed
     image = json['image'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    orderId = int.parse(json['order_id']);
+    orderId = json['order_id'];
   }
 
   // Map<String, dynamic> toJson() {
@@ -46,7 +46,7 @@ class ReviewGetModel {
   //   return data;
   // }
 
-   @override
+  @override
   String toString() {
     return "ReviewGetModel(id: $id,food_id: $foodId, name: $name, product_review: $productReview,stars: $stars,image:$image,created_at:$createdAt,updated_at:$updatedAt,order_id:$orderId)";
   }

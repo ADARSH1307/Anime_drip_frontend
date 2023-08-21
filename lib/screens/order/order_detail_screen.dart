@@ -190,23 +190,23 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                       height: Dimensions.height10,
                                     ),
 
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Icon(
-                                          Icons.timer,
-                                          size: 20,
-                                          color: AppColors.yellowColor,
-                                        ),
-                                        Text(
-                                          DateConverter
-                                              .dateTimeStringToDateTime(
-                                                  _order.createdAt!),
-                                          style: robotoMedium,
-                                        ),
-                                      ],
-                                    ),
+                                    // Row(
+                                    //   mainAxisAlignment:
+                                    //       MainAxisAlignment.spaceBetween,
+                                    //   children: [
+                                    //     Icon(
+                                    //       Icons.timer,
+                                    //       size: 20,
+                                    //       color: AppColors.yellowColor,
+                                    //     ),
+                                    //     Text(
+                                    //       DateConverter
+                                    //           .dateTimeStringToDateTime(
+                                    //               _order.createdAt!),
+                                    //       style: robotoMedium,
+                                    //     ),
+                                    //   ],
+                                    // ),
 
                                     SizedBox(
                                       height: Dimensions.height10,

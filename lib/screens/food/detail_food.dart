@@ -236,53 +236,36 @@ class _DetailFoodState extends State<DetailFood> {
                       size: Dimensions.font26,
                       text: productItem.title,
                       color: Colors.black87),
-                  SizedBox(
-                    height: Dimensions.padding10,
-                  ),
-                  Row(
-                    children: [
-                      Wrap(
-                        children: List.generate(
-                            5,
-                            (index) => Icon(Icons.star,
-                                color: AppColors.mainColor, size: 15)),
-                      ),
-                      SizedBox(
-                        width: Dimensions.height10,
-                      ),
-                      TextWidget(text: "4.5", color: Color(0xFFccc7c5)),
-                      SizedBox(
-                        width: Dimensions.height10,
-                      ),
-                      TextWidget(
-                          text: "1287" + " " + "comments".tr,
-                          color: Color(0xFFccc7c5))
-                    ],
-                  ),
+                  // SizedBox(
+                  //   height: Dimensions.padding10,
+                  // ),
+                  // Row(
+                  //   children: [
+                  //     Wrap(
+                  //       children: List.generate(
+                  //           5,
+                  //           (index) => Icon(Icons.star,
+                  //               color: AppColors.mainColor, size: 15)),
+                  //     ),
+                  //     SizedBox(
+                  //       width: Dimensions.height10,
+                  //     ),
+                  //     TextWidget(text: "4.5", color: Color(0xFFccc7c5)),
+                  //     SizedBox(
+                  //       width: Dimensions.height10,
+                  //     ),
+                  //     TextWidget(
+                  //         text: "1287" + " " + "comments".tr,
+                  //         color: Color(0xFFccc7c5))
+                  //   ],
+                  // ),
                   SizedBox(
                     height: Dimensions.padding20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      /* IconAndTextWidget(
-                              text: "Normal",
-                              color: AppColors.textColor,
-                              icon: Icons.circle_sharp,
-                              iconColor: AppColors.iconColor1,
-                            ),
-                            IconAndTextWidget(
-                              text: "1.7km",
-                              color: AppColors.textColor,
-                              icon: Icons.location_on,
-                              iconColor: AppColors.mainColor,
-                            ),
-                            IconAndTextWidget(
-                              text: "32min",
-                              color: AppColors.textColor,
-                              icon: Icons.access_time_rounded,
-                              iconColor: AppColors.iconColor2,
-                            )*/
+                    
                     ],
                   ),
                   SizedBox(
@@ -572,12 +555,10 @@ class _DetailFoodState extends State<DetailFood> {
                                 itemBuilder: (context, index) {
                                   if (productItem.id == rev.foodId) {
                                     return ReviewCard(
-                                      rating: int.parse(rev.stars!),
-                                      reviewText:
-                                          rev.productReview!,
+                                      rating: rev.stars!,
+                                      reviewText: rev.productReview!,
                                       user: rev.name!,
                                     );
-                                    
                                   }
                                 },
                                 // separatorBuilder: (context, index) {
@@ -655,7 +636,7 @@ class _DetailFoodState extends State<DetailFood> {
                         color: AppColors.titleColor.withOpacity(0.05))
                   ]),
             ),
-            Expanded(child: Container()),
+           Expanded(child: Container()),
             GestureDetector(
               onTap: () {
                 if (selected_size == "null" || selected_size == "NA") {
@@ -680,7 +661,7 @@ class _DetailFoodState extends State<DetailFood> {
               },
               child: Container(
                 child: BigText(
-                  size: 20,
+                  size: Dimensions.font20,
                   text: "\₹" +
                       (productItem.price).toString() +
                       " " +
@@ -744,7 +725,7 @@ class ReviewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 200,
-      margin: EdgeInsets.only(right: 16,bottom: 10),
+      margin: EdgeInsets.only(right: 16, bottom: 10),
       padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -754,52 +735,49 @@ class ReviewCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
                   Container(
-                height: 45.0,
-                width: 45.0,
-                margin: EdgeInsets.only(right: 16.0),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("img/anime_drip logo.png"),
-                    fit: BoxFit.cover,
+                    height: 45.0,
+                    width: 45.0,
+                    margin: EdgeInsets.only(right: 16.0),
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("img/anime_drip logo.png"),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(44.0),
+                    ),
                   ),
-                  borderRadius: BorderRadius.circular(44.0),
-                ),
-              ),
                   BigText(
-            text:' $user',
-           // style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-           color: AppColors.mainBlackColor,
-          ),
-          
+                    text: ' $user',
+                    // style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                    color: AppColors.mainBlackColor,
+                  ),
                 ],
               ),
-           SizedBox(height: 4),
+              SizedBox(height: 4),
               Row(
                 children: [
                   SmoothStarRating(
-                starCount: 5,
-                rating:double.parse('$rating') ,
-                size: 20.0,
-                color: Colors.orange,
-                borderColor: Colors.orange,
-              ),
+                    starCount: 5,
+                    rating: double.parse('$rating'),
+                    size: 20.0,
+                    color: Colors.orange,
+                    borderColor: Colors.orange,
+                  ),
                   SizedBox(width: 4),
-              // Text(
-              //   '$rating'+" ratings",
-              //   style: TextStyle(
-              //     fontSize: 14,
-              //     fontWeight: FontWeight.bold,
-              //   ),
-              // ),
+                  // Text(
+                  //   '$rating'+" ratings",
+                  //   style: TextStyle(
+                  //     fontSize: 14,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
                 ],
               ),
-              
             ],
           ),
           SizedBox(height: 8),
@@ -808,7 +786,6 @@ class ReviewCard extends StatelessWidget {
             style: TextStyle(fontSize: 14),
           ),
           SizedBox(height: 8),
-          
         ],
       ),
     );

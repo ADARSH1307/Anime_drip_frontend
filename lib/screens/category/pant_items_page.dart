@@ -83,15 +83,15 @@ class _PantItemsPageState extends State<PantItemsPage> {
                         ),
                       ],
                     ),
-                    Container(
-                      width: height45,
-                      height: height45,
-                      child: Icon(Icons.search, color: Colors.white),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(Dimensions.radius15),
-                        color: AppColors.mainColor,
-                      ),
-                    ),
+                    // Container(
+                    //   width: height45,
+                    //   height: height45,
+                    //   child: Icon(Icons.search, color: Colors.white),
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(Dimensions.radius15),
+                    //     color: AppColors.mainColor,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

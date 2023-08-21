@@ -30,7 +30,7 @@ class _FailedLoginPageState extends State<FailedLoginPage> {
       // var reviewController = Get.find<ReviewController>();
       var _phone = phoneController.text;
       var _comment = commentController.text;
-      var _deliverypending = gender!;
+      var _deliverypending = gender;
       // print(_rating);
       //print(widget.orderId.toString());
       var data = {
@@ -40,15 +40,15 @@ class _FailedLoginPageState extends State<FailedLoginPage> {
       };
       print(data);
       if (_phone.isEmpty) {
-        showCustomSnackBar('Enter your number'.tr);
+        showCustomSnackBar('Enter your number');
         return;
-      } else if (_deliverypending.isEmpty) {
-        showCustomSnackBar('Enter product review'.tr);
+      } else if (_deliverypending==null) {
+        showCustomSnackBar('Fill out the delivery pending status');
         return;
       } else {
         // var btnclicked = 1;
-        showCustomSnackBar('Review updated successfully!!!',
-            isError: false, title: 'Thanks For Feedback');
+        showCustomSnackBar('Form submitted successfully!!!',
+            isError: false, title: 'Thanks For Co-operating');
         var res =
             CallApi().postFailedlogin(data, AppConstants.FAILED_LOGIN_URI);
         Navigator.of(context).pushReplacement(

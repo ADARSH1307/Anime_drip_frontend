@@ -42,7 +42,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
                 Expanded(child: SearchField(
                   controller: _searchController,
-                  hint: 'search_for_food'.tr,
+                  hint: 'search_for_product'.tr,
                   suffixIcon: !searchController.isSearchMode ? Icons.filter_list : Icons.search,
                   iconPressed: () => _actionSearch(searchController, false),
                   onSubmit: (text) => _actionSearch(searchController, true),

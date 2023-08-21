@@ -84,15 +84,15 @@ class _KeychainItemsPageState extends State<KeychainItemsPage> {
                         ),
                       ],
                     ),
-                    Container(
-                      width: height45,
-                      height: height45,
-                      child: Icon(Icons.search, color: Colors.white),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(Dimensions.radius15),
-                        color: AppColors.mainColor,
-                      ),
-                    ),
+                    // Container(
+                    //   width: height45,
+                    //   height: height45,
+                    //   child: Icon(Icons.search, color: Colors.white),
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(Dimensions.radius15),
+                    //     color: AppColors.mainColor,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -118,7 +118,7 @@ class _KeychainItemsPageState extends State<KeychainItemsPage> {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {
-                            Get.toNamed(RouteHelper.getPantRoute(index, "category"));
+                            Get.toNamed(RouteHelper.getKeychainRoute(index, "category"));
                           },
                           child: Container(
                             child: Row(

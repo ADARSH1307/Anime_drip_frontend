@@ -62,7 +62,11 @@ android {
 flutter {
     source '../..'
 }
-
+// buildscript {
+// ext {
+//     kotlin_version = '1.6.0'
+// }
+// }
 dependencies {
     implementation platform('com.google.firebase:firebase-bom:26.3.0')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

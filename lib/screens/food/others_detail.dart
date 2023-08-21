@@ -7,10 +7,11 @@ import 'package:http/http.dart';
 import 'package:shopping_app/base/custom_snackbar.dart';
 import 'package:shopping_app/components/colors.dart';
 import 'package:shopping_app/components/expanded_widget.dart';
+import 'package:shopping_app/controllers/caps_controller.dart';
 import 'package:shopping_app/controllers/cart_controller.dart';
 import 'package:shopping_app/controllers/order_controller.dart';
+import 'package:shopping_app/controllers/other_controller.dart';
 import 'package:shopping_app/controllers/pant_controller.dart';
-import 'package:shopping_app/controllers/popular_product.dart';
 import 'package:shopping_app/controllers/product_controller.dart';
 import 'package:shopping_app/controllers/review_controller.dart';
 import 'package:shopping_app/data/api/api_client.dart';
@@ -31,18 +32,17 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
-
-class MoreFood extends StatefulWidget {
+class OthersDetail extends StatefulWidget {
   int pageId;
   String page;
-  MoreFood({Key? key, required this.pageId, required this.page})
+  OthersDetail({Key? key, required this.pageId, required this.page})
       : super(key: key);
 
   @override
-  State<MoreFood> createState() => _MoreFoodState();
+  State<OthersDetail> createState() => _OthersDetailState();
 }
 
-class _MoreFoodState extends State<MoreFood> {
+class _OthersDetailState extends State<OthersDetail> {
   int activeIndex = 0;
   bool isMore = false;
   double sideLength = Dimensions.height20 * 2;
@@ -81,8 +81,7 @@ class _MoreFoodState extends State<MoreFood> {
     //print(Get.find<CartController>().getCartsData());
     //we are getting a model here
 
-    var productItem =
-        Get.find<PopularProduct>().popularProductList[widget.pageId];
+    var productItem = Get.find<Other>().otherList[widget.pageId];
     Get.find<ProductController>()
         .initData(productItem, widget.pageId, Get.find<CartController>());
     final urlImages = [

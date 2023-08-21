@@ -69,17 +69,17 @@ class _CategoryPageState extends State<CategoryPage> {
                         ),
                       ],
                     ),
-                    Container(
-                      width: Dimensions.height45,
-                      height: Dimensions.height45,
-                      child: Icon(Icons.search, color: Colors.white),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          Dimensions.radius15,
-                        ),
-                        color: AppColors.mainColor,
-                      ),
-                    ),
+                    // Container(
+                    //   width: Dimensions.height45,
+                    //   height: Dimensions.height45,
+                    //   child: Icon(Icons.search, color: Colors.white),
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(
+                    //       Dimensions.radius15,
+                    //     ),
+                    //     color: AppColors.mainColor,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -110,7 +110,8 @@ class _CategoryPageState extends State<CategoryPage> {
                           ),
                           margin: EdgeInsets.symmetric(
                             vertical: Dimensions.height10,
-                            horizontal: MediaQuery.of(context).size.width * 0.02,
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.02,
                           ),
                           height: MediaQuery.of(context).size.height * 0.30,
                           width: MediaQuery.of(context).size.width * 0.45,
@@ -138,7 +139,8 @@ class _CategoryPageState extends State<CategoryPage> {
                       GestureDetector(
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (BuildContext context) => HoodieItemsPage(),
+                            builder: (BuildContext context) =>
+                                HoodieItemsPage(),
                           ),
                         ),
                         child: Container(
@@ -157,7 +159,8 @@ class _CategoryPageState extends State<CategoryPage> {
                           ),
                           margin: EdgeInsets.symmetric(
                             vertical: Dimensions.height10,
-                            horizontal: MediaQuery.of(context).size.width * 0.02,
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.02,
                           ),
                           height: MediaQuery.of(context).size.height * 0.30,
                           width: MediaQuery.of(context).size.width * 0.45,
@@ -236,7 +239,8 @@ class _CategoryPageState extends State<CategoryPage> {
                       GestureDetector(
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (BuildContext context) => SweatshirtItemsPage(),
+                            builder: (BuildContext context) =>
+                                SweatshirtItemsPage(),
                           ),
                         ),
                         child: Container(
@@ -255,7 +259,8 @@ class _CategoryPageState extends State<CategoryPage> {
                           ),
                           margin: EdgeInsets.symmetric(
                             vertical: Dimensions.height10,
-                            horizontal: MediaQuery.of(context).size.width * 0.02,
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.02,
                           ),
                           height: MediaQuery.of(context).size.height * 0.30,
                           width: MediaQuery.of(context).size.width * 0.45,
@@ -287,7 +292,8 @@ class _CategoryPageState extends State<CategoryPage> {
                       GestureDetector(
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (BuildContext context) => SwordsItemsPage(),
+                            builder: (BuildContext context) =>
+                                SwordsItemsPage(),
                           ),
                         ),
                         child: Container(
@@ -306,7 +312,8 @@ class _CategoryPageState extends State<CategoryPage> {
                           ),
                           margin: EdgeInsets.symmetric(
                             vertical: Dimensions.height10,
-                            horizontal: MediaQuery.of(context).size.width * 0.02,
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.02,
                           ),
                           height: MediaQuery.of(context).size.height * 0.30,
                           width: MediaQuery.of(context).size.width * 0.45,
@@ -353,7 +360,8 @@ class _CategoryPageState extends State<CategoryPage> {
                           ),
                           margin: EdgeInsets.symmetric(
                             vertical: Dimensions.height10,
-                            horizontal:MediaQuery.of(context).size.width * 0.02,
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.02,
                           ),
                           height: MediaQuery.of(context).size.height * 0.30,
                           width: MediaQuery.of(context).size.width * 0.45,
@@ -385,7 +393,8 @@ class _CategoryPageState extends State<CategoryPage> {
                       GestureDetector(
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (BuildContext context) => KeychainItemsPage(),
+                            builder: (BuildContext context) =>
+                                KeychainItemsPage(),
                           ),
                         ),
                         child: Container(
@@ -404,7 +413,8 @@ class _CategoryPageState extends State<CategoryPage> {
                           ),
                           margin: EdgeInsets.symmetric(
                             vertical: Dimensions.height10,
-                            horizontal:MediaQuery.of(context).size.width * 0.02,
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.02,
                           ),
                           height: MediaQuery.of(context).size.height * 0.30,
                           width: MediaQuery.of(context).size.width * 0.45,
@@ -451,7 +461,8 @@ class _CategoryPageState extends State<CategoryPage> {
                           ),
                           margin: EdgeInsets.symmetric(
                             vertical: Dimensions.height10,
-                            horizontal: MediaQuery.of(context).size.width * 0.02,
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.02,
                           ),
                           height: MediaQuery.of(context).size.height * 0.30,
                           width: MediaQuery.of(context).size.width * 0.45,
@@ -478,7 +489,6 @@ class _CategoryPageState extends State<CategoryPage> {
                       ),
                     ],
                   ),
-                  
                 ],
               ),
             ],

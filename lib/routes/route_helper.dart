@@ -12,6 +12,7 @@ import 'package:shopping_app/screens/food/detail_food.dart';
 import 'package:shopping_app/screens/food/hoodies_detail.dart';
 import 'package:shopping_app/screens/food/katana_detail.dart';
 import 'package:shopping_app/screens/food/keychain_detail.dart';
+import 'package:shopping_app/screens/food/others_detail.dart';
 import 'package:shopping_app/screens/food/pant_detail.dart';
 import 'package:shopping_app/screens/food/shirts_detail.dart';
 import 'package:shopping_app/screens/food/shoes_detail.dart';
@@ -40,6 +41,7 @@ class RouteHelper {
   static const String katana = '/katana';
   static const String caps = '/caps';
   static const String shoes = '/shoes';
+   static const String others = '/others';
 
   static const String accountPage = '/account-page';
   static const String cartPage = '/cart-page';
@@ -77,6 +79,8 @@ order details
       '$moreFood?id=$pageId&page=$page';
   static String getPantRoute(int pageId, String page) =>
       '$pant?id=$pageId&page=$page';
+        static String getOtherRoute(int pageId, String page) =>
+      '$others?id=$pageId&page=$page';
   static String getShirtsRoute(int pageId, String page) =>
       '$shirts?id=$pageId&page=$page';
   static String getSweatshirtRoute(int pageId, String page) =>
@@ -201,7 +205,7 @@ order details
         name: caps,
         page: () {
           // return SliderP();
-          return CapsDetail(
+          return CapDetail(
               pageId: int.parse(Get.parameters['id']!),
               page: Get.parameters['page']!);
         },
@@ -220,6 +224,15 @@ order details
         page: () {
           // return SliderP();
           return KeychainDetail(
+              pageId: int.parse(Get.parameters['id']!),
+              page: Get.parameters['page']!);
+        },
+        transition: Transition.fadeIn),
+            GetPage(
+        name: others,
+        page: () {
+          // return SliderP();
+          return OthersDetail(
               pageId: int.parse(Get.parameters['id']!),
               page: Get.parameters['page']!);
         },

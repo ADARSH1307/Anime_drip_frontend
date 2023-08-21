@@ -62,9 +62,11 @@ class _SignInPageState extends State<SignInPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
+
                               "Hello",
                               style: TextStyle(
                                   fontSize: 70, fontWeight: FontWeight.bold),
+                                  
                             ),
                             Text(
                               "sign_into_your_account".tr,
@@ -234,11 +236,11 @@ class _SignInPageState extends State<SignInPage> {
     bool _isValid = GetPlatform.isWeb ? true : false;
 
     if (_phone.isEmpty) {
-      showCustomSnackBar('enter_your_phone_number'.tr);
+      showCustomSnackBar('Enter your Number');
     } else if (_phone.length < 6) {
-      showCustomSnackBar('enter_a_valid_phone_number'.tr);
+      showCustomSnackBar('Enter valid phone number');
     } else if (_password.isEmpty) {
-      showCustomSnackBar("enter_password".tr);
+      showCustomSnackBar("Enter password");
     }
     authController.login(_phone, _password).then((status) async {
       if (status.isSuccess) {

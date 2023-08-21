@@ -32,6 +32,7 @@ class SearchResultWidget extends StatefulWidget {
 class _SearchResultWidgetState extends State<SearchResultWidget>
     with TickerProviderStateMixin {
   late TabController _tabController;
+  
 
   @override
   void initState() {
@@ -378,73 +379,70 @@ class _SearchResultWidgetState extends State<SearchResultWidget>
                                                           ),
                                                           Row(
                                                             children: [
-                                                              Wrap(
-                                                                children: List.generate(
-                                                                    5,
-                                                                    (index) => Icon(
-                                                                        Icons
-                                                                            .star,
-                                                                        color: AppColors
-                                                                            .mainColor,
-                                                                        size:
-                                                                            15)),
-                                                              ),
-                                                              SizedBox(
-                                                                width: 10,
-                                                              ),
-                                                              TextWidget(
-                                                                  text: "4.5",
-                                                                  color: Color(
-                                                                      0xFFccc7c5)),
-                                                              SizedBox(
-                                                                width: 10,
-                                                              ),
-                                                              TextWidget(
-                                                                  text: "1287" +
-                                                                      " " +
-                                                                      "comments"
-                                                                          .tr,
-                                                                  color: Color(
-                                                                      0xFFccc7c5))
+                                                              // Wrap(
+                                                              //   children: List.generate(
+                                                              //       5,
+                                                              //       (index) => Icon(
+                                                              //           Icons
+                                                              //               .star,
+                                                              //           color: AppColors
+                                                              //               .mainColor,
+                                                              //           size:
+                                                              //               15)),
+                                                              // ),
+                                                              // SizedBox(
+                                                              //   width: 10,
+                                                              // ),
+                                                              // TextWidget(
+                                                              //     text: "4.5",
+                                                              //     color: Color(
+                                                              //         0xFFccc7c5)),
+                                                              // SizedBox(
+                                                              //   width: 10,
+                                                              // ),
+                                                              // TextWidget(
+                                                              //     text: "1287" +
+                                                              //         " " +
+                                                              //         "comments"
+                                                              //             .tr,
+                                                              //     color: Color(
+                                                              //         0xFFccc7c5))
                                                             ],
                                                           ),
-                                                          SizedBox(
-                                                            height: Dimensions
-                                                                .padding20,
-                                                          ),
+                                                          // SizedBox(
+                                                          //   height: Dimensions
+                                                          //       .padding20,
+                                                          // ),
                                                           Row(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
                                                                     .spaceBetween,
                                                             children: [
-                                                              IconAndTextWidget(
-                                                                text: "Normal",
-                                                                color: AppColors
-                                                                    .textColor,
-                                                                icon: Icons
-                                                                    .circle_sharp,
-                                                                iconColor: AppColors
-                                                                    .iconColor1,
-                                                              ),
-                                                              IconAndTextWidget(
-                                                                text: "1.7km",
-                                                                color: AppColors
-                                                                    .textColor,
-                                                                icon: Icons
-                                                                    .location_on,
-                                                                iconColor:
-                                                                    AppColors
-                                                                        .mainColor,
-                                                              ),
-                                                              IconAndTextWidget(
-                                                                text: "32min",
-                                                                color: AppColors
-                                                                    .textColor,
-                                                                icon: Icons
-                                                                    .access_time_rounded,
-                                                                iconColor: AppColors
-                                                                    .iconColor2,
-                                                              )
+                                                              // IconAndTextWidget(
+                                                              //   text: product
+                                                              //       .price
+                                                              //       .toString(),
+                                                              //   color: AppColors
+                                                              //       .mainBlackColor,
+                                                              //   icon: Icons
+                                                              //       .currency_rupee,
+                                                              //   iconColor: AppColors
+                                                              //       .mainBlackColor,
+                                                              // ),
+
+                                                              // IconAndTextWidget(text: "1.7km",
+                                                              //   color: AppColors.textColor, icon: Icons.location_on,
+                                                              //   iconColor: AppColors.mainColor,),
+                                                              // IconAndTextWidget(
+                                                              //     text:
+                                                              //         "Hot Deals",
+                                                              //     color: AppColors
+                                                              //         .mainBlackColor,
+                                                              //     icon: Icons
+                                                              //         .local_fire_department_sharp,
+                                                              //     iconColor: Colors
+                                                              //         .orange
+                                                              //         .shade600)
                                                             ],
                                                           ),
                                                           SizedBox(
@@ -832,7 +830,7 @@ class _SearchResultWidgetState extends State<SearchResultWidget>
                                                   ),
                                                   TextWidget(
                                                       text:
-                                                          "With chinese characteristics",
+                                                          "With anime characteristics",
                                                       color:
                                                           AppColors.textColor),
                                                   SizedBox(
@@ -844,31 +842,32 @@ class _SearchResultWidgetState extends State<SearchResultWidget>
                                                         MainAxisAlignment
                                                             .spaceBetween,
                                                     children: [
-                                                      IconAndTextWidget(
-                                                        text: "Normal",
-                                                        color:
-                                                            AppColors.textColor,
-                                                        icon: Icons.circle,
-                                                        iconColor: AppColors
-                                                            .iconColor1,
-                                                      ),
-                                                      IconAndTextWidget(
-                                                        text: "17km",
-                                                        color:
-                                                            AppColors.textColor,
-                                                        icon: Icons.location_on,
-                                                        iconColor:
-                                                            AppColors.mainColor,
-                                                      ),
-                                                      IconAndTextWidget(
-                                                        text: "32min",
-                                                        color:
-                                                            AppColors.textColor,
-                                                        icon: Icons
-                                                            .access_time_rounded,
-                                                        iconColor: AppColors
-                                                            .iconColor2,
-                                                      )
+                                                     IconAndTextWidget(
+                                                                text: searchController
+                                                          .searchProductList![
+                                                              index]
+                                                          .price.toString(),
+                                                                color: AppColors
+                                                                    .mainBlackColor,
+                                                                icon: Icons
+                                                                    .currency_rupee,
+                                                                iconColor: AppColors
+                                                                    .mainBlackColor,
+                                                              ),
+
+                                                              // IconAndTextWidget(text: "1.7km",
+                                                              //   color: AppColors.textColor, icon: Icons.location_on,
+                                                              //   iconColor: AppColors.mainColor,),
+                                                              // IconAndTextWidget(
+                                                              //     text:
+                                                              //         "Hot Deals",
+                                                              //     color: AppColors
+                                                              //         .mainBlackColor,
+                                                              //     icon: Icons
+                                                              //         .local_fire_department_sharp,
+                                                              //     iconColor: Colors
+                                                              //         .orange
+                                                              //         .shade600)
                                                     ],
                                                   )
                                                 ],

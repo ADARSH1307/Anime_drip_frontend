@@ -258,17 +258,17 @@ class CartController extends GetxController {
     }
   }
 
-  // void removeItem(int productId){
-  //   _items.remove(productId);
-  //   update();
-  // }
+  void removeItem(int productId){
+    _items.remove(productId);
+    update();
+  }
 
-  // void clear(){
-  //   _items = {};
-  //   update();
-  // }
+  void clear(){
+    _items = {};
+    update();
+  }
 
-  // void removeCartSharedPreference(){
-  //   cartRepo.removeCartSharedPreference();
-  // }
+  void removeCartSharedPreference(){
+    cartRepo.removeCartSharedPreference();
+  }
 }

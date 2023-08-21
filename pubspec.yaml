@@ -50,6 +50,7 @@ dependencies:
   flutter_tawk: ^0.1.0
   auto_reload: ^1.1.0
   flutter_rating_bar: ^4.0.1
+  flutter_open_whatsapp:
 
 
 dev_dependencies:

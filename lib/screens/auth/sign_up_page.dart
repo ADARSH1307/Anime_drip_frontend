@@ -60,7 +60,7 @@ class _SignUpPageState extends State<SignUpPage> {
       showCustomSnackBar('enter_phone_number'.tr);
       return;
     }
-     if (_address.isEmpty) {
+    if (_address.isEmpty) {
       showCustomSnackBar('Enter the address');
       return;
     }
@@ -187,23 +187,17 @@ class _SignUpPageState extends State<SignUpPage> {
                       children: [
                         Container(
                           width: w,
-                          height: h * 0.25,
+                          height: h * 0.26,
                           decoration: BoxDecoration(color: Colors.white),
-                          child: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: h * 0.05,
-                                ),
-                                //  CircleAvatar(
-                                //    backgroundColor: Colors.white70,
-                                //    radius: 80,
-                                //    backgroundImage: AssetImage(
-                                //        "img/logo part 1.png"
-                                //    ),
-                                //  )
-                              ],
-                            ),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: h * 0.05,
+                              ),
+                              Center(
+                                  child: Image.asset("img/anime_drip logo.png",
+                                      width: Dimensions.width20*10)),
+                            ],
                           ),
                         ),
                         Container(
@@ -217,7 +211,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 "Enter your details",
                                 style: TextStyle(
                                     fontFamily: 'Roboto-Black',
-                                    fontSize: Dimensions.font20 * 2),
+                                    fontSize: Dimensions.font30),
                               )),
                               SizedBox(
                                 height: 20,
@@ -300,11 +294,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                 height: 20,
                               ),
                               AppTextField(
-                maxLines: true,
-                hintText: "Enter your address....".tr,
-                textController: addressController,
-                icon: Icons.location_on_outlined,
-              ),
+                                maxLines: true,
+                                hintText: "Enter your address....".tr,
+                                textController: addressController,
+                                icon: Icons.location_on_outlined,
+                              ),
                               //  Container(
                               //    decoration: BoxDecoration(
                               //        color: Colors.white,
@@ -501,12 +495,10 @@ class _SignUpPageState extends State<SignUpPage> {
     } else if (_number1.isEmpty) {
       showCustomSnackBar('enter_phone_number'.tr);
       return;
-    }
-    else if (_address.isEmpty) {
+    } else if (_address.isEmpty) {
       showCustomSnackBar('Enter your address');
       return;
-    } 
-     else if (_number != _number1) {
+    } else if (_number != _number1) {
       showCustomSnackBar('Enteryyyy valid phone number');
       return;
     } else if (_number.length != 10) {

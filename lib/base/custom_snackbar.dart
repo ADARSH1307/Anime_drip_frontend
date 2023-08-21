@@ -6,6 +6,7 @@ import 'package:shopping_app/widgets/big_text.dart';
 void showCustomSnackBar(String message, {bool isError = true, String title="Errors"}) {
 
   Get.snackbar(
+    
       title,
       message,
       titleText: BigText(text: title, color: Colors.white),

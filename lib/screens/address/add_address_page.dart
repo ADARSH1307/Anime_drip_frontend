@@ -70,7 +70,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
       ),
       body: _isLoggedIn ? GetBuilder<UserController>(builder: (userController) {
 
-          _contactPersonNameController.text = '${userController.userInfoModel?.fName}';
+          _contactPersonNameController.text = '${userController.userInfoModel?.address}';
           _contactPersonNumberController.text = '${userController.userInfoModel?.phone}';
           if(Get.find<LocationController>().addressList.isNotEmpty){
             _addressController.text=Get.find<LocationController>().getUserAddress().address;
@@ -107,16 +107,16 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                     child: Stack(clipBehavior: Clip.none, children: [
                       GoogleMap(
                         initialCameraPosition: CameraPosition(target: _initialPosition, zoom: 17),
-                        onTap: (latLng) {
+                        // onTap: (latLng) {
 
-                          Get.toNamed(RouteHelper.getPickMapRoute('add-address', false),
-                              arguments: PickMapScreen(
-                                fromAddAddress: true,
-                                fromSignUp: false,
-                                googleMapController: locationController.mapController,
-                                route: "", canRoute: false,
-                          ));
-                        },
+                        //   Get.toNamed(RouteHelper.getPickMapRoute('add-address', false),
+                        //       arguments: PickMapScreen(
+                        //         fromAddAddress: true,
+                        //         fromSignUp: false,
+                        //         googleMapController: locationController.mapController,
+                        //         route: "", canRoute: false,
+                        //   ));
+                        // },
                         zoomControlsEnabled: false,
                         compassEnabled: false,
                         indoorViewEnabled: true,
@@ -140,16 +140,16 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                       Center(child: !locationController.loading ? Icon(Icons.web)
                           : CircularProgressIndicator()),
                       Positioned(
-                        top: 10, right: 0,
+                        top: 90, right: 0,
                         child: InkWell(
           onTap: () => _checkPermission(() {
           locationController.getCurrentLocation(true, mapController: locationController.mapController);
           }),
                           child: Container(
-                            width: 30, height: 30,
-                            margin: EdgeInsets.only(right: Dimensions.PADDING_SIZE_LARGE),
+                            width: 40, height: 40,
+                            margin: EdgeInsets.only(right: Dimensions.PADDING_SIZE_LARGE1),
                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL), color: Colors.white),
-                            child: Icon(Icons.fullscreen, color: Theme.of(context).primaryColor, size: 20),
+                            child: Icon(Icons.ads_click, color: Theme.of(context).primaryColor, size: 30),
                           ),
                         ),
                       ),
@@ -161,38 +161,38 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                 SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
                 SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                SizedBox(height: 50, child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: locationController.addressTypeList.length,
-                  itemBuilder: (context, index) => InkWell(
-                    onTap: () {
-                      locationController.setAddressTypeIndex(index);
-                    },
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,
-                          vertical: Dimensions.PADDING_SIZE_SMALL),
-                      margin: EdgeInsets.only(right: Dimensions.PADDING_SIZE_SMALL),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
-                        color: Theme.of(context).cardColor,
-                        boxShadow: [BoxShadow(color: Colors.grey[200]!,
-                            spreadRadius: 1, blurRadius: 5)],
-                      ),
-                      child: Row(children: [
-                        Icon(
-                          index == 0 ? Icons.home_filled : index == 1 ? Icons.work : Icons.location_on,
-                          color: locationController.addressTypeIndex == index
-                              ? Theme.of(context).primaryColor : Theme.of(context).disabledColor,
-                        ),
-                        SizedBox(width: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                // SizedBox(height: 50, child: ListView.builder(
+                //   shrinkWrap: true,
+                //   scrollDirection: Axis.horizontal,
+                //   itemCount: locationController.addressTypeList.length,
+                //   itemBuilder: (context, index) => InkWell(
+                //     onTap: () {
+                //       locationController.setAddressTypeIndex(index);
+                //     },
+                //     child: Container(
+                //       padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,
+                //           vertical: Dimensions.PADDING_SIZE_SMALL),
+                //       margin: EdgeInsets.only(right: Dimensions.PADDING_SIZE_SMALL),
+                //       decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
+                //         color: Theme.of(context).cardColor,
+                //         boxShadow: [BoxShadow(color: Colors.grey[200]!,
+                //             spreadRadius: 1, blurRadius: 5)],
+                //       ),
+                //       // child: Row(children: [
+                //       //   Icon(
+                //       //     index == 0 ? Icons.home_filled : index == 1 ? Icons.work : Icons.location_on,
+                //       //     color: locationController.addressTypeIndex == index
+                //       //         ? Theme.of(context).primaryColor : Theme.of(context).disabledColor,
+                //       //   ),
+                //       //   SizedBox(width: Dimensions.PADDING_SIZE_EXTRA_SMALL),
 
-                      ]),
-                    ),
-                  ),
-                )),
+                //       // ]),
+                //     ),
+                //   ),
+                // )),
                 SizedBox(height: 20),
-                BigText(text:"Delivery Adddress", color:AppColors.mainBlackColor),
+                BigText(text:"Current location (Tap above to fetch)", color:AppColors.mainBlackColor),
 
                 SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                 Container(
@@ -211,7 +211,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                   child: TextField(
                     controller: _addressController,
                     decoration: InputDecoration(
-                        hintText: "Delivery adddress",
+                        hintText: "Current location",
                         prefixIcon: Icon(Icons.email, color:AppColors.yellowColor),
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
@@ -235,7 +235,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                 ),
                 SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
-                BigText(text:"Contact person name", color:AppColors.mainBlackColor),
+                BigText(text:"Delivery Address (Edit it in user profile)", color:AppColors.mainBlackColor),
 
                 SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                 Container(
@@ -254,7 +254,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                   child: TextField(
                     controller: _contactPersonNameController,
                     decoration: InputDecoration(
-                        hintText: "Contact person name",
+                        hintText: "Delivery address",
                         prefixIcon: Icon(Icons.email, color:AppColors.yellowColor),
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
