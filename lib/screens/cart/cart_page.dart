@@ -792,6 +792,7 @@ class _CartPageState extends State<CartPage> {
       Get.find<CartController>().clearCartList();
       Get.find<OrderController>().stopLoader();
       Get.find<CartController>().addToCartList();
+
       //pay online
       if (Get.find<OrderController>().paymentMethodIndex == 1) {
         Get.offNamed(RouteHelper.getPaymentRoute(

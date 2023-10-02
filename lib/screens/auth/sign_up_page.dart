@@ -15,6 +15,7 @@ import 'package:shopping_app/screens/auth/sign_in_page.dart';
 import 'package:shopping_app/uitls/app_dimensions.dart';
 import 'package:shopping_app/widgets/app_text_field.dart';
 import 'package:shopping_app/widgets/big_text.dart';
+import 'package:shopping_app/widgets/mobile_verify.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -46,28 +47,25 @@ class _SignUpPageState extends State<SignUpPage> {
     }
   }
 
-  go_code(AuthController authController) {
-    String _number = phoneController.text.trim();
-    String _number1 = phoneController1.text.trim();
-    String _address = addressController.text.trim();
-    String _country_code = countryCodes.elementAt(choose_index)["Code"]!;
-    print(_country_code);
-    if (_number.isEmpty) {
-      showCustomSnackBar('enter_phone_number'.tr);
-      return;
-    }
-    if (_number1.isEmpty) {
-      showCustomSnackBar('enter_phone_number'.tr);
-      return;
-    }
-    if (_address.isEmpty) {
-      showCustomSnackBar('Enter the address');
-      return;
-    }
-    if (_number == _number1) {
-      showCustomSnackBar('Enter valid phone number');
-      return;
-    }
+  // go_code(AuthController authController) {
+  //   String _number = phoneController.text.trim();
+  //   String _number1 = phoneController1.text.trim();
+  //   String _address = addressController.text.trim();
+  //   String _country_code = countryCodes.elementAt(choose_index)["Code"]!;
+  //   print(_country_code);
+  //   if (MobileVerify.validateMobile(_number)) {
+  //     showCustomSnackBar('enter_phone_number'.tr);
+  //     return;
+  //   }
+   
+  //   if (_address.isEmpty) {
+  //     showCustomSnackBar('Enter the address');
+  //     return;
+  //   }
+  //   if (_number == _number1) {
+  //     showCustomSnackBar('Enter valid phone number');
+  //     return;
+  //   }
     // if (_country_code.isEmpty) {
     //   showCustomSnackBar('enter_country_code');
     //   return;
@@ -91,7 +89,7 @@ class _SignUpPageState extends State<SignUpPage> {
     // }else{
     //   print(code_status);
     // }
-  }
+  //}
 
   //  Future ChooseCountry(BuildContext context){
   //    double w = MediaQuery.of(context).size.width;
@@ -172,7 +170,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    List images = ["g.png", "t.png", "f.png"];
+  //  List images = ["g.png", "t.png", "f.png"];
 
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
@@ -489,13 +487,10 @@ class _SignUpPageState extends State<SignUpPage> {
     } else if (!GetUtils.isEmail(_email)) {
       showCustomSnackBar('enter_a_valid_email_address'.tr);
       return;
-    } else if (_number.isEmpty) {
+    } else if (MobileVerify.validateMobile(_number)) {
       showCustomSnackBar('enter_phone_number'.tr);
       return;
-    } else if (_number1.isEmpty) {
-      showCustomSnackBar('enter_phone_number'.tr);
-      return;
-    } else if (_address.isEmpty) {
+    }  else if (_address.isEmpty) {
       showCustomSnackBar('Enter your address');
       return;
     } else if (_number != _number1) {

@@ -2,6 +2,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:get/get_utils/get_utils.dart';
 import 'package:shopping_app/base/custom_snackbar.dart';
 import 'package:shopping_app/components/colors.dart';
@@ -12,6 +13,8 @@ import 'package:shopping_app/screens/reviews/defaultBackButton.dart';
 import 'package:shopping_app/uitls/app_constants.dart';
 import 'package:shopping_app/widgets/app_text_field.dart';
 import 'package:shopping_app/widgets/big_text.dart';
+import 'package:shopping_app/widgets/mobile_verify.dart';
+
 
 class FailedLoginPage extends StatefulWidget {
   const FailedLoginPage({Key? key}) : super(key: key);
@@ -28,7 +31,7 @@ class _FailedLoginPageState extends State<FailedLoginPage> {
   Widget build(BuildContext context) {
     _register() {
       // var reviewController = Get.find<ReviewController>();
-      var _phone = phoneController.text;
+      var _phone = phoneController.text.trim();
       var _comment = commentController.text;
       var _deliverypending = gender;
       // print(_rating);
@@ -39,10 +42,22 @@ class _FailedLoginPageState extends State<FailedLoginPage> {
         'delivery_pending': gender,
       };
       print(data);
-      if (_phone.isEmpty) {
-        showCustomSnackBar('Enter your number');
-        return;
-      } else if (_deliverypending==null) {
+
+      // bool validateMobile(String value) {
+      //   String pattern = r'^(?:[+0-9]{3})? ?[0-9]{10}$';
+      //   RegExp regExp = new RegExp(pattern);
+      //   if (value.length == 0) {
+      //     return true;
+      //   } else if (!regExp.hasMatch(value)) {
+      //     return true;
+      //   }
+      //   return false;
+      // }
+
+      // validateMobile(_phone);
+      if (MobileVerify.validateMobile(_phone)) {
+        showCustomSnackBar('Enter valid 10 digit number ');
+      } else if (_deliverypending == null) {
         showCustomSnackBar('Fill out the delivery pending status');
         return;
       } else {
@@ -56,7 +71,7 @@ class _FailedLoginPageState extends State<FailedLoginPage> {
             builder: (BuildContext context) => LoginFailedSuccess(),
           ),
         );
-         
+
         // showCustomSnackBar("Your Review will be updated Shortly!!!",
         //    isError: false, title: "Review Updated");
         // ReviewBody reviewBody =
@@ -165,4 +180,8 @@ class _FailedLoginPageState extends State<FailedLoginPage> {
           )),
     ));
   }
+  
+ 
+  
+ 
 }

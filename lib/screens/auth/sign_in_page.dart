@@ -13,6 +13,8 @@ import 'package:shopping_app/uitls/app_dimensions.dart';
 import 'package:shopping_app/uitls/styles.dart';
 import 'package:shopping_app/widgets/big_text.dart';
 
+import '../../widgets/mobile_verify.dart';
+
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
 
@@ -235,11 +237,9 @@ class _SignInPageState extends State<SignInPage> {
 
     bool _isValid = GetPlatform.isWeb ? true : false;
 
-    if (_phone.isEmpty) {
+    if (MobileVerify.validateMobile(_phone)) {
       showCustomSnackBar('Enter your Number');
-    } else if (_phone.length < 6) {
-      showCustomSnackBar('Enter valid phone number');
-    } else if (_password.isEmpty) {
+    }  else if (_password.isEmpty) {
       showCustomSnackBar("Enter password");
     }
     authController.login(_phone, _password).then((status) async {

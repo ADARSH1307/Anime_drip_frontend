@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/base/custom_loader.dart';
 import 'package:shopping_app/base/custom_snackbar.dart';
 import 'package:shopping_app/base/no_data_found.dart';
+import 'package:shopping_app/components/colors.dart';
 import 'package:shopping_app/controllers/order_controller.dart';
 import 'package:shopping_app/helper/app_date_converter.dart';
 import 'package:shopping_app/models/order_model.dart';
@@ -11,6 +12,7 @@ import 'package:shopping_app/screens/order/order_detail_screen.dart';
 import 'package:shopping_app/uitls/app_dimensions.dart';
 import 'package:shopping_app/uitls/styles.dart';
 import 'package:get/get.dart';
+import 'package:shopping_app/widgets/big_text.dart';
 
 import 'order_shimmer.dart';
 
@@ -30,6 +32,15 @@ class OrderView extends StatelessWidget {
                 : orderController.historyOrderList.reversed.toList();
           } else {
             orderList = [];
+            return Scaffold(
+              backgroundColor: Colors.white,
+              body: Center(
+                child: BigText(
+                  text: "No current orders",
+                  color: AppColors.mainBlackColor,
+                ),
+              ),
+            );
           }
 
           return orderList.isNotEmpty
