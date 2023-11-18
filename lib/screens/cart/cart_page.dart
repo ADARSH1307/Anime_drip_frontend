@@ -17,6 +17,8 @@ import 'package:shopping_app/models/cart_item.dart';
 import 'package:shopping_app/models/place_order.dart';
 import 'package:shopping_app/routes/route_helper.dart';
 import 'package:shopping_app/screens/checkout/payment_option_button.dart';
+import 'package:shopping_app/screens/home/home_page.dart';
+import 'package:shopping_app/screens/home/main_food_page.dart';
 import 'package:shopping_app/uitls/app_constants.dart';
 import 'package:shopping_app/uitls/app_dimensions.dart';
 import 'package:shopping_app/widgets/big_text.dart';
@@ -103,13 +105,19 @@ class _CartPageState extends State<CartPage> {
                           } else if (widget.page == 'popular') {
                             Get.toNamed(RouteHelper.getPopularFoodRoute(
                                 widget.pageId, widget.page));
-                          } else if (widget.page == 'cart-history') {
-                            showCustomSnackBar(
-                                "Product review is not available from cart history",
-                                isError: false,
-                                title: "Order more");
-                          } else {
-                            Get.offNamed(RouteHelper.getInitialRoute());
+                          }
+                          //else if (widget.page == 'cart-history') {
+                          //   // showCustomSnackBar(
+                          //   //     "Product review is not available from cart history",
+                          //   //     isError: false,
+                          //   //     title: "Order more");
+                          //   Get.offNamed(RouteHelper.getInitialRoute());
+                          // }
+                          else {
+                            print("nkjsajkfna");
+                            Navigator.of(context).push(new MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    new HomePage()));
                           }
                         },
                         child: Center(
@@ -123,28 +131,28 @@ class _CartPageState extends State<CartPage> {
                     SizedBox(
                       width: 100,
                     ),
-                    Container(
-                      //padding: const EdgeInsets.only(left: 6),
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: AppColors.mainColor,
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          print("my page id is " + widget.pageId.toString());
+                    // Container(
+                    //   //padding: const EdgeInsets.only(left: 6),
+                    //   width: 40,
+                    //   height: 40,
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(20),
+                    //     color: AppColors.mainColor,
+                    //   ),
+                    //   child: GestureDetector(
+                    //     onTap: () {
+                    //       print("my page id is " + widget.pageId.toString());
 
-                          Get.offNamed(RouteHelper.getInitialRoute());
-                        },
-                        child: Center(
-                            child: Icon(
-                          Icons.home_outlined,
-                          size: 20,
-                          color: Colors.white,
-                        )),
-                      ),
-                    ),
+                    //       Get.offNamed(RouteHelper.getInitialRoute());
+                    //     },
+                    //     child: Center(
+                    //         child: Icon(
+                    //       Icons.home_outlined,
+                    //       size: 20,
+                    //       color: Colors.white,
+                    //     )),
+                    //   ),
+                    // ),
                     Container(
                       padding: const EdgeInsets.only(left: 0),
                       width: 40,
@@ -528,7 +536,7 @@ class _CartPageState extends State<CartPage> {
                                               child: Column(
                                                 children: [
                                                   Container(
-                                                    height: 720,
+                                                    height: 700,
                                                     padding:
                                                         const EdgeInsets.only(
                                                             left: 20,
@@ -679,7 +687,8 @@ class _CartPageState extends State<CartPage> {
                                   Expanded(child: Container()),
                                   GestureDetector(
                                       onTap: () async {
-                                        showCustomSnackBar("App is in development phase payment method will be available soon",
+                                        showCustomSnackBar(
+                                            "App is in development phase payment method will be available soon",
                                             title: "Thanks for supporting",
                                             isError: false);
                                         //sendNotification("body", "test", false);
@@ -737,8 +746,8 @@ class _CartPageState extends State<CartPage> {
                                                         : 'digital_payment'),
                                                 _callback);
 
-                                            // Get.find<CartController>().clear();
-                                            //Get.find<CartController>().removeCartSharedPreference();
+                                           // Get.find<CartController>().clear();
+                                          //  Get.find<CartController>().removeCartSharedPreference();
                                             Get.find<CartController>()
                                                 .addToHistory();
                                           }
@@ -761,7 +770,7 @@ class _CartPageState extends State<CartPage> {
                                             'email': '',
                                           }
                                         };
-                                       // _razorpay.open(options);
+                                        // _razorpay.open(options);
                                       },
                                       child: Container(
                                         margin: EdgeInsets.only(

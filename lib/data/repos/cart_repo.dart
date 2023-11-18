@@ -22,6 +22,7 @@ class CartRepo{
     carts.forEach((cart) => cartList.add(CartItem.fromJson(jsonDecode(cart))) );
     return cartList;
   }
+
   void addToCartList(List<CartItem> cartProductList) {
     String time = DateTime.now().toString();
     cart = [];
@@ -65,7 +66,21 @@ class CartRepo{
     return cartList;
   }
 
-  void removeCartSharedPreference(){
+  // List<CartItem> getCartList() {
+  //   if(sharedPreferences.containsKey("Cart-list-list")){
+
+  //     cartHistory = sharedPreferences.getStringList("Cart-list-list")!;
+  //   }else{
+  //     print("...............................nothing.........");
+  //   }
+  //   List<CartItem> cartList = [];
+  //   /*
+  //   We always need to convert the map or json to object or model
+  //    */
+  //   cartHistory.forEach((cart) => cartList.add(CartItem.fromJson(jsonDecode(cart))) );
+  //   return cartList;
+  // }
+  void removeCartSharedPreference() {
     sharedPreferences.remove("Cart-list");
     /*
     bug fix

@@ -104,7 +104,7 @@ class _HomePageBodyState extends State<HomePageBody> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      BigText(text: "India", color: AppColors.mainColor),
+                      BigText(text: "Bharat", color: AppColors.mainColor),
                       Row(
                         children: [
                           TextWidget(

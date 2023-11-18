@@ -29,6 +29,7 @@ import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:shopping_app/controllers/cart_controller.dart';
 
 class DetailFood extends StatefulWidget {
   int pageId;
@@ -55,6 +56,11 @@ class _DetailFoodState extends State<DetailFood> {
   var selected_size = 'null';
   var reviewsgetlist = <ReviewGetModel>[];
   bool isLoading = false;
+  int b = 0;
+  // int scounter = 0;
+  // int mcounter = 0;
+  // int lcounter = 0;
+  // int xlcounter = 0;
 
   _getReviews() {
     ApiClient(appBaseUrl: AppConstants.BASE_URL, sharedPreferences: Get.find())
@@ -264,9 +270,7 @@ class _DetailFoodState extends State<DetailFood> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                    
-                    ],
+                    children: [],
                   ),
                   SizedBox(
                     height: Dimensions.padding20,
@@ -295,8 +299,8 @@ class _DetailFoodState extends State<DetailFood> {
                         child: GestureDetector(
                           onTap: () {
                             setState(() {
-                              if (productItem.small != "NA") {
-                                if (selected_size == 'null') {
+                              if (productItem.s_count > 0) {
+                                if (selected_size != 'S') {
                                   selected_size = productItem.small;
                                 } else if (selected_size == "NA") {
                                   showCustomSnackBar("Size is not available",
@@ -321,6 +325,7 @@ class _DetailFoodState extends State<DetailFood> {
                                 xl_Length = Dimensions.height20 * 2;
                                 xl_color = Colors.transparent;
                               } else {
+                                selected_size = "null";
                                 showCustomSnackBar("Size is not available",
                                     isError: false, title: "Unavailable!!!");
                               }
@@ -328,7 +333,9 @@ class _DetailFoodState extends State<DetailFood> {
                           },
                           child: Center(
                               child: BigText(
-                                  text: productItem.small,
+                                  text: productItem.s_count > 0
+                                      ? productItem.small
+                                      : "NA",
                                   color: AppColors.mainBlackColor)),
                         ),
                       ),
@@ -348,8 +355,8 @@ class _DetailFoodState extends State<DetailFood> {
                         child: GestureDetector(
                           onTap: () {
                             setState(() {
-                              if (productItem.medium != "NA") {
-                                if (selected_size == 'null') {
+                              if (productItem.m_count > 0) {
+                                if (selected_size != 'M') {
                                   selected_size = productItem.medium;
                                 } else if (selected_size == "NA") {
                                   showCustomSnackBar("Size is not available",
@@ -402,8 +409,8 @@ class _DetailFoodState extends State<DetailFood> {
                         child: GestureDetector(
                           onTap: () {
                             setState(() {
-                              if (productItem.large != "NA") {
-                                if (selected_size == 'null') {
+                              if (productItem.l_count > 0) {
+                                if (selected_size != 'L') {
                                   selected_size = productItem.large;
                                 } else if (selected_size == productItem.large) {
                                   selected_size = "null";
@@ -452,8 +459,8 @@ class _DetailFoodState extends State<DetailFood> {
                         child: GestureDetector(
                           onTap: () {
                             setState(() {
-                              if (productItem.xlarge != "NA") {
-                                if (selected_size == 'null') {
+                              if (productItem.xl_count > 0) {
+                                if (selected_size != 'XL') {
                                   selected_size = productItem.xlarge;
                                 } else if (selected_size ==
                                     productItem.xlarge) {
@@ -620,6 +627,43 @@ class _DetailFoodState extends State<DetailFood> {
                     onTap: () {
                       Get.find<ProductController>()
                           .setQuantity(true, productItem);
+
+                      // if (selected_size == "S") {
+                      //   if (scounter >= productItem.s_count) {
+                      //     showCustomSnackBar("asadffdg");
+                      //   } else {
+                      //     scounter++;
+                      //     Get.find<ProductController>()
+                      //         .setQuantity(true, productItem);
+                      //   }
+                      // }
+                      // if (selected_size == "M") {
+                      //   if (mcounter >= productItem.m_count) {
+                      //     showCustomSnackBar("asadffdg");
+                      //   } else {
+                      //     mcounter++;
+                      //     Get.find<ProductController>()
+                      //         .setQuantity(true, productItem);
+                      //   }
+                      // }
+                      // if (selected_size == "L") {
+                      //   if (lcounter >= productItem.l_count) {
+                      //     showCustomSnackBar("asadffdg");
+                      //   } else {
+                      //     lcounter++;
+                      //     Get.find<ProductController>()
+                      //         .setQuantity(true, productItem);
+                      //   }
+                      // }
+                      // if (selected_size == "XL") {
+                      //   if (xlcounter >= productItem.xl_count) {
+                      //     showCustomSnackBar("asadffdg");
+                      //   } else {
+                      //     xlcounter++;
+                      //     Get.find<ProductController>()
+                      //         .setQuantity(true, productItem);
+                      //   }
+                      // }
                     },
                     child: Icon(Icons.add, color: AppColors.signColor),
                   ),
@@ -636,25 +680,64 @@ class _DetailFoodState extends State<DetailFood> {
                         color: AppColors.titleColor.withOpacity(0.05))
                   ]),
             ),
-           Expanded(child: Container()),
+            Expanded(child: Container()),
             GestureDetector(
               onTap: () {
                 if (selected_size == "null" || selected_size == "NA") {
                   showCustomSnackBar("Select the size",
                       isError: false, title: "Please!");
                 } else {
-                  Get.find<ProductController>()
-                      .setSize(selected_size, productItem);
-                  Get.find<ProductController>().addItem(productItem);
                   print(selected_size);
                   int a = Get.find<ProductController>().certainItems;
                   if (selected_size != "null" && a == 0) {
                     showCustomSnackBar("Atleast Select a Item",
                         isError: false, title: "Set quantity");
                   }
-                  if (selected_size != "null" && a >= 1) {
-                    showCustomSnackBar("Items added to Cart",
-                        isError: false, title: "Cart Updated");
+                  if (selected_size != "null") {
+                    if (selected_size == "S") {
+                      if (a <= productItem.s_count) {
+                        Get.find<ProductController>()
+                            .setSize(selected_size, productItem);
+                        Get.find<ProductController>().addItem(productItem);
+                        showCustomSnackBar("Items added to Cart",
+                            isError: false, title: "Cart Updated");
+                      } else {
+                        showCustomSnackBar("Out of stock");
+                      }
+                    }
+                    if (selected_size == "M") {
+                      if (a <= productItem.m_count) {
+                        Get.find<ProductController>()
+                            .setSize(selected_size, productItem);
+                        Get.find<ProductController>().addItem(productItem);
+                        showCustomSnackBar("Items added to Cart",
+                            isError: false, title: "Cart Updated");
+                      } else {
+                        showCustomSnackBar("Out of stock");
+                      }
+                    }
+                    if (selected_size == "L") {
+                      if (a <= productItem.l_count) {
+                        Get.find<ProductController>()
+                            .setSize(selected_size, productItem);
+                        Get.find<ProductController>().addItem(productItem);
+                        showCustomSnackBar("Items added to Cart",
+                            isError: false, title: "Cart Updated");
+                      } else {
+                        showCustomSnackBar("Out of stock");
+                      }
+                    }
+                    if (selected_size == "XL") {
+                      Get.find<ProductController>()
+                          .setSize(selected_size, productItem);
+                      Get.find<ProductController>().addItem(productItem);
+                      if (a <= productItem.xl_count) {
+                        showCustomSnackBar("Items added to Cart",
+                            isError: false, title: "Cart Updated");
+                      } else {
+                        showCustomSnackBar("Out of stock");
+                      }
+                    }
                   }
                 }
                 // Get.find<OrderController>().size_select(selected_size);
@@ -723,6 +806,29 @@ class ReviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Function to build a row of star icons based on the rating
+    List<Widget> buildStarRating() {
+      List<Widget> stars = [];
+      for (int i = 0; i < 5; i++) {
+        if (i < rating) {
+          // Add a filled star
+          stars.add(Icon(
+            Icons.star,
+            color: Colors.orange,
+            size: 20.0,
+          ));
+        } else {
+          // Add an empty star
+          stars.add(Icon(
+            Icons.star_border,
+            color: Colors.orange,
+            size: 20.0,
+          ));
+        }
+      }
+      return stars;
+    }
+
     return Container(
       width: 200,
       margin: EdgeInsets.only(right: 16, bottom: 10),
@@ -753,7 +859,6 @@ class ReviewCard extends StatelessWidget {
                   ),
                   BigText(
                     text: ' $user',
-                    // style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                     color: AppColors.mainBlackColor,
                   ),
                 ],
@@ -761,21 +866,11 @@ class ReviewCard extends StatelessWidget {
               SizedBox(height: 4),
               Row(
                 children: [
-                  SmoothStarRating(
-                    starCount: 5,
-                    rating: double.parse('$rating'),
-                    size: 20.0,
-                    color: Colors.orange,
-                    borderColor: Colors.orange,
+                  // Display star icons based on the rating from the backend
+                  Row(
+                    children: buildStarRating(),
                   ),
                   SizedBox(width: 4),
-                  // Text(
-                  //   '$rating'+" ratings",
-                  //   style: TextStyle(
-                  //     fontSize: 14,
-                  //     fontWeight: FontWeight.bold,
-                  //   ),
-                  // ),
                 ],
               ),
             ],
@@ -791,3 +886,169 @@ class ReviewCard extends StatelessWidget {
     );
   }
 }
+// class ReviewCard extends StatelessWidget {
+//   final int rating;
+//   final String reviewText;
+//   final String user;
+
+//   const ReviewCard({
+//     Key? key,
+//     required this.rating,
+//     required this.reviewText,
+//     required this.user,
+//   }) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     // Function to build a row of star icons based on the rating
+//     List<Widget> buildStarRating() {
+//       List<Widget> stars = [];
+//       for (int i = 0; i < rating; i++) {
+//         stars.add(Icon(
+//           Icons.star,
+//           color: Colors.orange,
+//           size: 20.0,
+//         ));
+//       }
+//       return stars;
+//     }
+
+//     return Container(
+//       width: 200,
+//       margin: EdgeInsets.only(right: 16, bottom: 10),
+//       padding: EdgeInsets.all(8),
+//       decoration: BoxDecoration(
+//         borderRadius: BorderRadius.circular(10),
+//         border: Border.all(color: Colors.grey),
+//       ),
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Row(
+//                 children: [
+//                   Container(
+//                     height: 45.0,
+//                     width: 45.0,
+//                     margin: EdgeInsets.only(right: 16.0),
+//                     decoration: BoxDecoration(
+//                       image: DecorationImage(
+//                         image: AssetImage("img/anime_drip logo.png"),
+//                         fit: BoxFit.cover,
+//                       ),
+//                       borderRadius: BorderRadius.circular(44.0),
+//                     ),
+//                   ),
+//                   BigText(
+//                     text: ' $user',
+//                     color: AppColors.mainBlackColor,
+//                   ),
+//                 ],
+//               ),
+//               SizedBox(height: 4),
+//               Row(
+//                 children: [
+//                   // Display star icons based on the rating from the backend
+//                   Row(
+//                     children: buildStarRating(),
+//                   ),
+//                   SizedBox(width: 4),
+//                 ],
+//               ),
+//             ],
+//           ),
+//           SizedBox(height: 8),
+//           Text(
+//             reviewText,
+//             style: TextStyle(fontSize: 14),
+//           ),
+//           SizedBox(height: 8),
+//         ],
+//       ),
+//     );
+//   }
+//  }
+// class ReviewCard extends StatelessWidget {
+//   final int rating;
+//   final String reviewText;
+//   final String user;
+
+//   const ReviewCard({
+//     Key? key,
+//     required this.rating,
+//     required this.reviewText,
+//     required this.user,
+//   }) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       width: 200,
+//       margin: EdgeInsets.only(right: 16, bottom: 10),
+//       padding: EdgeInsets.all(8),
+//       decoration: BoxDecoration(
+//         borderRadius: BorderRadius.circular(10),
+//         border: Border.all(color: Colors.grey),
+//       ),
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Row(
+//                 children: [
+//                   Container(
+//                     height: 45.0,
+//                     width: 45.0,
+//                     margin: EdgeInsets.only(right: 16.0),
+//                     decoration: BoxDecoration(
+//                       image: DecorationImage(
+//                         image: AssetImage("img/anime_drip logo.png"),
+//                         fit: BoxFit.cover,
+//                       ),
+//                       borderRadius: BorderRadius.circular(44.0),
+//                     ),
+//                   ),
+//                   BigText(
+//                     text: ' $user',
+//                     // style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+//                     color: AppColors.mainBlackColor,
+//                   ),
+//                 ],
+//               ),
+//               SizedBox(height: 4),
+//               Row(
+//                 children: [
+//                   SmoothStarRating(
+//                     starCount: 5,
+//                     rating: double.parse('$rating'),
+//                     size: 20.0,
+//                     color: Colors.orange,
+//                     borderColor: Colors.orange,
+//                   ),
+//                   SizedBox(width: 4),
+//                   // Text(
+//                   //   '$rating'+" ratings",
+//                   //   style: TextStyle(
+//                   //     fontSize: 14,
+//                   //     fontWeight: FontWeight.bold,
+//                   //   ),
+//                   // ),
+//                 ],
+//               ),
+//             ],
+//           ),
+//           SizedBox(height: 8),
+//           Text(
+//             reviewText,
+//             style: TextStyle(fontSize: 14),
+//           ),
+//           SizedBox(height: 8),
+//         ],
+//       ),
+//     );
+//   }
+// }

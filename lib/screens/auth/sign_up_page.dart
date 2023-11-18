@@ -37,7 +37,9 @@ class _SignUpPageState extends State<SignUpPage> {
   Timer? _timer;
   int code_time = 30;
   bool code_status = true;
-
+bool isGmailAddress(String email) {
+  return email.endsWith('@gmail.com');
+}
   @override
   void deactivate() {
     super.deactivate();
@@ -57,7 +59,7 @@ class _SignUpPageState extends State<SignUpPage> {
   //     showCustomSnackBar('enter_phone_number'.tr);
   //     return;
   //   }
-   
+
   //   if (_address.isEmpty) {
   //     showCustomSnackBar('Enter the address');
   //     return;
@@ -66,29 +68,29 @@ class _SignUpPageState extends State<SignUpPage> {
   //     showCustomSnackBar('Enter valid phone number');
   //     return;
   //   }
-    // if (_country_code.isEmpty) {
-    //   showCustomSnackBar('enter_country_code');
-    //   return;
-    // }
-    // if(code_status){
-    //   code_status = false;
-    //   send_verify(authController);
-    // _timer = Timer.periodic(Duration(seconds: 1), (Timer timer) {
-    //   if(code_time>0){
-    //     setState(() {
-    //       code_time--;
-    //     });
-    //   }else{
-    //     setState(() {
-    //       code_time = 30;
-    //     });
-    //     code_status = true;
-    //     _timer?.cancel();
-    //   }
-    // });
-    // }else{
-    //   print(code_status);
-    // }
+  // if (_country_code.isEmpty) {
+  //   showCustomSnackBar('enter_country_code');
+  //   return;
+  // }
+  // if(code_status){
+  //   code_status = false;
+  //   send_verify(authController);
+  // _timer = Timer.periodic(Duration(seconds: 1), (Timer timer) {
+  //   if(code_time>0){
+  //     setState(() {
+  //       code_time--;
+  //     });
+  //   }else{
+  //     setState(() {
+  //       code_time = 30;
+  //     });
+  //     code_status = true;
+  //     _timer?.cancel();
+  //   }
+  // });
+  // }else{
+  //   print(code_status);
+  // }
   //}
 
   //  Future ChooseCountry(BuildContext context){
@@ -170,7 +172,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-  //  List images = ["g.png", "t.png", "f.png"];
+    //  List images = ["g.png", "t.png", "f.png"];
 
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
@@ -194,7 +196,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                               Center(
                                   child: Image.asset("img/anime_drip logo.png",
-                                      width: Dimensions.width20*10)),
+                                      width: Dimensions.width20 * 10)),
                             ],
                           ),
                         ),
@@ -487,10 +489,13 @@ class _SignUpPageState extends State<SignUpPage> {
     } else if (!GetUtils.isEmail(_email)) {
       showCustomSnackBar('enter_a_valid_email_address'.tr);
       return;
+    } else if (!isGmailAddress(_email)) {
+      showCustomSnackBar('Please enter valid Gmail address');
+      return;
     } else if (MobileVerify.validateMobile(_number)) {
       showCustomSnackBar('enter_phone_number'.tr);
       return;
-    }  else if (_address.isEmpty) {
+    } else if (_address.isEmpty) {
       showCustomSnackBar('Enter your address');
       return;
     } else if (_number != _number1) {

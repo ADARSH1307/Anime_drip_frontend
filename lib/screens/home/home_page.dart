@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/components/colors.dart';
 import 'package:shopping_app/screens/account/account_page.dart';
 import 'package:shopping_app/screens/cart/cart_history.dart';
+import 'package:shopping_app/screens/cart/cart_page.dart';
 import 'package:shopping_app/screens/home/home_page_body.dart';
 import 'package:shopping_app/screens/order/order_screen.dart';
 import 'package:shopping_app/screens/reviews/post_review.dart';
@@ -23,7 +24,7 @@ class _HomePageState extends State<HomePage> {
     CategoryPage(),
     OrderScreen(),
     HomePageBody(),
-    CartHistory(),
+    CartPage(pageId: 0, page: "cart-history"),
     AccountPage(),
     // PostReviewPage(orderId: null, orderModel: null,)
   ];

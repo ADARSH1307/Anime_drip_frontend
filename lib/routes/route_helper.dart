@@ -6,6 +6,7 @@ import 'package:shopping_app/screens/address/add_address_page.dart';
 import 'package:shopping_app/screens/address/pick_map_screen.dart';
 import 'package:shopping_app/screens/auth/sign_in_page.dart';
 import 'package:shopping_app/screens/auth/sign_up_page.dart';
+import 'package:shopping_app/screens/cart/cart_history.dart';
 import 'package:shopping_app/screens/cart/cart_page.dart';
 import 'package:shopping_app/screens/food/caps_detail.dart';
 import 'package:shopping_app/screens/food/detail_food.dart';
@@ -50,6 +51,7 @@ class RouteHelper {
   //static const String address = '/address';
   static const String addAddress = '/add-address';
   static const String pickMap = '/pick-map';
+    static const String carthistory = '/cart-history';
   //payment route
   static const String payment = '/payment';
   static const String orderSuccess = '/order-successful';
@@ -71,6 +73,7 @@ order details
   static String getInitialRoute() => '$initial';
   static String getSignUpRoute() => '$signUp';
   static String getSignInRoute() => '$signIn';
+    static String getCartHistoryRoute() => '$carthistory';
   //static String getAddressRoute() => '$address';
   static String getAddAddressRoute() => '$addAddress';
   static String getRecommendedFoodRoute(int pageId, String page) =>
@@ -134,6 +137,11 @@ order details
         name: signIn,
         page: () {
           return SignInPage();
+        }),
+     GetPage(
+        name: carthistory,
+        page: () {
+          return CartHistory();
         }),
     GetPage(
         name: splash,

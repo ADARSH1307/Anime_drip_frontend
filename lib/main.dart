@@ -57,8 +57,10 @@ Future<void> main() async {
             ? int.parse(remoteMessage.notification!.titleLocKey!)
             : null;
       }
+      
       await HelperNotification.initialize(flutterLocalNotificationsPlugin);
       FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
+      
     }
   } catch (e) {}
 
@@ -73,19 +75,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.find<CartController>().getCartsData();
-     Get.find<Category>().getCategoryList();
-         Get.find<Pant>().getPantList();
-          Get.find<Shirt>().getShirtList();
-           Get.find<Sweatshirt>().getSweatShirtList();
-            Get.find<Swords>().getSwordList();
-             Get.find<Caps>().getCapList();
-              Get.find<Keychain>().getKeyChainList();
-               Get.find<Shoes>().getShoesList();
-                Get.find<Other>().getOthersList();
-                  Get.find<Hoodie>().getHoodieList();
-                               // Get.find<ReviewGetModel>();
-
-
+    Get.find<Category>().getCategoryList();
+    Get.find<Pant>().getPantList();
+    Get.find<Shirt>().getShirtList();
+    Get.find<Sweatshirt>().getSweatShirtList();
+    Get.find<Swords>().getSwordList();
+    Get.find<Caps>().getCapList();
+    Get.find<Keychain>().getKeyChainList();
+    Get.find<Shoes>().getShoesList();
+    Get.find<Other>().getOthersList();
+    Get.find<Hoodie>().getHoodieList();
+    // Get.find<ReviewGetModel>();
 
     return GetBuilder<ProductController>(builder: (_) {
       return GetBuilder<LocalizationController>(
@@ -94,25 +94,24 @@ class MyApp extends StatelessWidget {
 //category getbuilder added by great adarsh ajila
 
           return GetBuilder<Category>(builder: (_) {
-                     return GetBuilder<ReviewController>(builder: (_) {
-
-            return GetMaterialApp(
-              scrollBehavior: AppScrollBehavior(),
-              debugShowCheckedModeBanner: false,
-              title: 'Flutter Demo',
-              theme: ThemeData(
-                primaryColor: AppColors.mainColor,
-                fontFamily: "Lato",
-              ),
-              locale: localizationController.locale,
-              translations: Messages(languages: languages),
-              fallbackLocale: Locale(AppConstants.languages[0].languageCode,
-                  AppConstants.languages[0].countryCode),
-              initialRoute: RouteHelper.getSplashRoute(),
-              getPages: RouteHelper.routes,
-              defaultTransition: Transition.topLevel,
-            );
-          });
+            return GetBuilder<ReviewController>(builder: (_) {
+              return GetMaterialApp(
+                scrollBehavior: AppScrollBehavior(),
+                debugShowCheckedModeBanner: false,
+                title: 'Flutter Demo',
+                theme: ThemeData(
+                  primaryColor: AppColors.mainColor,
+                  fontFamily: "Lato",
+                ),
+                locale: localizationController.locale,
+                translations: Messages(languages: languages),
+                fallbackLocale: Locale(AppConstants.languages[0].languageCode,
+                    AppConstants.languages[0].countryCode),
+                initialRoute: RouteHelper.getSplashRoute(),
+                getPages: RouteHelper.routes,
+                defaultTransition: Transition.topLevel,
+              );
+            });
           });
         });
       });

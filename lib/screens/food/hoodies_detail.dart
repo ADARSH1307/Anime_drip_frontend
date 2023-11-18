@@ -245,7 +245,17 @@ class _HoodiesDetailState extends State<HoodiesDetail> {
                   //       children: List.generate(
                   //           5,
                   //           (index) => Icon(Icons.star,
-                  //               color: AppColors.mainColor, size: 15)),
+                  //           
+                  //
+                  //
+                  //
+                  //
+                  //
+                  //
+                  //
+                  //
+                  //
+                  //    color: AppColors.mainColor, size: 15)),
                   //     ),
                   //     SizedBox(
                   //       width: Dimensions.height10,

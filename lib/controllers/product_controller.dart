@@ -103,14 +103,20 @@ class ProductController extends GetxController {
 
     here _quantity either positive or negative returned to other functions
      */
-    if (isIncrement) {
-      _quantity = checkQuantity(_quantity + 1);
-    } else {
-      //when we do remove things using the button
-      //_quantity becomes negetive
-      _quantity = checkQuantity(_quantity - 1);
-    }
-
+    // if (_quantity < 25) {
+    //   showCustomSnackBar(
+    //     "Select the size",
+    //     isError: false,
+    //   );
+    //   int aaa = 0;
+      if (isIncrement) {
+        _quantity = checkQuantity(_quantity + 1);
+      } else {
+        //when we do remove things using the button
+        //_quantity becomes negetive
+        _quantity = checkQuantity(_quantity - 1);
+      }
+    
     update();
   }
 
@@ -133,9 +139,9 @@ class ProductController extends GetxController {
         return _quantity;
       }
       return 0;
-    } else if ((count + _certainItems) > 100) {
+    } else if ((count + _certainItems) > 25) {
       Get.snackbar("Item count", "Not more than $count in the stock");
-      return 100;
+      return 25;
     } else {
       return count;
     }
