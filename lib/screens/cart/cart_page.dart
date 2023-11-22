@@ -29,6 +29,7 @@ import '../../uitls/styles.dart';
 import '../../widgets/app_text_field.dart';
 import '../checkout/order_type_button.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:nil/nil.dart';
 
 class CartPage extends StatefulWidget {
   final int pageId;
@@ -227,254 +228,255 @@ class _CartPageState extends State<CartPage> {
                             child: ListView.builder(
                                 itemCount: _cartList.length,
                                 itemBuilder: (_, index) {
+                                   if (_cartList[index].quantity > 0) {
                                   return Container(
-                                    //color: Colors.red,
-                                    width: double.maxFinite,
-                                    height: 100,
-                                    margin:
-                                        EdgeInsets.all(Dimensions.padding10),
-                                    child: _cartList[index].quantity > 0
-                                        ? Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            //this setting should come at the end to make sense. this is important for the cart + - button
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            children: [
-                                              GestureDetector(
-                                                onTap: () {
-                                                  var getPageIndex = Get.find<
-                                                          ProductController>()
-                                                      .popularProductList
-                                                      .indexOf(_cartList[index]
-                                                          .product);
-
-                                                  // page = "recommended";
-                                                  if (getPageIndex < 0) {
-                                                    getPageIndex = Get.find<
-                                                            PopularProduct>()
+                                      //color: Colors.red,
+                                      width: double.maxFinite,
+                                      height: 100,
+                                      margin:
+                                          EdgeInsets.all(Dimensions.padding10),
+                                      child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              //this setting should come at the end to make sense. this is important for the cart + - button
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              children: [
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    var getPageIndex = Get.find<
+                                                            ProductController>()
                                                         .popularProductList
                                                         .indexOf(
                                                             _cartList[index]
                                                                 .product);
-                                                    // page="popular";
-                                                  }
-                                                  if (getPageIndex < 0) {
-                                                    showCustomSnackBar(
-                                                        "Product review is not available from cart history",
-                                                        isError: false,
-                                                        title: "Order more");
-                                                  } else {
-                                                    if (widget.page ==
-                                                        "recommended") {
-                                                      Get.toNamed(RouteHelper
-                                                          .getRecommendedFoodRoute(
-                                                              getPageIndex,
-                                                              widget.page));
-                                                    } else if (widget.page ==
-                                                        "popular") {
-                                                      Get.toNamed(RouteHelper
-                                                          .getPopularFoodRoute(
-                                                              getPageIndex,
-                                                              widget.page));
-                                                    } else if (widget.page ==
-                                                        'cart-history') {
+
+                                                    // page = "recommended";
+                                                    if (getPageIndex < 0) {
+                                                      getPageIndex = Get.find<
+                                                              PopularProduct>()
+                                                          .popularProductList
+                                                          .indexOf(
+                                                              _cartList[index]
+                                                                  .product);
+                                                      // page="popular";
+                                                    }
+                                                    if (getPageIndex < 0) {
                                                       showCustomSnackBar(
                                                           "Product review is not available from cart history",
                                                           isError: false,
                                                           title: "Order more");
                                                     } else {
-                                                      Get.toNamed(RouteHelper
-                                                          .getInitialRoute());
+                                                      if (widget.page ==
+                                                          "recommended") {
+                                                        Get.toNamed(RouteHelper
+                                                            .getRecommendedFoodRoute(
+                                                                getPageIndex,
+                                                                widget.page));
+                                                      } else if (widget.page ==
+                                                          "popular") {
+                                                        Get.toNamed(RouteHelper
+                                                            .getPopularFoodRoute(
+                                                                getPageIndex,
+                                                                widget.page));
+                                                      } else if (widget.page ==
+                                                          'cart-history') {
+                                                        showCustomSnackBar(
+                                                            "Product review is not available from cart history",
+                                                            isError: false,
+                                                            title:
+                                                                "Order more");
+                                                      } else {
+                                                        Get.toNamed(RouteHelper
+                                                            .getInitialRoute());
+                                                      }
                                                     }
-                                                  }
-                                                },
-                                                child: Container(
-                                                  width: 100,
-                                                  height: 100,
-                                                  decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                          fit: BoxFit.cover,
-                                                          image: NetworkImage(
-                                                              AppConstants
-                                                                      .UPLOADS_URL +
-                                                                  _cartList[
-                                                                          index]
-                                                                      .img)),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              Dimensions
-                                                                  .padding20),
-                                                      color: Colors.white),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: Dimensions.padding10,
-                                              ),
-                                              Expanded(
-                                                child: Container(
-                                                  //since column needs height, without this container height this column would take min
-                                                  //size. Previously this column inside the Row, it didn't know the height. Now because of
-                                                  //container height, column would occupy the maximun height
-                                                  height: 100,
-                                                  //width:260,
-                                                  child: Column(
-                                                    //mainAxisSize: MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    //spacebetween pushes to the end of the upper boundary
-                                                    //spaceAround has the middle upper boundary
-                                                    //spaceEvenly has the lowest upper boundary
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: [
-                                                      Text(
-                                                        cartController
-                                                            .getCarts[index]
-                                                            .title,
-                                                        maxLines: 1,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        style: TextStyle(
-                                                          color: Colors.black54,
-                                                          fontSize: 20,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                                      ),
-                                                      /* BigText(text: cartController.getCarts[index].title,
-                                                  color: AppColors.titleColor),*/
-                                                      Row(
-                                                        children: [
-                                                          Text(
-                                                            "Size :",
-                                                          ),
-                                                          BigText(
-                                                              text: _cartList[
-                                                                      index]
-                                                                  .selected_size,
-                                                              color: AppColors
-                                                                  .mainBlackColor)
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          BigText(
-                                                              text: "\$ " +
-                                                                  cartController
-                                                                      .getCarts[
-                                                                          index]
-                                                                      .price
-                                                                      .toString(),
-                                                              color: Colors
-                                                                  .redAccent),
-                                                          SizedBox(
-                                                            width: Dimensions
-                                                                .padding10,
-                                                          ),
-                                                          Expanded(
-                                                              child:
-                                                                  Container()),
-                                                          Align(
-                                                            alignment: Alignment
-                                                                .bottomRight,
-                                                            child: Container(
-                                                              padding: EdgeInsets
-                                                                  .all(Dimensions
-                                                                      .padding5),
-                                                              child: Row(
-                                                                children: [
-                                                                  GestureDetector(
-                                                                    onTap: () {
-                                                                      var quantity =
-                                                                          -1;
-                                                                      var selected_size =
-                                                                          _cartList[index]
-                                                                              .selected_size;
-                                                                      Get.find<CartController>().addItem(
-                                                                          _cartList[index]
-                                                                              .product,
-                                                                          quantity,
-                                                                          selected_size);
-                                                                    },
-                                                                    child: Icon(
-                                                                        Icons
-                                                                            .remove,
-                                                                        color: AppColors
-                                                                            .signColor),
-                                                                  ),
-                                                                  SizedBox(
-                                                                      width: Dimensions
-                                                                          .padding5),
-                                                                  GetBuilder<
-                                                                      ProductController>(
-                                                                    builder:
-                                                                        (_) {
-                                                                      return BigText(
-                                                                          text: _cartList[index]
-                                                                              .quantity
-                                                                              .toString(),
-                                                                          color:
-                                                                              AppColors.mainBlackColor);
-                                                                    },
-                                                                  ),
-                                                                  SizedBox(
-                                                                      width: Dimensions
-                                                                          .padding5),
-                                                                  GestureDetector(
-                                                                    onTap: () {
-                                                                      var quantity =
-                                                                          1;
-                                                                      var selected_size =
-                                                                          _cartList[index]
-                                                                              .selected_size;
-                                                                      Get.find<CartController>().addItem(
-                                                                          _cartList[index]
-                                                                              .product,
-                                                                          quantity,
-                                                                          selected_size);
-                                                                    },
-                                                                    child: Icon(
-                                                                        Icons
-                                                                            .add,
-                                                                        color: AppColors
-                                                                            .signColor),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              decoration: BoxDecoration(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  borderRadius:
-                                                                      BorderRadius.circular(
-                                                                          Dimensions
-                                                                              .padding20),
-                                                                  boxShadow: [
-                                                                    BoxShadow(
-                                                                        offset: Offset(
-                                                                            0,
-                                                                            0),
-                                                                        blurRadius:
-                                                                            10,
-                                                                        //spreadRadius: 3,
-                                                                        color: AppColors
-                                                                            .titleColor
-                                                                            .withOpacity(0.05))
-                                                                  ]),
-                                                            ),
-                                                          )
-                                                        ],
-                                                      )
-                                                    ],
+                                                  },
+                                                  child: Container(
+                                                    width: 100,
+                                                    height: 100,
+                                                    decoration: BoxDecoration(
+                                                        image: DecorationImage(
+                                                            fit: BoxFit.cover,
+                                                            image: NetworkImage(
+                                                                AppConstants
+                                                                        .UPLOADS_URL +
+                                                                    _cartList[
+                                                                            index]
+                                                                        .img)),
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                Dimensions
+                                                                    .padding20),
+                                                        color: Colors.white),
                                                   ),
                                                 ),
-                                              )
-                                            ],
-                                          )
-                                        : Container(),
-                                  );
+                                                SizedBox(
+                                                  width: Dimensions.padding10,
+                                                ),
+                                                Expanded(
+                                                  child: Container(
+                                                    //since column needs height, without this container height this column would take min
+                                                    //size. Previously this column inside the Row, it didn't know the height. Now because of
+                                                    //container height, column would occupy the maximun height
+                                                    height: 100,
+                                                    //width:260,
+                                                    child: Column(
+                                                      //mainAxisSize: MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      //spacebetween pushes to the end of the upper boundary
+                                                      //spaceAround has the middle upper boundary
+                                                      //spaceEvenly has the lowest upper boundary
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceEvenly,
+                                                      children: [
+                                                        Text(
+                                                          cartController
+                                                              .getCarts[index]
+                                                              .title,
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          style: TextStyle(
+                                                            color:
+                                                                Colors.black54,
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                        ),
+                                                        /* BigText(text: cartController.getCarts[index].title,
+                                                  color: AppColors.titleColor),*/
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              "Size :",
+                                                            ),
+                                                            BigText(
+                                                                text: _cartList[
+                                                                        index]
+                                                                    .selected_size,
+                                                                color: AppColors
+                                                                    .mainBlackColor)
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            BigText(
+                                                                text: "\₹ " +
+                                                                    cartController
+                                                                        .getCarts[
+                                                                            index]
+                                                                        .price
+                                                                        .toString(),
+                                                                color: Color.fromARGB(255, 150, 27, 150)),
+                                                            SizedBox(
+                                                              width: Dimensions
+                                                                  .padding10,
+                                                            ),
+                                                            Expanded(
+                                                                child:
+                                                                    Container()),
+                                                            Align(
+                                                              alignment: Alignment
+                                                                  .bottomRight,
+                                                              child: Container(
+                                                                padding: EdgeInsets
+                                                                    .all(Dimensions
+                                                                        .padding5),
+                                                                child: Row(
+                                                                  children: [
+                                                                    GestureDetector(
+                                                                      onTap:
+                                                                          () {
+                                                                        var quantity =
+                                                                            -1;
+                                                                        var selected_size =
+                                                                            _cartList[index].selected_size;
+                                                                        Get.find<CartController>().addItem(
+                                                                            _cartList[index].product,
+                                                                            quantity,
+                                                                            selected_size);
+                                                                      },
+                                                                      child: Icon(
+                                                                          Icons
+                                                                              .remove,
+                                                                          color:
+                                                                              AppColors.signColor),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        width: Dimensions
+                                                                            .padding5),
+                                                                    GetBuilder<
+                                                                        ProductController>(
+                                                                      builder:
+                                                                          (_) {
+                                                                        return BigText(
+                                                                            text:
+                                                                                _cartList[index].quantity.toString(),
+                                                                            color: AppColors.mainBlackColor);
+                                                                      },
+                                                                    ),
+                                                                    SizedBox(
+                                                                        width: Dimensions
+                                                                            .padding5),
+                                                                    GestureDetector(
+                                                                      onTap:
+                                                                          () {
+                                                                        var quantity =
+                                                                            1;
+                                                                        var selected_size =
+                                                                            _cartList[index].selected_size;
+                                                                        Get.find<CartController>().addItem(
+                                                                            _cartList[index].product,
+                                                                            quantity,
+                                                                            selected_size);
+                                                                      },
+                                                                      child: Icon(
+                                                                          Icons
+                                                                              .add,
+                                                                          color:
+                                                                              AppColors.signColor),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                decoration: BoxDecoration(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            Dimensions.padding20),
+                                                                    boxShadow: [
+                                                                      BoxShadow(
+                                                                          offset: Offset(
+                                                                              0,
+                                                                              0),
+                                                                          blurRadius:
+                                                                              10,
+                                                                          //spreadRadius: 3,
+                                                                          color: AppColors
+                                                                              .titleColor
+                                                                              .withOpacity(0.05))
+                                                                    ]),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            )
+                                            
+                                         
+                                          );
+                                          } else {
+      return SizedBox.shrink(); // Return an empty SizedBox for zero quantity items
+    }
                                 }),
                           );
                         }),
@@ -746,8 +748,8 @@ class _CartPageState extends State<CartPage> {
                                                         : 'digital_payment'),
                                                 _callback);
 
-                                           // Get.find<CartController>().clear();
-                                          //  Get.find<CartController>().removeCartSharedPreference();
+                                            // Get.find<CartController>().clear();
+                                            //  Get.find<CartController>().removeCartSharedPreference();
                                             Get.find<CartController>()
                                                 .addToHistory();
                                           }

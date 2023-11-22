@@ -4,7 +4,7 @@ class CartItem {
   String id;
   String title;
   int quantity;
-    String selected_size;
+  String selected_size;
 
   double price;
   bool isExist;

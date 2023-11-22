@@ -10,81 +10,81 @@ class CartController extends GetxController {
   final CartRepo cartRepo;
   CartController({required this.cartRepo, productRepo});
 
-   Map<int, CartItem> _items = {};
-   //late Map<int, CartItem> savedItems={};
+  Map<String, CartItem> _items = {};
+  //late Map<int, CartItem> savedItems={};
 
-   /*
+  /*
    Save the storage info to the below list
     */
-    List<CartItem> storageItems=[];
-    // set here from sharedPreference when started the app
-   set setCart(List<CartItem> items){
+  List<CartItem> storageItems = [];
+  // set here from sharedPreference when started the app
+  set setCart(List<CartItem> items) {
     // storageItems = items;
-     for(int i=0; i<storageItems.length; i++){
-       //print(storageItems[i].quantity);
-       _items.putIfAbsent(
-         storageItems[i].product.id,
-           /*
+    for (int i = 0; i < storageItems.length; i++) {
+      //print(storageItems[i].quantity);
+      _items.putIfAbsent(
+          storageItems[i].product.id.toString()+storageItems[i].selected_size,
+
+          /*
            made code simpler.
             */
-           ()=>items[i]
-
-       );
-     }
-   }
-
-  Map<int, CartItem> get items {
-     return _items;
+          () => items[i]);
+    }
   }
 
-  set setItems(Map<int, CartItem> setItems) {
-     _items={};
-     _items=setItems;
+  Map<String, CartItem> get items {
+    return _items;
   }
 
-  List<CartItem> _cartList=[];
+  set setItems(Map<String, CartItem> setItems) {
+    _items = {};
+    _items = setItems;
+  }
+
+  List<CartItem> _cartList = [];
   void clearCartList() {
     _cartList = [];
     cartRepo.addToCartList(_cartList);
     // update();
   }
 
-  void addToCarts(CartItem cart){
+  void addToCarts(CartItem cart) {
     _cartList.add(cart);
     Get.find<CartRepo>().addToCartList(_cartList);
   }
+
   /*
   Get all the info from the storage
    */
-  List<CartItem> getCartsData(){
+  List<CartItem> getCartsData() {
     //retreive all the info the storage and set it to
     //_items through setCart
-   setCart= Get.find<CartRepo>().getCartList();
+    setCart = Get.find<CartRepo>().getCartList();
 
-   return storageItems;
+    return storageItems;
   }
+
   //map converts to list
   //We need to convert this to list since we want to
   //send the cart info the sharedpreferecen.
   //Shared preference only works with list
   //this list also has the latest update throughout the app
-  List<CartItem> get getCarts{
-   return items.entries.map((e) {
-     return e.value;
-   }).toList();
-
+  List<CartItem> get getCarts {
+    return items.entries.map((e) {
+      return e.value;
+    }).toList();
   }
 
-  int _certainItems=0;
-  int get certainItems=>_certainItems;
+  int _certainItems = 0;
+  int get certainItems => _certainItems;
   //get totalAmount=>_totalAmount;
 
-  int get itemCount{
-      // return  _items?.length?? 0;
-  return _items.length;
-
+  int get itemCount {
+    // return  _items?.length?? 0;
+    return _items.length;
   }
-  double get totalAmount{
+
+  double get totalAmount {
     var total = 0.0;
     _items.forEach((key, cartItem) {
       total += cartItem.price * cartItem.quantity;
@@ -92,61 +92,110 @@ class CartController extends GetxController {
     return total;
   }
 
-  int get totalItems{
-    var total=0;
+  int get totalItems {
+    var total = 0;
     _items.forEach((key, value) {
-      total +=value.quantity;
-
+      total += value.quantity;
     });
     return total;
   }
 
-  void addItem(Product product, int quantity,String selected_size) {
-    int total=0;
+  void addItem(Product product, int quantity, String selected_size) {
+   
+   
+    int total = 0;
+    if (_items.containsKey(product.id.toString()+selected_size)) {
+      
+     
+        _items.update(
+          product.id.toString()+selected_size,
+          (existingCartItem) {
+            // total = existingCartItem.quantity + quantity;
+            return CartItem(
+                id: existingCartItem.id.toString(),
+                title: existingCartItem.title,
+                quantity: existingCartItem.quantity + quantity,
+                selected_size: selected_size,
+                price: existingCartItem.price,
+                img: product.img,
+                product: product,
+                time: DateTime.now().toString());
+          },
+        );
+      
+      /*
+      with this we are making sure, we are removing all
+      items that has zero quantity in the cart. This way cart
+      would automatially get updated
+       */
+      // if (total <= 0) {
+      //   _items.remove(product.id);
+      //   // print("removed");
+      // } else {
+      //   // print("not remove");
+      // }
+      update();
+    } else {
+      _items.putIfAbsent(
+        product.id.toString()+selected_size,
+        () => CartItem(
+            id: product.id.toString(),
+            title: product.title,
+            price: product.price,
+            quantity: quantity,
+            selected_size: selected_size,
+            img: product.img,
+            product: product,
+            time: DateTime.now().toString()),
+      );
+    }
+    // this makes sure that we are saving in the sharedpreference every time user clicks to add to cart button
+    cartRepo.addToCartList(getCarts);
+    update();
+  }
+
+  void updateSize(Product product, int quantity, String selected_size) {
+    int total = 0;
     if (_items.containsKey(product.id)) {
       _items.update(
-          product.id,
-          (existingCartItem){
-         total=   existingCartItem.quantity+quantity;
-            return CartItem(
+        product.id.toString()+selected_size,
+        (existingCartItem) {
+          total = existingCartItem.quantity + quantity;
+          return CartItem(
               id: existingCartItem.id.toString(),
               title: existingCartItem.title,
               quantity: existingCartItem.quantity + quantity,
               selected_size: selected_size,
-
               price: existingCartItem.price,
-              img:product.img,
+              img: product.img,
               product: product,
-          
-              time:DateTime.now().toString());
-            },
-              );
+              time: DateTime.now().toString());
+        },
+      );
       /*
       with this we are making sure, we are removing all
       items that has zero quantity in the cart. This way cart
       would automatially get updated
        */
-            if(total<=0){
-              _items.remove(product.id);
-             // print("removed");
-            }else{
-             // print("not remove");
-            }
+      if (total <= 0) {
+        _items.remove(product.id);
+        // print("removed");
+      } else {
+        // print("not remove");
+      }
       update();
-
     } else {
       _items.putIfAbsent(
-        product.id,
+        product.id.toString()+selected_size,
         () => CartItem(
-          id: product.id.toString(),
-          title: product.title,
-          price: product.price,
-          quantity: quantity,
-          selected_size: selected_size,
-          img:product.img,
-          product: product,
-            time:DateTime.now().toString()
-        ),
+            id: product.id.toString(),
+            title: product.title,
+            price: product.price,
+            quantity: quantity,
+            selected_size: selected_size,
+            img: product.img,
+            product: product,
+            time: DateTime.now().toString()),
       );
     }
     // this makes sure that we are saving in the sharedpreference every time user clicks to add to cart button
@@ -154,68 +203,11 @@ class CartController extends GetxController {
     update();
   }
 
-
-  void updateSize(Product product, int quantity,String selected_size) {
-    int total=0;
-    if (_items.containsKey(product.id)) {
-      _items.update(
-          product.id,
-          (existingCartItem){
-         total=   existingCartItem.quantity+quantity;
-            return CartItem(
-              id: existingCartItem.id.toString(),
-              title: existingCartItem.title,
-              quantity: existingCartItem.quantity + quantity,
-                        selected_size: selected_size,
-
-              price: existingCartItem.price,
-              img:product.img,
-              product: product,
-          
-              time:DateTime.now().toString());
-            },
-              );
-      /*
-      with this we are making sure, we are removing all
-      items that has zero quantity in the cart. This way cart
-      would automatially get updated
-       */
-            if(total<=0){
-              _items.remove(product.id);
-             // print("removed");
-            }else{
-             // print("not remove");
-            }
-      update();
-
-    } else {
-      _items.putIfAbsent(
-        product.id,
-        () => CartItem(
-          id: product.id.toString(),
-          title: product.title,
-          price: product.price,
-          quantity: quantity,
-          selected_size: selected_size,
-        
-          img:product.img,
-          product: product,
-            time:DateTime.now().toString()
-        ),
-      );
-    }
-    // this makes sure that we are saving in the sharedpreference every time user clicks to add to cart button
+  void addToCartList() {
     cartRepo.addToCartList(getCarts);
-    update();
   }
 
-
-  void addToCartList(){
-    cartRepo.addToCartList(getCarts);
-
-  }
-
-  void addToHistory(){
+  void addToHistory() {
     cartRepo.addToCartHistoryList();
     /*
     _items should be set to empty after adding. So we created clear method. It sets it to empty
@@ -223,52 +215,51 @@ class CartController extends GetxController {
     //clear();
   }
 
-  List<CartItem> getCartHistory(){
-   return cartRepo.getCartHistoryList();
+  List<CartItem> getCartHistory() {
+    return cartRepo.getCartHistoryList();
   }
 
-  bool isExistInCart(Product product){
-
-    if(_items.containsKey(product.id)){
-     _items.forEach((key, value) {
-       print(key.toString());
-       if(key==product.id){
-        //value.quantity.toString()
-         value.isExist=true;
-       }
-     });
+  bool isExistInCart(Product product) {
+    if (_items.containsKey(product.id)) {
+      _items.forEach((key, value) {
+        print(key.toString());
+        if (key == product.id) {
+          //value.quantity.toString()
+          value.isExist = true;
+        }
+      });
       return true;
-    }else{
+    } else {
       return false;
     }
   }
 
-  int getQuantity(Product product){
-    if(_items.containsKey(product.id)){
+  int getQuantity(Product product) {
+    if (_items.containsKey(product.id)) {
       _items.forEach((key, value) {
-       // print(key.toString());
-        if(key==product.id){
+        // print(key.toString());
+        if (key == product.id) {
           //value.quantity.toString()
-          _certainItems=int.parse(value.quantity.toString());
+          _certainItems = int.parse(value.quantity.toString());
         }
       });
       return _certainItems;
-    }else{
+    } else {
       return 0;
     }
   }
 
-  void removeItem(int productId){
+  void removeItem(int productId) {
     _items.remove(productId);
     update();
   }
 
-  void clear(){
+  void clear() {
     _items = {};
     update();
   }
 
-  void removeCartSharedPreference(){
+  void removeCartSharedPreference() {
     cartRepo.removeCartSharedPreference();
   }
 }

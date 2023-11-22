@@ -205,12 +205,12 @@ many times a certain time is found
                                             onTap: (){
                   
                                               var orderTime = cartOrderTimeToList();
-                                              Map<int, CartItem> moreOrder ={};
+                                              Map<String, CartItem> moreOrder ={};
                                               for(int j=0; j<cartHistory.length; j++){
                                                 if(cartHistory[j].time==orderTime[index]){
                                                   print(orderTime[index]+" J is "+j.toString());
                                                   print(jsonEncode(cartHistory[j]));
-                                                  moreOrder.putIfAbsent(int.parse(cartHistory[j].id), () =>
+                                                  moreOrder.putIfAbsent((cartHistory[j].id), () =>
                                                       CartItem.fromJson(jsonDecode(jsonEncode(cartHistory[j]))));
                                                 }
                                               }
