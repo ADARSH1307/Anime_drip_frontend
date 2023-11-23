@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:new_version_plus/new_version_plus.dart';
 import 'package:shopping_app/base/common_text_button.dart';
 import 'package:shopping_app/base/custom_loader.dart';
 import 'package:shopping_app/base/custom_snackbar.dart';
@@ -19,6 +22,7 @@ import 'package:shopping_app/routes/route_helper.dart';
 import 'package:shopping_app/screens/checkout/payment_option_button.dart';
 import 'package:shopping_app/screens/home/home_page.dart';
 import 'package:shopping_app/screens/home/main_food_page.dart';
+import 'package:shopping_app/screens/home/update_dialog.dart';
 import 'package:shopping_app/uitls/app_constants.dart';
 import 'package:shopping_app/uitls/app_dimensions.dart';
 import 'package:shopping_app/widgets/big_text.dart';
@@ -48,6 +52,13 @@ class _CartPageState extends State<CartPage> {
   // late var selected_size;
   @override
   void initState() {
+    final newVersion = NewVersionPlus(
+      androidId: 'org.telegram.messenger',
+    );
+
+    Timer(const Duration(milliseconds: 800), () {
+      checkNewVersion(newVersion);
+    });
     _razorpay = Razorpay();
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
     _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
@@ -58,7 +69,30 @@ class _CartPageState extends State<CartPage> {
     _isDigitalPaymentAccepted =
         Get.find<SplashController>().configModel!.digitalPayment!;
   }
-
+ void checkNewVersion(NewVersionPlus newVersion) async {
+    final status = await newVersion.getVersionStatus();
+    if(status != null) {
+      if(status.canUpdate) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return UpdateDialog(
+              allowDismissal: false,
+              description: "• Separated tabs for chats: users, groups, channels, bots, favorites, unread, admin/creator. • Many options to cutomize tabs. • Multi-account (upto 10). • Categories. Create custom groups of chats (family, work, sports...). • Categories can be saved and restored. • Change default app folder.",
+              version: status.storeVersion,
+              appLink: status.appStoreLink,
+            );
+          },
+        );
+        // newVersion.showUpdateDialog(
+        //   context: context,
+        //   versionStatus: status,
+        //   dialogText: 'New Version is available in the store (${status.storeVersion}), update now!',
+        //   dialogTitle: 'Update is Available!',
+        // );
+      }
+    }
+  }
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     // Do something when payment succeeds
     print("Payment Done");

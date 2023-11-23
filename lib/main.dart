@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:new_version_plus/new_version_plus.dart';
 import 'package:shopping_app/controllers/auth_controller.dart';
 import 'package:shopping_app/controllers/caps_controller.dart';
 import 'package:shopping_app/controllers/cart_controller.dart';
@@ -57,10 +58,9 @@ Future<void> main() async {
             ? int.parse(remoteMessage.notification!.titleLocKey!)
             : null;
       }
-      
+
       await HelperNotification.initialize(flutterLocalNotificationsPlugin);
       FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
-      
     }
   } catch (e) {}
 
@@ -68,6 +68,9 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
+  @override
+ 
+
   final Map<String, Map<String, String>> languages;
 
   MyApp({required this.languages});
@@ -117,6 +120,8 @@ class MyApp extends StatelessWidget {
       });
     });
   }
+
+ 
 }
 
 /*

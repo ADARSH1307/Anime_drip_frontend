@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:new_version_plus/new_version_plus.dart';
 import 'package:shopping_app/components/colors.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/controllers/category_controller.dart';
@@ -9,6 +12,7 @@ import 'package:shopping_app/controllers/popular_product.dart';
 import 'package:shopping_app/controllers/product_controller.dart';
 import 'package:shopping_app/models/product.dart';
 import 'package:shopping_app/routes/route_helper.dart';
+import 'package:shopping_app/screens/home/update_dialog.dart';
 import 'package:shopping_app/uitls/app_constants.dart';
 import 'package:shopping_app/uitls/app_dimensions.dart';
 import 'package:shopping_app/widgets/big_text.dart';
@@ -30,13 +34,43 @@ class _MainFoodPageState extends State<MainFoodPage> {
   @override
   void initState() {
     super.initState();
+        final newVersion = NewVersionPlus(
+      androidId: 'org.telegram.messenger',
+    );
+
+    Timer(const Duration(milliseconds: 800), () {
+      checkNewVersion(newVersion);
+    });
     pageController.addListener(() {
       setState(() {
         _currPageValue = pageController.page!;
       });
     });
   }
-
+ void checkNewVersion(NewVersionPlus newVersion) async {
+    final status = await newVersion.getVersionStatus();
+    if(status != null) {
+      if(status.canUpdate) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return UpdateDialog(
+              allowDismissal: false,
+              description: "• Separated tabs for chats: users, groups, channels, bots, favorites, unread, admin/creator. • Many options to cutomize tabs. • Multi-account (upto 10). • Categories. Create custom groups of chats (family, work, sports...). • Categories can be saved and restored. • Change default app folder.",
+              version: status.storeVersion,
+              appLink: status.appStoreLink,
+            );
+          },
+        );
+        // newVersion.showUpdateDialog(
+        //   context: context,
+        //   versionStatus: status,
+        //   dialogText: 'New Version is available in the store (${status.storeVersion}), update now!',
+        //   dialogTitle: 'Update is Available!',
+        // );
+      }
+    }
+  }
   @override
   void dispose() {
     super.dispose();

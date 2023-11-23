@@ -1,10 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:new_version_plus/new_version_plus.dart';
 import 'package:shopping_app/components/colors.dart';
 import 'package:shopping_app/screens/account/account_page.dart';
 import 'package:shopping_app/screens/cart/cart_history.dart';
 import 'package:shopping_app/screens/cart/cart_page.dart';
 import 'package:shopping_app/screens/home/home_page_body.dart';
+import 'package:shopping_app/screens/home/update_dialog.dart';
 import 'package:shopping_app/screens/order/order_screen.dart';
 import 'package:shopping_app/screens/reviews/post_review.dart';
 import 'package:shopping_app/widgets/big_text.dart';
@@ -33,6 +37,43 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  void initState() {
+    super.initState();
+     final newVersion = NewVersionPlus(
+      androidId: 'org.telegram.messenger',
+    );
+
+    Timer(const Duration(milliseconds: 800), () {
+      checkNewVersion(newVersion);
+    });
+    
+   
+  }
+  void checkNewVersion(NewVersionPlus newVersion) async {
+    final status = await newVersion.getVersionStatus();
+    if(status != null) {
+      if(status.canUpdate) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return UpdateDialog(
+              allowDismissal: false,
+              description: "• Separated tabs for chats: users, groups, channels, bots, favorites, unread, admin/creator. • Many options to cutomize tabs. • Multi-account (upto 10). • Categories. Create custom groups of chats (family, work, sports...). • Categories can be saved and restored. • Change default app folder.",
+              version: status.storeVersion,
+              appLink: status.appStoreLink,
+            );
+          },
+        );
+        // newVersion.showUpdateDialog(
+        //   context: context,
+        //   versionStatus: status,
+        //   dialogText: 'New Version is available in the store (${status.storeVersion}), update now!',
+        //   dialogTitle: 'Update is Available!',
+        // );
+      }
+    }
   }
 
   @override

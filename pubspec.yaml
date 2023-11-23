@@ -52,7 +52,8 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   flutter_open_whatsapp:
   nil: ^1.1.1
-
+  new_version_plus: ^0.0.10
+   
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:new_version_plus/new_version_plus.dart';
 import 'package:shopping_app/base/go_to_sign_in_page.dart';
 import 'package:shopping_app/components/colors.dart';
 import 'package:shopping_app/controllers/auth_controller.dart';
@@ -17,10 +19,16 @@ import 'package:get/get.dart';
 
 import '../../base/custom_image.dart';
 import '../../controllers/splash_controller.dart';
+import '../home/update_dialog.dart';
 
-class AccountPage extends StatelessWidget {
+class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
 
+  @override
+  State<AccountPage> createState() => _AccountPageState();
+}
+
+class _AccountPageState extends State<AccountPage> {
   _loadUserInfo() async {
     await Get.find<LocationController>().getAddressList();
     if (Get.find<LocationController>().addressList.isNotEmpty) {
@@ -31,8 +39,47 @@ class AccountPage extends StatelessWidget {
     }
   }
 
+void initState() {
+  super.initState();
+     final newVersion = NewVersionPlus(
+      androidId: 'org.telegram.messenger',
+    );
+
+    Timer(const Duration(milliseconds: 800), () {
+      checkNewVersion(newVersion);
+    });
+    
+   
+  }
+
+  void checkNewVersion(NewVersionPlus newVersion) async {
+    final status = await newVersion.getVersionStatus();
+    if(status != null) {
+      if(status.canUpdate) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return UpdateDialog(
+              allowDismissal: false,
+              description: "• Separated tabs for chats: users, groups, channels, bots, favorites, unread, admin/creator. • Many options to cutomize tabs. • Multi-account (upto 10). • Categories. Create custom groups of chats (family, work, sports...). • Categories can be saved and restored. • Change default app folder.",
+              version: status.storeVersion,
+              appLink: status.appStoreLink,
+            );
+          },
+        );
+        // newVersion.showUpdateDialog(
+        //   context: context,
+        //   versionStatus: status,
+        //   dialogText: 'New Version is available in the store (${status.storeVersion}), update now!',
+        //   dialogTitle: 'Update is Available!',
+        // );
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    
     bool _isLoggedIn = Get.find<AuthController>().isLoggedIn();
     if (_isLoggedIn && Get.find<LocationController>().addressList.isEmpty) {
       Get.find<UserController>().getUserInfo();
