@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
+import 'package:new_version_plus/new_version_plus.dart';
 import 'package:shopping_app/controllers/auth_controller.dart';
 import 'package:shopping_app/controllers/cart_controller.dart';
 import 'package:shopping_app/controllers/location_controller.dart';
@@ -11,6 +12,7 @@ import 'package:shopping_app/controllers/user_controller.dart';
 import 'package:shopping_app/routes/route_helper.dart';
 import 'package:shopping_app/screens/home/home_page.dart';
 import 'package:get/get.dart';
+import 'package:shopping_app/screens/home/update_dialog.dart';
 import 'package:shopping_app/uitls/app_dimensions.dart';
 
 import '../../controllers/splash_controller.dart';
@@ -56,7 +58,12 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void initState() {
-    super.initState();
+    final newVersion = NewVersionPlus(
+      androidId: 'org.telegram.messenger',
+    );
+    Timer(const Duration(milliseconds: 800), () {
+      checkNewVersion(newVersion);
+    });
     bool _firstTime = true;
 
     Get.find<AuthController>().updateToken();
@@ -96,7 +103,30 @@ class _SplashScreenState extends State<SplashScreen>
     print("I am in init state");
     _route();
   }
-
+void checkNewVersion(NewVersionPlus newVersion) async {
+    final status = await newVersion.getVersionStatus();
+    if(status != null) {
+      if(status.canUpdate) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return UpdateDialog(
+              allowDismissal: false,
+              description: "• Separated tabs for chats: users, groups, channels, bots, favorites, unread, admin/creator. • Many options to cutomize tabs. • Multi-account (upto 10). • Categories. Create custom groups of chats (family, work, sports...). • Categories can be saved and restored. • Change default app folder.",
+              version: status.storeVersion,
+              appLink: status.appStoreLink,
+            );
+          },
+        );
+        // newVersion.showUpdateDialog(
+        //   context: context,
+        //   versionStatus: status,
+        //   dialogText: 'New Version is available in the store (${status.storeVersion}), update now!',
+        //   dialogTitle: 'Update is Available!',
+        // );
+      }
+    }
+  }
   void _route() {
     Get.find<SplashController>().getConfigData().then((isSuccess) {
       if (isSuccess) {
@@ -135,18 +165,16 @@ class _SplashScreenState extends State<SplashScreen>
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ScaleTransition(
-           scale: animation,
-          child:
+              scale: animation,
+              child: Center(
+                  child: Image.asset("img/anime_drip logo.png",
+                      width: Dimensions.SPLASH_IMG_WIDTH))),
           Center(
-              child: Image.asset("img/anime_drip logo.png",
-                  width: Dimensions.SPLASH_IMG_WIDTH))),
-          Center(
-        //    child: Image.asset(
-          //"img/logo part 2.png",
-            //width: Dimensions.SPLASH_IMG_WIDTH,
-           )//),
+              //    child: Image.asset(
+              //"img/logo part 2.png",
+              //width: Dimensions.SPLASH_IMG_WIDTH,
+              ) //),
         ],
-
       ),
     );
   }

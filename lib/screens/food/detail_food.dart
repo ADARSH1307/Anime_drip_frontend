@@ -15,6 +15,7 @@ import 'package:shopping_app/controllers/review_controller.dart';
 import 'package:shopping_app/data/api/api_client.dart';
 import 'package:shopping_app/models/review_get_model.dart';
 import 'package:shopping_app/routes/route_helper.dart';
+import 'package:shopping_app/screens/cart/cart_page.dart';
 import 'package:shopping_app/screens/food/sample.dart';
 import 'package:shopping_app/screens/reviews/constant.dart';
 import 'package:shopping_app/screens/reviews/review_detail.dart';
@@ -389,7 +390,9 @@ class _DetailFoodState extends State<DetailFood> {
                           },
                           child: Center(
                               child: BigText(
-                                  text: productItem.medium,
+                                  text: productItem.m_count > 0
+                                      ? productItem.medium
+                                      : "NA",
                                   color: AppColors.mainBlackColor)),
                         ),
                       ),
@@ -439,7 +442,9 @@ class _DetailFoodState extends State<DetailFood> {
                           },
                           child: Center(
                               child: BigText(
-                                  text: productItem.large,
+                                  text: productItem.l_count > 0
+                                      ? productItem.large
+                                      : "NA",
                                   color: AppColors.mainBlackColor)),
                         ),
                       ),
@@ -490,7 +495,9 @@ class _DetailFoodState extends State<DetailFood> {
                           },
                           child: Center(
                               child: BigText(
-                                  text: productItem.xlarge,
+                                  text: productItem.xl_count > 0
+                                      ? productItem.xlarge
+                                      : "NA",
                                   color: AppColors.mainBlackColor)),
                         ),
                       ),
@@ -701,6 +708,7 @@ class _DetailFoodState extends State<DetailFood> {
                         Get.find<ProductController>().addItem(productItem);
                         showCustomSnackBar("Items added to Cart",
                             isError: false, title: "Cart Updated");
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => CartPage(page: 'cart-history', pageId: 0,)));
                       } else {
                         showCustomSnackBar("Out of stock");
                       }
@@ -712,6 +720,8 @@ class _DetailFoodState extends State<DetailFood> {
                         Get.find<ProductController>().addItem(productItem);
                         showCustomSnackBar("Items added to Cart",
                             isError: false, title: "Cart Updated");
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => CartPage(page: 'cart-history', pageId: 0,)));
+
                       } else {
                         showCustomSnackBar("Out of stock");
                       }
@@ -723,6 +733,8 @@ class _DetailFoodState extends State<DetailFood> {
                         Get.find<ProductController>().addItem(productItem);
                         showCustomSnackBar("Items added to Cart",
                             isError: false, title: "Cart Updated");
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CartPage(page: 'cart-history', pageId: 0,)));
+
                       } else {
                         showCustomSnackBar("Out of stock");
                       }
@@ -734,6 +746,8 @@ class _DetailFoodState extends State<DetailFood> {
                       if (a <= productItem.xl_count) {
                         showCustomSnackBar("Items added to Cart",
                             isError: false, title: "Cart Updated");
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CartPage(page: 'cart-history', pageId: 0,)));
+
                       } else {
                         showCustomSnackBar("Out of stock");
                       }

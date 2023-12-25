@@ -35,7 +35,7 @@ class OrderController extends GetxController implements GetxService {
   String get orderType => _orderType;
 
   double get distance => _distance??0.0;
-  String? _foodNote="not notes";
+  String? _foodNote="";
   String? get foodNote =>_foodNote;
 
   Future<List<OrderDetailsModel>> getOrderDetails(String orderID) async {

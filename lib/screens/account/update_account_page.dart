@@ -134,7 +134,8 @@ class _UpdateAccountPageState extends State<UpdateAccountPage> {
                                   shape: BoxShape.circle,
                                   border: Border.all(
                                       width: 1,
-                                      color: Theme.of(context).primaryColor),
+                                      color: Theme.of(context).primaryColor
+                                      ),
                                 ),
                                 child: Container(
                                   margin: EdgeInsets.all(25),

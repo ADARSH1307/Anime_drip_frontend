@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shopping_app/components/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -28,7 +29,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
   void dispose() {
     if (!widget.allowDismissal) {
       print("EXIT APP");
-      // SystemNavigator.pop(); this will close the app
+      SystemNavigator.pop(); 
     }
     super.dispose();
   }
